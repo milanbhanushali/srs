@@ -1162,6 +1162,150 @@ nav ul li a {
   color: #646464;
 }
 /*#endregion Page 5 - About CSS*/
+
+/*#region Page 6 - Become a pro CSS*/
+.pro-form {
+  position: relative;
+  top: 150px;
+  width: 430px;
+  height: 654px;
+  border-radius: 4px;
+  box-shadow: 0 0 16px 0 rgba(0, 0, 0, 0.15);
+  background-color: white;
+  justify-content: center;
+  margin: auto;
+}
+
+.pro-form-heading {
+  font-size: 24px;
+  text-align: center;
+  color: #4F4F4F;
+  margin: auto;
+  margin-top: 20px;
+  font-weight: bold;
+}
+.pro-form-content{
+  justify-content: center;
+  margin: auto;
+}
+.pro-form-content input{
+  width: 359px;
+  height: 46px;
+  background: #FFFFFF 0% 0% no-repeat padding-box;
+  border: 1px solid #C8C8C8;
+  justify-content: center;
+  margin-top: 12px;
+}
+.m-auto{
+  margin: auto;
+}
+.pro-form-content input::placeholder {
+  padding: 20px;
+  color: #A0A0A0;
+}
+.check-box-pro{
+  background: #FFFFFF 0% 0% no-repeat padding-box !important;
+  border: 1px solid #C8C8C8 !important;
+  width: 20px !important;
+  height: 20px !important;
+  margin-left: 38px;
+}
+.check-box-pro-txt{
+  width: 325px;
+  height: 19px;
+  text-align: left;
+  font-size: 16px;
+  color: #4F4F4F;
+  margin-top: 12px;
+  margin-left: 8px;
+}
+.get-started-btn{
+  width: 166px;
+  height: 46px;
+  background: #1D7A8C 0% 0% no-repeat padding-box;
+  border-radius: 23px;
+  margin: auto;
+  color: #FFFFFF;
+  font-size: 16px;
+  margin-top: 25px;
+}
+.pro-how-it-work{
+  position: relative;
+  top: 80px;
+}
+.pro-work-card{
+  color: #4f4f4f;
+}
+.pro-work-card-left{
+  width: 42%;
+  margin: auto;
+  height: 200px;
+}
+.pro-work-card-right{
+  width: 42%;
+  margin-left:400px;
+  height: 300px;
+}
+.pro-work-card-heading-left{
+  margin-top: 100px;
+  font-size: 30px;
+  text-align: left !important;
+  font-weight: bold;
+}
+.pro-work-card-txt-left{
+  margin-top: 10px;
+  width: 330px;
+  text-align: left !important;
+}
+.pro-work-card-img-right{
+  position: relative;
+  top: -185px;
+  width: 260px;
+  height: 260px;
+  float: right;
+}
+.pro-work-card-heading-right{
+  margin-top: 100px;
+  font-size: 30px;
+  text-align: right !important;
+  font-weight: bold;
+  width: 276px;
+  height: 28px;
+  margin: 73px 277px 16px 24px;
+}
+.pro-work-card-img-left{
+  width: 260px;
+  height: 260px;
+  float: left;
+  margin-top: 40px;
+}
+.pro-card-part-left{
+  width: 50%;
+}
+.pro-card-part-right{
+  width: 50%;
+}
+.newsletter-position-pro{
+  position: relative;
+  margin: auto;
+  top: 150px;
+}
+.footer-position-pro{
+  position: relative;
+  top: 200px;
+}
+.capcha{
+  width: 302px;
+  height: 76px;
+  margin-top: 15px;
+  margin-left: 38px;
+}
+
+
+
+/*#endregion Page 6 - Become a pro CSS*/
+
+
 /*#region Page 7 - Upcoming Services*/
 .service-header{
   position: relative;
@@ -1351,6 +1495,32 @@ th, td {
   margin-left: 5px !important;
 }
 /*#endregion Page 8 - Customer Service History*/
+
+
+/*#region Page 9 - Helperhand User Management*/
+
+.helperhand-navbar{
+  width: 100%;
+  height: 60px;
+  margin: 0 0 1012px;
+  padding: 12px 18px 8px 15px;
+  background-color: #1fb6ff;
+}
+.helperland-heading-text {
+  width: 197px;
+  height: 39px;
+  margin: 1px 956px 0 0;
+  font-family: SwitzeraADF;
+  font-size: 37.5px;
+  font-weight: bold;
+  line-height: 0.65;
+  text-align: left;
+  color: #fff;
+}
+.user-profile{
+  
+}
+/*#endregion Page 9 - Helperhand User Management*/
 
 @media(max-width:1331px){
   .first-page-below-images ul li{
