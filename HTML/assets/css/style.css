@@ -626,11 +626,7 @@ nav ul li a {
   text-align: center;
 }
 
-.star_img {
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
-}
+
 .text_para{
     width: 100%;
     text-align: center;
@@ -712,20 +708,40 @@ nav ul li a {
 
 /*#endregion Center lorem text*/
 
+
+/*#region Heading & Star*/
+.star_img {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.star-heading{
+  width: 100%;
+  color:#4F4F4F;
+  font-weight: 500;
+  line-height: 0.67;
+  text-align: center;
+  font-size: 35.95px;
+}
+
 .star-line-left {
   width: 62px;
   height: 1px;
   background-color: #ccc;
   margin-left: 675px;
-  margin-top: 22px;
+  margin-top: 37px;
 }
 .star-line-right {
   width: 62px;
   height: 1px;
   background-color: #ccc;
   margin-right:675px ;
-  margin-top: 22px;
+  margin-top: 37px;
 }
+
+/*#endregion Heading & Star*/
+
 /*#endregion Page 2 - FAQ CSS*/
 
 
@@ -748,14 +764,7 @@ nav ul li a {
     top: 472px;
     width: 100%;
 }
-.prices-heading{
-  width: 100%;
-  color:#4F4F4F;
-  font-weight: 500;
-  line-height: 0.67;
-  text-align: center;
-  font-size: 35.95px;
-}
+
 
 /*#endregion Page 2 - Prices CSS*/
 
