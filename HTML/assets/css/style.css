@@ -1505,12 +1505,13 @@ th, td {
   margin: 0 0 1012px;
   padding: 12px 18px 8px 15px;
   background-color: #1fb6ff;
+  display: inline-block;
 }
 .helperland-heading-text {
   width: 197px;
   height: 39px;
   margin: 1px 956px 0 0;
-  font-family: SwitzeraADF;
+
   font-size: 37.5px;
   font-weight: bold;
   line-height: 0.65;
@@ -1518,7 +1519,69 @@ th, td {
   color: #fff;
 }
 .user-profile{
-  
+  margin: 0 7px 4px 956px;
+}
+.user-logout{
+  float: right;
+}
+
+.user-profile-left-right{
+  position: relative;
+  width: 100%;
+}
+
+.user-profile-left-navbar {
+  position: relative;
+  top: 60px;
+  width:20%;
+  height: 1012px;
+  margin: 0 20px 0 0;
+  padding: 18px 0 358px 1px;
+  box-shadow: 2px 0 5.5px 0.5px rgba(0, 0, 0, 0.1);
+  background-color: #fff;
+}
+.user-profile-right-navbar{
+  position: relative;
+  top: 60px;
+  width: 62%;
+  height: 776px;
+  border: solid 1px #e1e1e1;
+  background-color: #f9f9f9;
+}
+.user-grey-hr {
+  width: 272px;
+  height: 1px;
+  margin: 15px 0;
+  background-color: #e5e5e5;
+}
+.user-profile-left-text{
+  margin: 0 89px 17px 13px;
+  width: 200px;
+  font-size: 16px;
+  text-align: left;
+  color: #646464;
+}
+.color-blue{
+  color:#1fb6ff;
+}
+.menu-circle{
+  position: relative;
+  left: -5px;
+  width: 36px;
+  height: 36px;
+  margin: 10px;
+  border-radius: 50%;
+  padding: 9px 16px 8px;
+  background-color: #f4f4f4;
+}
+.user-menu{
+  position: relative;
+  left: -4px;
+  width: 12px;
+  height: 12px;
+}
+.bg-grey{
+  background-color: #f2f4f5;
 }
 /*#endregion Page 9 - Helperhand User Management*/
 
