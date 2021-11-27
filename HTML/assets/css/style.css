@@ -736,11 +736,28 @@ nav ul li a {
 
 
 
+/*#region Page 3 - Prices CSS*/
+.prices-image{
+  position: relative;
+  top: 5px;
+  width: 100%;
+  height: 370px;
+}
+.prices-section{
+    position: relative;
+    top: 472px;
+    width: 100%;
+}
+.prices-heading{
+  width: 100%;
+  color:#4F4F4F;
+  font-weight: 500;
+  line-height: 0.67;
+  text-align: center;
+  font-size: 35.95px;
+}
 
-
-
-
-
+/*#endregion Page 2 - Prices CSS*/
 
 
 
