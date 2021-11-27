@@ -215,12 +215,14 @@ nav.home ul li a{
 .down-arrow-circle{
   position: absolute;
   top: 857px;
-  margin-left: 769px;
+  margin: auto;
+  justify-content: center;
 }
 .down-arrow-shape{
   position: absolute;
   top: 867px;
-  margin-left: 781px;
+  margin-left: 12px;
+  justify-content: center;
 }
 
 .helper-land{
@@ -865,8 +867,126 @@ nav ul li a {
   position: relative;
   top: 1200px;
 }
-/*#endregion Page 2 - Prices CSS*/
+/*#endregion Page 3 - Prices CSS*/
 
+/*#region Page 4 - contact CSS*/
+
+.contact-section{
+  position: relative;
+  top: 422px;
+  width: 100%;
+}
+.contact-image{
+  position: relative;
+  top: 7px;
+  width: 100%;
+}
+.card-contact{
+  text-align: center;
+  justify-content: center;
+  margin: auto;
+}
+.contact-card-row{
+  width: 75%;
+  margin: auto;
+}
+.card-contact img.phone{
+  width: 44px;
+  height: 50px;
+  color: #1d7a8c;
+}
+.card-contact img.location{
+  width: 34px;
+  height: 54px;
+}.card-contact img.email{
+  width: 61px;
+  height: 37px;
+}
+.card-contact p{
+  width: 237px;
+  color: #4F4F4F;
+  margin-top: 10px;
+}
+.contact-hr{
+  width: 80%;
+  height: 1px;
+  margin: auto;
+  background-color: #e1e1e1;
+}
+.contact-form{
+  position: relative;
+  top: 500px;
+}
+.contact-form-heading{
+  margin-top: 100px;
+  font-size: 28px;
+  color: #4F4F4F;
+  text-align: center;
+  width: 100%;
+  font-weight: bold;
+}
+.contact-form-content{
+  justify-content: center;
+  margin: auto;
+  width: 42%;
+}
+.contact-form-content input{  
+  width: 299px;
+  height: 46px;
+  background: #FFFFFF 0% 0% no-repeat padding-box;
+  border: 1px solid #C8C8C8;
+  border-radius: 4px;
+  margin: auto;
+  margin-top: 18px;
+  color: #A0A0A0;
+}
+.contact-form-content input::placeholder {
+  padding: 20px;
+  color: #A0A0A0;
+}
+.contact-form-content select{
+  width: 615px;
+  height: 46px;
+  background: #FFFFFF 0% 0% no-repeat padding-box;
+  border: 1px solid #C8C8C8;
+  border-radius: 4px;
+  margin: auto;
+  margin-top: 18px;
+  color: #A0A0A0;
+  padding-left: 20px;
+}
+.contact-form-message{
+  width: 614px !important;
+  height: 146px !important;
+}
+.contact-form-submit{
+  top: 1263px;
+  left: 699px;
+  width: 163px;
+  height: 46px;
+  background: #1D7A8C 0% 0% no-repeat padding-box;
+  border-radius: 23px;
+  color: white;
+  margin: auto;
+}
+.contatc-map{
+  position: relative;
+  top: 600px;
+}
+.newsletter-position-contact{
+  position: relative;
+  margin: auto;
+  top: 650px;
+}
+.footer-position-contact{
+  position: relative;
+  margin: auto;
+  top: 700px;
+}
+
+
+
+/*#endregion Page 4 - contact CSS*/
 
 /*#region Page 5 - About CSS*/
 .z-about-nav{
@@ -1042,7 +1162,195 @@ nav ul li a {
   color: #646464;
 }
 /*#endregion Page 5 - About CSS*/
+/*#region Page 7 - Upcoming Services*/
+.service-header{
+  position: relative;
+  width: 100%;
+  height: 119px;
+  margin: 1px 0 30px;
+  padding: 44px 0 0;
+  background-color: #f9f9f9;
+  font-size: 30px;
+  line-height: 0.8;
+  text-align: center;
+  color: #4f4f4f;
+}
+.upcoming-services-details{
+  position: relative;
+  width: 100%;
+  display: inline-block;
+}
+.left-side-navbar{
+  width: 16.8%;
+  margin-left:210px;
+  margin-right: 31px;
+  height: 712px;
+  padding: 18px 0 327px;
+  background-color: #1d7a8c;
+}
+.right-side-dashboard{
+  width: 54.3%; 
+  height: 713px;
+  padding: 1px 0 0;
+  /* border: solid 1px #e1e1e1; */
+  background-color: #F9F9F9;
+}
+.left-side-navbar-hr{
+  width: 261px;
+  height: 1px;
+  opacity: 0.2;
+  background-color: #fff;
+}
 
+.left-side-navbar-text{
+  padding-top: 15px;
+  padding-left: 15px;
+  padding-bottom: 15px;
+  margin: 0;
+  width: 200px;
+  font-size: 18px;
+  text-align: left;
+  color:#fff;
+}
+.green{
+  padding-top: 8px;
+  background-color: #146371;
+}
+.background-grey{
+  background-color: #f9f9f9;
+}
+table,tr{  
+  background-color: #fff;
+  border: 1px solid #ddd;
+  text-align: left;
+}
+
+table {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+th, td {
+  font-size: 16px;
+  padding: 8.5px;
+}
+.updown-arrows-dashboard{
+  margin-top: 2px 3px;
+  width: 14px;
+  height: 14px;
+}
+.cancel-btn {
+  width: 80px;
+  height: 34px;
+  border-radius: 17px;
+  border: none;
+  background: #FF6B6B 0% 0% no-repeat padding-box;
+}
+.cancel-text{
+  width: 49px;
+  margin:auto;
+  text-align: center;
+  font-size: 16px;
+  color: #fff;
+}
+.dashboard-home-icon{
+  position: relative;
+  top:5px;
+}
+.dashboard-calendar-icon{
+  position: relative;
+  top: 5px;
+}
+.dashboard-clock-icon{
+  position: relative;
+  top: 2px;
+}
+.footer-position-service-provider{
+  position: relative;
+  top: 50px;
+}
+/*#endregion Page 7 - Upcoming Services*/
+
+
+/*#region Page 8 - Customer Service History*/
+
+.btn-rate-green{
+  width: 70px;
+  height: 34px;
+  padding: 11px 12px 13px 13px;
+  border-radius: 17px;
+  background-color: #6da9b5;
+  border: none;
+  
+}
+.btn-rate-green-text{
+  position: relative;
+  top: -3px;
+  left: -2px;
+  width: 49px;
+  margin: 0;
+  font-size: 14px;
+  color:#fff;
+}
+
+.rectangle-green{
+  position: relative;
+    width: 82px;
+    height: 22px;
+    padding: 5px 10px 4px 9px;
+    left: -10px;
+    background-color: #67b644;
+    color: white;
+    font-size: 13px;
+}
+.rectangle-red{
+  position: relative;
+  width: 76px;
+  height: 22px;
+  padding: 5px 10px 7px;
+  background-color: #ff6b6b;
+  font-size: 13px;
+  color: #fff;
+  left: -10px;
+}
+.payment-dashboard {
+  width: 37px;
+  height: 17px;
+  font-size: 24px;
+  font-weight: bold;
+  line-height: 1;
+  color: #1d7a8c;
+}
+
+ .payment-dashboard-text {
+  font-size: 20px;
+  font-weight: normal;
+}
+.right-side-dashboard-service-history{
+  width: 55.4%; 
+  height: 63.4%;
+  padding: 1px 0 0;
+  /* border: solid 1px #e1e1e1; */
+  background-color: #F9F9F9;
+}
+.dashboard-circle{
+  float: left;
+  width: 44px;
+  height: 44px;
+  padding: 12px 7px;
+  border-radius: 50%;
+  border: solid 1px #aaa;
+  background-color: #fff;
+  margin-right: 12px;
+}
+.dashboard-number-text{
+  position: relative;
+  top: -1px;
+}
+.dashboard-provider-text{
+  margin-left: 5px !important;
+}
+/*#endregion Page 8 - Customer Service History*/
 
 @media(max-width:1331px){
   .first-page-below-images ul li{
