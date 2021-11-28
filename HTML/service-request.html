@@ -4,9 +4,319 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Service Request Page</title>
+    <link rel="stylesheet" href="assets/css/style.css">
 </head>
 <body>
-    
+    <div class="main">
+        <div class="helperhand-navbar">
+            <p class="helperland-heading-text">helperland</p>
+            <img src="assets/img/user.png" alt="" class="user-profile">
+            <img src="assets/img/logout.png" alt="" class="user-logout">
+        </div>
+        <div class="user-profile-left-right bg-grey">
+            <div class="row">
+                <div class="user-profile-left-navbar">
+                    <p class="user-profile-left-text">Service Management</p>
+                    <div class="user-grey-hr"></div>
+                    <p class="user-profile-left-text">Role Management</p>
+                    <div class="user-grey-hr"></div>
+                    <p class="user-profile-left-text">Coupon Code Management</p>
+                    <div class="user-grey-hr"></div>
+                    <p class="user-profile-left-text">Escalation Management</p>
+                    <div class="user-grey-hr"></div>
+                    <p class="user-profile-left-text">Service Request</p>
+                    <div class="user-grey-hr"></div>
+                    <p class="user-profile-left-text">Service Providers</p>
+                    <div class="user-grey-hr"></div>
+                    <p class="user-profile-left-text color-blue">User Management</p>
+                    <div class="user-grey-hr"></div>
+                    <p class="user-profile-left-text">Finance Module</p>
+                    <div class="user-grey-hr"></div>
+                    <p class="user-profile-left-text">Zip Code Management</p>
+                    <div class="user-grey-hr"></div>
+                    <p class="user-profile-left-text">Rating Management</p>
+                    <div class="user-grey-hr"></div>
+                    <p class="user-profile-left-text">Inquiry Management</p>
+                    <div class="user-grey-hr"></div>
+                    <p class="user-profile-left-text">Newsletter Management</p>
+                    <div class="user-grey-hr"></div>
+                    <p class="user-profile-left-text">Content Management</p>
+                    <div class="user-grey-hr"></div>
+                </div>
+
+                <div class="service-profile-right-navbar">
+                    <table class="dashboard-table">
+                        <tr class="background-grey">
+                          <th>Service ID <img src="assets/img/up-down-arrows.webp" alt="" class="updown-arrows-dashboard"></th>
+                          <th>Service date <img src="assets/img/up-down-arrows.webp" alt="" class="updown-arrows-dashboard"></th>
+                          <th>Customer details <img src="assets/img/up-down-arrows.webp" alt="" class="updown-arrows-dashboard"></th>
+                          <th>Service Provider <img src="assets/img/up-down-arrows.webp" alt="" class="updown-arrows-dashboard"></th>
+                          <th>Status <img src="assets/img/up-down-arrows.webp" alt="" class="updown-arrows-dashboard"></th>
+                          <th>Action</th>
+                        </tr>
+                        <tr>
+                            <td>323436</td>
+                            <td> 
+                                <p><img src="assets/img/calendar2.png" alt="" class="dashboard-calendar-icon"> 09/04/2018 </p> 
+                                <p class="mt-1"><img src="assets/img/clock.png" alt="" class="dashboard-clock-icon"> 12:00 - 18:00</p>
+                            </td>
+                            <td>
+                                <p>David Bough</p>
+                                <p><img src="assets/img/home.png" alt="" class="dashboard-home-icon">
+                                    Musterstrabe 5,12345 Bonn
+                               </p>
+                            </td>
+                          <td>
+                             
+                            </td>
+                          <td> <div class="rectangle-yellow">New</div></td>
+                          <td><div class="menu-circle"><img src="assets/img/menu.png" alt="" class="user-menu"></div></td>
+                        </tr>
+                        <tr>
+                            <td>323437</td>
+                            <td> 
+                                <p><img src="assets/img/calendar2.png" alt="" class="dashboard-calendar-icon"> 09/04/2018 </p> 
+                                <p class="mt-1"><img src="assets/img/clock.png" alt="" class="dashboard-clock-icon"> 12:00 - 18:00</p>
+                            </td>
+                            <td>
+                                <p>David Bough</p>
+                                <p><img src="assets/img/home.png" alt="" class="dashboard-home-icon">
+                                    Musterstrabe 5,12345 Bonn
+                               </p>
+                            </td>
+                          <td>
+                              
+                            </td>
+                          <td> <div class="rectangle-yellow">New</div></td>
+                          <td><div class="menu-circle"><img src="assets/img/menu.png" alt="" class="user-menu"></div></td>
+                        </tr>
+                        <tr>
+                            <td>323438</td>
+                            <td> 
+                                <p><img src="assets/img/calendar2.png" alt="" class="dashboard-calendar-icon"> 09/04/2018 </p> 
+                                <p class="mt-1"><img src="assets/img/clock.png" alt="" class="dashboard-clock-icon"> 12:00 - 18:00</p>
+                            </td>
+                            <td>
+                                <p>David Bough</p>
+                                <p><img src="assets/img/home.png" alt="" class="dashboard-home-icon">
+                                    Musterstrabe 5,12345 Bonn
+                               </p>
+                            </td>
+                          <td>
+                              <p class="dashboard-circle"><img src="assets/img/gray-cap.webp" alt=""></p> 
+                              <p class="dashboard-provider-text">Lumy Watson</p>
+                              <p class="dashboard-provider-text">
+                                  <img src="assets/img/yellow-star.webp" alt="">
+                                  <img src="assets/img/yellow-star.webp" alt="">
+                                  <img src="assets/img/yellow-star.webp" alt="">
+                                  <img src="assets/img/yellow-star.webp" alt="">
+                                  <img src="assets/img/black-star.webp" alt="">
+                                  <span class="dashboard-number-text">4</span>
+                              </p>
+                            </td>
+                          <td> <div class="rectangle-blue">Pending</div></td>
+                          <td><div class="menu-circle"><img src="assets/img/menu.png" alt="" class="user-menu"></div></td>
+                        </tr>
+                        <tr>
+                            <td>323439</td>
+                            <td> 
+                                <p><img src="assets/img/calendar2.png" alt="" class="dashboard-calendar-icon"> 09/04/2018 </p> 
+                                <p class="mt-1"><img src="assets/img/clock.png" alt="" class="dashboard-clock-icon"> 12:00 - 18:00</p>
+                            </td>
+                            <td>
+                                <p>David Bough</p>
+                                <p><img src="assets/img/home.png" alt="" class="dashboard-home-icon">
+                                    Musterstrabe 5,12345 Bonn
+                               </p>
+                            </td>
+                          <td>
+                              <p class="dashboard-circle"><img src="assets/img/gray-cap.webp" alt=""></p> 
+                              <p class="dashboard-provider-text">Lumy Watson</p>
+                              <p class="dashboard-provider-text">
+                                  <img src="assets/img/yellow-star.webp" alt="">
+                                  <img src="assets/img/yellow-star.webp" alt="">
+                                  <img src="assets/img/yellow-star.webp" alt="">
+                                  <img src="assets/img/yellow-star.webp" alt="">
+                                  <img src="assets/img/black-star.webp" alt="">
+                                  <span class="dashboard-number-text">4</span>
+                              </p>
+                            </td>
+                          <td> <div class="rectangle-blue">Completed</div></td>
+                          <td><div class="menu-circle"><img src="assets/img/menu.png" alt="" class="user-menu"></div></td>
+                        </tr>
+                        <tr>
+                            <td>323440</td>
+                            <td> 
+                                <p><img src="assets/img/calendar2.png" alt="" class="dashboard-calendar-icon"> 09/04/2018 </p> 
+                                <p class="mt-1"><img src="assets/img/clock.png" alt="" class="dashboard-clock-icon"> 12:00 - 18:00</p>
+                            </td>
+                            <td>
+                                <p>David Bough</p>
+                                <p><img src="assets/img/home.png" alt="" class="dashboard-home-icon">
+                                    Musterstrabe 5,12345 Bonn
+                               </p>
+                            </td>
+                          <td>
+                              <p class="dashboard-circle"><img src="assets/img/gray-cap.webp" alt=""></p> 
+                              <p class="dashboard-provider-text">Lumy Watson</p>
+                              <p class="dashboard-provider-text">
+                                  <img src="assets/img/yellow-star.webp" alt="">
+                                  <img src="assets/img/yellow-star.webp" alt="">
+                                  <img src="assets/img/yellow-star.webp" alt="">
+                                  <img src="assets/img/yellow-star.webp" alt="">
+                                  <img src="assets/img/black-star.webp" alt="">
+                                  <span class="dashboard-number-text">4</span>
+                              </p>
+                            </td>
+                          <td> <div class="rectangle-green">Completed</div></td>
+                          <td><div class="menu-circle"><img src="assets/img/menu.png" alt="" class="user-menu"></div></td>
+                        </tr>
+                        <tr>
+                            <td>323441</td>
+                            <td> 
+                                <p><img src="assets/img/calendar2.png" alt="" class="dashboard-calendar-icon"> 09/04/2018 </p> 
+                                <p class="mt-1"><img src="assets/img/clock.png" alt="" class="dashboard-clock-icon"> 12:00 - 18:00</p>
+                            </td>
+                            <td>
+                                <p>David Bough</p>
+                                <p><img src="assets/img/home.png" alt="" class="dashboard-home-icon">
+                                    Musterstrabe 5,12345 Bonn
+                               </p>
+                            </td>
+                          <td>
+                              <p class="dashboard-circle"><img src="assets/img/gray-cap.webp" alt=""></p> 
+                              <p class="dashboard-provider-text">Lumy Watson</p>
+                              <p class="dashboard-provider-text">
+                                  <img src="assets/img/yellow-star.webp" alt="">
+                                  <img src="assets/img/yellow-star.webp" alt="">
+                                  <img src="assets/img/yellow-star.webp" alt="">
+                                  <img src="assets/img/yellow-star.webp" alt="">
+                                  <img src="assets/img/black-star.webp" alt="">
+                                  <span class="dashboard-number-text">4</span>
+                              </p>
+                            </td>
+                          <td> <div class="rectangle-green">Completed</div></td>
+                          <td><div class="menu-circle"><img src="assets/img/menu.png" alt="" class="user-menu"></div></td>
+                        </tr>
+                        <tr>
+                            <td>323442</td>
+                            <td> 
+                                <p><img src="assets/img/calendar2.png" alt="" class="dashboard-calendar-icon"> 09/04/2018 </p> 
+                                <p class="mt-1"><img src="assets/img/clock.png" alt="" class="dashboard-clock-icon"> 12:00 - 18:00</p>
+                            </td>
+                            <td>
+                                <p>David Bough</p>
+                                <p><img src="assets/img/home.png" alt="" class="dashboard-home-icon">
+                                    Musterstrabe 5,12345 Bonn
+                               </p>
+                            </td>
+                          <td>
+                              <p class="dashboard-circle"><img src="assets/img/gray-cap.webp" alt=""></p> 
+                              <p class="dashboard-provider-text">Lumy Watson</p>
+                              <p class="dashboard-provider-text">
+                                  <img src="assets/img/yellow-star.webp" alt="">
+                                  <img src="assets/img/yellow-star.webp" alt="">
+                                  <img src="assets/img/yellow-star.webp" alt="">
+                                  <img src="assets/img/yellow-star.webp" alt="">
+                                  <img src="assets/img/black-star.webp" alt="">
+                                  <span class="dashboard-number-text">4</span>
+                              </p>
+                            </td>
+                          <td> <div class="rectangle-red">Cancelled</div></td>
+                          <td><div class="menu-circle"><img src="assets/img/menu.png" alt="" class="user-menu"></div></td>
+                        </tr>
+                        <tr>
+                            <td>323443</td>
+                            <td> 
+                                <p><img src="assets/img/calendar2.png" alt="" class="dashboard-calendar-icon"> 09/04/2018 </p> 
+                                <p class="mt-1"><img src="assets/img/clock.png" alt="" class="dashboard-clock-icon"> 12:00 - 18:00</p>
+                            </td>
+                            <td>
+                                <p>David Bough</p>
+                                <p><img src="assets/img/home.png" alt="" class="dashboard-home-icon">
+                                    Musterstrabe 5,12345 Bonn
+                               </p>
+                            </td>
+                          <td>
+                              <p class="dashboard-circle"><img src="assets/img/gray-cap.webp" alt=""></p> 
+                              <p class="dashboard-provider-text">Lumy Watson</p>
+                              <p class="dashboard-provider-text">
+                                  <img src="assets/img/yellow-star.webp" alt="">
+                                  <img src="assets/img/yellow-star.webp" alt="">
+                                  <img src="assets/img/yellow-star.webp" alt="">
+                                  <img src="assets/img/yellow-star.webp" alt="">
+                                  <img src="assets/img/black-star.webp" alt="">
+                                  <span class="dashboard-number-text">4</span>
+                              </p>
+                            </td>
+                          <td> <div class="rectangle-green">Completed</div></td>
+                          <td><div class="menu-circle"><img src="assets/img/menu.png" alt="" class="user-menu"></div></td>
+                        </tr>
+                        <tr>
+                            <td>323444</td>
+                            <td> 
+                                <p><img src="assets/img/calendar2.png" alt="" class="dashboard-calendar-icon"> 09/04/2018 </p> 
+                                <p class="mt-1"><img src="assets/img/clock.png" alt="" class="dashboard-clock-icon"> 12:00 - 18:00</p>
+                            </td>
+                            <td>
+                                <p>David Bough</p>
+                                <p><img src="assets/img/home.png" alt="" class="dashboard-home-icon">
+                                    Musterstrabe 5,12345 Bonn
+                               </p>
+                            </td>
+                          <td>
+                              <p class="dashboard-circle"><img src="assets/img/gray-cap.webp" alt=""></p> 
+                              <p class="dashboard-provider-text">Lumy Watson</p>
+                              <p class="dashboard-provider-text">
+                                  <img src="assets/img/yellow-star.webp" alt="">
+                                  <img src="assets/img/yellow-star.webp" alt="">
+                                  <img src="assets/img/yellow-star.webp" alt="">
+                                  <img src="assets/img/yellow-star.webp" alt="">
+                                  <img src="assets/img/black-star.webp" alt="">
+                                  <span class="dashboard-number-text">4</span>
+                              </p>
+                            </td>
+                          <td> <div class="rectangle-red">Cancelled</div></td>
+                          <td><div class="menu-circle"><img src="assets/img/menu.png" alt="" class="user-menu"></div></td>
+                        </tr>
+                        <tr>
+                            <td>323445</td>
+                            <td> 
+                                <p><img src="assets/img/calendar2.png" alt="" class="dashboard-calendar-icon"> 09/04/2018 </p> 
+                                <p class="mt-1"><img src="assets/img/clock.png" alt="" class="dashboard-clock-icon"> 12:00 - 18:00</p>
+                            </td>
+                            <td>
+                                <p>David Bough</p>
+                                <p><img src="assets/img/home.png" alt="" class="dashboard-home-icon">
+                                    Musterstrabe 5,12345 Bonn
+                               </p>
+                            </td>
+                          <td>
+                              <p class="dashboard-circle"><img src="assets/img/gray-cap.webp" alt=""></p> 
+                              <p class="dashboard-provider-text">Lumy Watson</p>
+                              <p class="dashboard-provider-text">
+                                  <img src="assets/img/yellow-star.webp" alt="">
+                                  <img src="assets/img/yellow-star.webp" alt="">
+                                  <img src="assets/img/yellow-star.webp" alt="">
+                                  <img src="assets/img/yellow-star.webp" alt="">
+                                  <img src="assets/img/black-star.webp" alt="">
+                                  <span class="dashboard-number-text">4</span>
+                              </p>
+                            </td>
+                          <td> <div class="rectangle-green">Completed</div></td>
+                          <td><div class="menu-circle"><img src="assets/img/menu.png" alt="" class="user-menu"></div></td>
+                        </tr>
+                        
+                        
+                        
+                      </table>
+                </div>
+            </div>
+            
+        </div>
+        
+    </div>
+
 </body>
 </html>

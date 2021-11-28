@@ -1457,6 +1457,27 @@ th, td {
   color: #fff;
   left: -10px;
 }
+.rectangle-yellow{
+  position: relative;
+  width: 45px;
+  height: 24px;
+  padding: 5px 10px 7px;
+  background-color: #f2bb37;
+  font-size: 13px;
+  color: #fff;
+  left: 5px;
+}
+.rectangle-blue{
+  position: relative;
+  width: 62px;
+  height: 24px;
+  padding: 5px 8px 7px;
+  background-color: #1FB6FF;
+  font-size: 13px;
+  color: #fff;
+  text-align: center;
+  left: 1px;
+}
 .payment-dashboard {
   width: 37px;
   height: 17px;
@@ -1498,32 +1519,113 @@ th, td {
 
 
 /*#region Page 9 - Helperhand User Management*/
+.dashboard-table-user-management{
+  position: relative;
+  top: 110px;
+}
 
 .helperhand-navbar{
   width: 100%;
   height: 60px;
-  margin: 0 0 1012px;
-  padding: 12px 18px 8px 15px;
   background-color: #1fb6ff;
-  display: inline-block;
 }
 .helperland-heading-text {
+  font-size: 37.5px;
+  color: white;
   width: 197px;
   height: 39px;
-  margin: 1px 956px 0 0;
-
-  font-size: 37.5px;
-  font-weight: bold;
-  line-height: 0.65;
-  text-align: left;
-  color: #fff;
+  margin: 7px 1116px 0 0;
 }
 .user-profile{
-  margin: 0 7px 4px 956px;
+  width: 36px;
+  height: 36px;
+  margin: 10px 0px;
 }
 .user-logout{
-  float: right;
+  width: 26px;
+  height: 29px;
+  margin: 13px 0px;
 }
+.user-name{
+  width: 94px;
+  height: 19px;
+  text-align: left;
+  color: #FFFFFF;
+  font-size: 16px;
+  margin: 19px 10px;
+}
+.user-management-form{
+  position: relative;
+  top: 70px;
+  width: 100%;
+  height: 86px;
+  background: #FFFFFF 0% 0% no-repeat padding-box;
+  border: 1px solid #E1E1E1;
+}
+.user-management-form input::placeholder {
+  padding: 20px;
+  color: #A0A0A0;
+}
+.user-management-form select{
+  width: 205px;
+  height: 46px;
+  background: #FFFFFF 0% 0% no-repeat padding-box;
+  border: 1px solid #DEDDDD;
+  color: #a0a0a0;
+  margin-left: 10px;
+}
+.user-management-form input{
+  width: 219px;
+  height: 46px;
+  background: #FFFFFF 0% 0% no-repeat padding-box;
+  border: 1px solid #DEDDDD;
+  border-radius: 4px;
+  margin-left: 10px;
+}
+.user-management-form input.zip{
+  width: 140px;
+  height: 46px;
+  background: #FFFFFF 0% 0% no-repeat padding-box;
+  border: 1px solid #DEDDDD;
+  border-radius: 4px;
+  margin-left: 10px;
+}
+.user-management-form-btn-search{  
+  width: 84px;
+  height: 46px;
+  border:none;  
+  border-radius: 5px;
+  background: #1FB6FF 0% 0% no-repeat padding-box;
+  font-size: 16px;
+  color: #FFFFFF;
+  margin-left: 10px;
+}
+.user-management-form-btn-clear{
+  width: 84px;
+  height: 46px;
+  background: #FFFFFF 0% 0% no-repeat padding-box;
+  border: 1px solid #DEDDDD;
+  color: #646464; 
+  margin-left: 10px; 
+}
+.add-new-user{
+  position: relative;
+  top: 24px;
+  width: 132px;
+  left: 960px;
+  height: 36px;
+  border: none;
+  background: #1FB6FF 0% 0% no-repeat padding-box;
+  border-radius: 4px;
+  color: white;
+}
+.add-new-user-img{
+  position: relative;
+  top: 2px;
+  width: 16px;
+  height: 16px;
+}
+
 
 .user-profile-left-right{
   position: relative;
@@ -1584,6 +1686,24 @@ th, td {
   background-color: #f2f4f5;
 }
 /*#endregion Page 9 - Helperhand User Management*/
+
+
+.user-management-right-navbar{
+  position: relative;
+  top: 50px;
+  width: 72%;
+  height: 776px;
+}
+
+.service-profile-right-navbar{
+  position: relative;
+  top: 60px;
+  width: 75%;
+  height: 776px;
+  border: solid 1px #e1e1e1;
+  background-color: #f9f9f9;
+}
+
 
 @media(max-width:1331px){
   .first-page-below-images ul li{
