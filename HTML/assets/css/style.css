@@ -287,13 +287,45 @@ nav.home ul li a{
   color: #565656;
   line-height: 1.5;
 }
-
+.left-side-images{
+  position: relative;
+  width: 5%;
+  top: 200px;
+}
 .gallery{
   position: relative;
-  width: 100%;
+  width: 80%;
   top: 300px;
-  margin-left: 150px;
+  left: 170px;
 }
+.right-side-images{
+  position: relative;
+  width: 5%;
+  top: 220px;
+  left: 12px;
+}
+.side-img-right-side{
+  margin-left: 1300px;
+}
+.side-images{
+  position: relative;
+  width: 100%;
+}
+.left-side-images-1{
+  position: relative;
+  top: 70px;
+  width: 50%;
+  float: left;
+}
+.right-side-images-1{
+  position: relative;
+  top: 250px;
+  width: 0%;
+  float: right;
+  direction: rtl;
+}
+
+
 .gallery-heading{
   font-size: 30px;
   color: #4F4F4F;
@@ -352,13 +384,11 @@ p.blog-txt{
 .ourblog{
   position: relative;
   top: 300px;
-  
 }
-
 
 .feedback{
   position: relative;
-  top: 300px;
+  top:50px;
   background-color: #f4f5f8;
 }
 
@@ -483,7 +513,7 @@ img.cards-img {
 }
 footer {
   position: relative;
-  top: 300px;
+  top: 58px;
   width: 100%;
   padding: 27px 0 0 0;
   background-color: #111;
@@ -856,6 +886,44 @@ nav ul li a {
   position: relative;
   top: 150px;
 }
+.extra-service-img-section{
+  justify-content: center;
+  width: 70%;
+  margin: auto;
+}
+.extra-service-card{
+  width: 15%;
+  margin: auto;
+  text-align: center;
+}
+.extra-lable{
+  color: #646464;
+  font-size: 16px;
+  margin-top: 15px;
+}
+.extra-time{
+  color: #1D7A8C;
+  font-size: 18px;
+  margin-top: 7px;
+  font-weight: bold;
+}
+img.extra-img-hook{
+  margin-top: 28px;
+}
+img.extra-img-fridge{
+  margin-top: 25px;
+}
+img.extra-img-oven{
+  margin-top: 36px;
+}
+img.extra-img-washing{
+  margin-top: 28px;
+}
+img.extra-img-inside{
+  margin-top: 28px;
+}
+
+
 
 .newsletter-position-prices{
   position: relative;
@@ -866,6 +934,51 @@ nav ul li a {
 .footer-position-price{
   position: relative;
   top: 1200px;
+}
+
+
+.why-helperhand-card-section{
+  width: 90%;
+  margin:auto;
+  margin-top: 40px;
+  color: #646464;
+}
+.why-helperhand-card-heading-left{
+  font-size: 20px;
+  font-weight: bold;
+  float: right;
+}
+.why-helperhand-card-pera-left{
+  font-size: 14px;
+  width: 286px;
+  float: right;
+  margin-top: 10px;
+  margin-bottom: 40px;
+}
+.why-helperhand-card-heading{
+  font-size: 20px;
+  font-weight: bold;
+}
+.why-helperhand-card-pera{
+  font-size: 14px;
+  width: 286px;
+  margin-top: 10px;
+  margin-bottom: 40px;
+}
+.why-helperhand-card-left{
+  margin:auto;
+  width: 33%;
+  text-align: right !important;
+  margin-top: 0;
+}
+.why-helperhand-card{
+  margin:auto;
+  width: 33%;
+  margin-top: 0;
+}
+.why-helperhand-card-img{
+  margin:auto;
+  width: 24%;
 }
 /*#endregion Page 3 - Prices CSS*/
 
@@ -1030,14 +1143,12 @@ nav ul li a {
 }
 .extra-service-circle {
   display: inline-block;
-  margin-left: 109px;
   width: 108px;
   height: 108px;
   border-radius: 50%;
-  padding: 30px 35px 30px 36px;
+  margin: auto;
   border: solid 1px #b0c9ce;
 }
-
 .price-service-img-center{
   display: block;
   margin-left: auto;
