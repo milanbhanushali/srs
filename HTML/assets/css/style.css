@@ -289,62 +289,69 @@ nav.home ul li a{
   color: #565656;
   line-height: 1.5;
 }
-.left-side-images{
-  position: relative;
-  width: 5%;
-  top: 200px;
-}
+
 .gallery{
   position: relative;
-  width: 80%;
+  width: 100%;
   top: 300px;
-  left: 170px;
 }
-.right-side-images{
-  position: relative;
-  width: 5%;
-  top: 220px;
-  left: 12px;
-}
-.side-img-right-side{
-  margin-left: 1300px;
-}
-.side-images{
+.gallery-side-img{
   position: relative;
   width: 100%;
 }
-.left-side-images-1{
-  position: relative;
-  top: 70px;
-  width: 50%;
-  float: left;
+.gallery-side-img:before{ 
+  content: ''; 
+  position: absolute; 
+  left: 0; 
+  top: 240px; 
+  background-image: url(../img/blog-left-bg.png); 
+  background-repeat: no-repeat; 
+  width: 154px; 
+  height: calc(100% - 100px); 
+  z-index: -1;
 }
-.right-side-images-1{
-  position: relative;
-  top: 250px;
-  width: 0%;
-  float: right;
-  direction: rtl;
+.gallery-side-img:after{ 
+  content: ''; 
+  position: absolute; 
+  right: 0; 
+  top: 240px; 
+  background-image: url(../img/blog-right-bg.png); 
+  background-repeat: no-repeat; 
+  width: 174px; 
+  height: calc(100% - 100px); 
+  z-index: -1; 
 }
-
 
 .gallery-heading{
   font-size: 30px;
+  font-weight: bold;
+  color: #4F4F4F;
+  text-align: left;
+}
+
+.gallery-text{
+  font-size: 18px;
   color: #4F4F4F;
 }
+
+
 .images-together-3{
-  width: 60%;
+  width: 100%;
+  float: right;
 }
-.column {
+.column-text {
   float: left;
-  width: 43.33%;
+  width: 45%;
+  margin-left: 10%;
   padding: 5px;
 }
-.column-1 {
+.column-img {
   float: left;
-  width: 10%;
+  margin-left: 5%;
+  width: 30%;
   padding: 5px;
 }
+
 
 .cards-blog{
   width: 357px;
@@ -385,12 +392,12 @@ p.blog-txt{
 
 .ourblog{
   position: relative;
-  top: 300px;
+  top: 200px;
 }
 
 .feedback{
   position: relative;
-  top:50px;
+  top:200px;
   background-color: #f4f5f8;
 }
 
@@ -767,20 +774,26 @@ nav ul li a {
   text-align: center;
   font-size: 35.95px;
 }
-
+.line-star-line{
+  width: 100%;
+  position: relative;
+  text-align: center;
+}
 .star-line-left {
+  position: relative;
+  top:22px;
   width: 62px;
   height: 1px;
+  margin-left: 45%;
   background-color: #ccc;
-  margin-left: 675px;
-  margin-top: 37px;
 }
 .star-line-right {
+  position: relative;
   width: 62px;
   height: 1px;
+  top: -14px;
   background-color: #ccc;
-  margin-right:675px ;
-  margin-top: 37px;
+  margin-left: 51%;
 }
 
 /*#endregion Heading & Star*/
