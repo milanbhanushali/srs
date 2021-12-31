@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap');
+
 *{
     box-sizing: border-box;
     padding: 0;
@@ -153,7 +155,7 @@ nav.home ul li a{
 }
 
 .heading{
-  width: 392px;
+  width: 393px;
   height:61px;
   font-size: 50px;
 }
@@ -1418,6 +1420,19 @@ img.extra-img-inside{
 
 
 /*#region Page 7 - Upcoming Services*/
+
+.vertical-bar{
+  top: 1px;
+  left: 73px;
+  width: 1px;
+  height: 48px;
+  background: #E1E1E1 0% 0% no-repeat padding-box;
+  opacity: 1;
+}
+.navbar-icon-img{
+  width: 27px;
+  height: 30px;
+}
 .service-header{
   position: relative;
   width: 100%;
