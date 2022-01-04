@@ -1,0 +1,95 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap');
+body { font-family: 'Roboto', sans-serif;}
+
+/* Custom Navbar */
+.custom-service-navbar {left: 0; height: 64px; width: 100%; background-color: #525252; opacity: 0.8;}
+.custom-service-navbar nav {width: 100%; background-color: transparent; padding: 10px;  }
+.custom-service-navbar nav ul { float: right !important; margin-left: 58%; }
+.custom-service-navbar nav ul li { list-style-type: none; font-size: 17px; display: inline-block; transition: 0.7s all; margin-left: 15px;}
+.custom-service-navbar nav ul li a { font-size: 17px; text-decoration: none; color: #fff;}
+.custom-service-navbar .logo { position: absolute; width: 73px; height: 54px; top: 6px; left: 15px; }
+.Rectangle-2-copy-2 { width: 1px; height: 48px; background-color: white; }
+
+.custom-service-navbar-color{ background-color: #525252; color: #fff;}
+.color-green { background-color: #29626d !important; opacity: 1 !important; border: 1px solid #ffffff80; border-radius: 20px; color: white;}
+
+/* .navbar .navbar-toggler-icon { background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' width='30' height='30' viewBox='0 0 30 30'%3e%3cpath stroke='rgba(255, 255, 255, 1)' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");} */
+.bg-nav-color{background-color: #525252;}
+
+.custom-username{position: relative; top: 50px;}
+.custom-service-header{ position: relative;height: 119px; margin: 1px 0 30px; padding: 44px 0 0; background-color: #f9f9f9; font-size: 30px; line-height: 0.8; text-align: center; color: #4f4f4f; }
+.custom-main-service-history{position: relative; top: 50px;}
+.custom-service-left-side-navbar{ width: 262px; height: 712px; padding: 18px 0 327px; background-color: #1d7a8c;}
+.custom-service-left-side-navbar ul li{font-size:18px;padding: 15px; background-color: transparent; border-top: 1px solid #ddd; border-radius: 0; color: #fff;}
+.custom-service-left-side-navbar ul li a{color: #FFFFFF;}
+.borderless { border: none !important; }
+.white-hr{border-top: 1px solid white !important; opacity:0.2 ;}
+.active-dark-green{background:transparent; background-color: #146371 !important;  width: 100%;}
+
+.custom-upcoming-service{position: relative; top: 50px;}
+
+.header-text-22{font-size: 24px; color: #646464; font-weight: bold; float: left;}
+.font-size-14{font-size: 14px !important;}
+.custom-service-right-side-navbar-details{ height: 713px; padding: 1px 0 0;}
+
+table thead tr th {color:#646464; font-size: 16px;}
+.custom-cancel-btn { width: 80px; height: 34px; border-radius: 17px; border: none; background: #FF6B6B 0% 0% no-repeat padding-box; color: white; font-size: 16px; margin-top: 7px;}
+.custom-break-text{word-wrap: break-word !important;}
+tbody tr td{ padding:8.8px !important;color: #646464;}
+
+
+/* Custom Footer */
+.custom-footer{ position: relative; top: 80px; background-color: black;}
+.custom-footer ul{list-style-type: none;}
+.custom-footer ul li{float: left; margin-left: 35px;margin-top: 48px; color: #fff; justify-content: center;}
+.custom-footer-hr{ width: 1280px; height: 1px; background-color: #424242; justify-content: center;}
+.custom-footer-icons-img-1{margin-top: 48px; padding-right: 10px;}
+.custom-footer-icons-img-2{margin-top: 48px; padding-right: 10px;}
+
+.custom-footer-text-color{ color: #9BA0A3; font-size: 14px; padding: 20px;}
+
+
+
+/*#region Customer Service History*/
+
+.custom-height-left-side-navbar{ width: 262px; height: 1032px; }
+
+
+.custom-customer-service-history-navbar {left: 0; height: 64px; width: 100%; background-color: #525252; opacity: 0.8;}
+.custom-customer-service-history-navbar nav {width: 100%; background-color: transparent; padding: 37px;  }
+.custom-customer-service-history-navbar nav ul { float: right !important; margin-left: 47%; }
+.custom-customer-service-history-navbar nav ul li { list-style-type: none; font-size: 17px; display: inline-block; transition: 0.7s all; margin-left: 15px;}
+.custom-customer-service-history-navbar nav ul li a { font-size: 17px; text-decoration: none; color: #fff;}
+.custom-customer-service-history-navbar .logo { position: absolute; width: 73px; height: 54px; top: 6px; left: 15px; }
+
+
+.Rectangle-2-copy-2 { width: 1px; height: 48px; background-color: white; }
+
+
+
+.custom-customer-service-history-navbar-color{ background-color: #525252; color: #fff;}
+.custom-payment-font-size-color{ height: 17px; font-size: 24px; font-weight: bold; line-height: 1; color: #1d7a8c;}
+.custom-payment-price-font-size-20{  font-size: 20px; font-weight: normal;}
+
+.custom-status-completed{ height: 21px;padding: 2px !important;  background-color: #67b644; color: white; font-size: 13px;}
+.custom-status-cancel{ height: 21px;padding: 2px !important;  background-color: #ff6b6b;; color: white; font-size: 13px;}
+
+.custom-rate-button{font-size: 14px;  height: 34px; padding: 7px 12px 13px 13px; border-radius: 17px; background-color: #6da9b5; border: none; color: white;}
+.custom-dashboard-circle{width: 44px; height: 44px; padding: 12px 7px; border-radius: 50%; border: solid 1px #aaa; background-color: #fff; margin-right: 12px;}
+.custom-round-button{ height: 40px; margin: 4px 2px; padding: 7px 22px; border-radius: 25px; border: 1px solid #FFFFFF80; opacity: 1 !important;}
+
+/*#endregion Customer Service History*/
+
+/* applies to x-small devices (portrait phones, less than 576px) */
+@media (max-width: 575.98px) { .custom-service-navbar nav ul li a {color: #000;} .custom-service-left-side-navbar{display: none;} .custom-service-right-side-navbar-details{display: none;}}
+
+/* applies to small devices (landscape phones, less than 768px) */
+@media (max-width: 767.98px) { .custom-service-navbar nav ul li a {color: #000;} .custom-footer .row .offset-1 {margin:0 !important; margin-top: 25px !important;} .custom-footer .row .offset-1 img{max-width: 200%;}}
+
+/* applies to medium devices (tablets, less than 992px) */
+@media (max-width: 991.98px) { .custom-service-navbar nav ul li a {color: #000;} }
+
+@media (min-width: 1445px) and (max-width: 1525px) { .custom-service-navbar nav ul { float: right !important;margin-left: 55% !important; margin-right: 10px !important; } }
+@media (min-width: 1308px) and (max-width: 1445px) { .custom-service-navbar nav ul { float: right !important;margin-left: 50% !important; margin-right: 10px !important; } }
+@media (min-width: 1118px) and (max-width: 1307px) { .custom-service-navbar nav ul { float: right !important;margin-left: 38% !important; margin-right: 10px !important; } }
+@media (min-width: 900px) and (max-width: 1118px) { .custom-service-navbar nav ul { float: right !important;margin-left: 30% !important; margin-right: 10px !important; } }
