@@ -537,7 +537,6 @@ footer {
 
 .footer-list {
   padding: 10px;
-  font-family: Roboto;
   text-transform: uppercase;
 }
 
@@ -801,13 +800,6 @@ nav ul li a {
 /*#endregion Heading & Star*/
 
 /*#endregion Page 2 - FAQ CSS*/
-
-
-
-
-
-
-
 
 
 /*#region Page 3 - Prices CSS*/
@@ -1361,6 +1353,28 @@ img.extra-img-inside{
   position: relative;
   top: 80px;
 }
+.pro-how-it-work:before{ 
+  content: ''; 
+  position: absolute; 
+  left: 0; 
+  top: -50px; 
+  background-image: url(../img/blog-left-bg.png); 
+  background-repeat: no-repeat; 
+  width: 154px; 
+  height: calc(100% - 100px); 
+  z-index: -1;
+}
+.pro-how-it-work:after{ 
+  content: ''; 
+  position: absolute; 
+  right: 0; 
+  top: -50px; 
+  background-image: url(../img/blog-right-bg.png); 
+  background-repeat: no-repeat; 
+  width: 174px; 
+  height: calc(100% - 1px); 
+  z-index: -1; 
+}
 .pro-work-card{
   color: #4f4f4f;
 }
@@ -1414,28 +1428,72 @@ img.extra-img-inside{
   width: 50%;
 }
 .newsletter-position-pro{
+  position: absolute;
+  width: 100%;
+  margin-top: 150px;
+  text-align: center;
+}
+.newsletter-heading{
+
+  height: 30px;
+  
+  font-size: 18px;
+  font-weight: 500;
+  line-height: 1.22;
+  color: #353548;
+}
+/* .footer-position-pro{
   position: relative;
+  border: red 1px solid;
+  top: 250px;
   margin: auto;
-  top: 150px;
 }
-.footer-position-pro{
-  position: relative;
-  top: 200px;
+.footer-logo-pro{
+  width: 24%;
+  float: left;
+  height: 100px;
+  border: 2px solid red;
+
 }
-.capcha{
+.footer-menu-items{
+  width: 49%;
+  height: 100px;
+  border: 2px solid green;
+}
+.footer-icons{
+  width: 24%;
+  float: right;
+  height: 100px;
+  border: 2px solid yellow;
+} */
+.captcha{
   width: 302px;
   height: 76px;
-  margin-top: 15px;
+  margin-top: 25px;
   margin-left: 38px;
 }
-
-
-
 /*#endregion Page 6 - Become a pro CSS*/
 
 
 /*#region Page 7 - Upcoming Services*/
-
+.Rectangle-2-copy-2 {
+  width: 1px;
+  height: 48px;
+  background-color: white;
+}
+nav ul li a{
+  display: flex;
+  justify-content: center;
+  position: relative;
+  top: -17px;
+}
+.navbar-icon-img{
+  position: relative;
+  top: 8px;
+}
+.p-0{
+  padding: 0;
+}
 .vertical-bar{
   top: 1px;
   left: 73px;
@@ -1445,8 +1503,8 @@ img.extra-img-inside{
   opacity: 1;
 }
 .navbar-icon-img{
-  width: 27px;
-  height: 30px;
+  width: 36px;
+  height: 36px;
 }
 .service-header{
   position: relative;
