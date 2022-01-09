@@ -18,11 +18,36 @@ closeMenu.addEventListener('click',() => {
 })
 
 
-var header = document.getElementById('abc')
+// var header = document.getElementById('abc')
 
-header.addEventListener('scroll',() =>{
-    header.classList.add('bg-dark')
-    header.classList.remove('bg-transparent')
-})
+// header.addEventListener('scroll',() =>{
+//     console.log("hello");
+//     header.classList.add('bg-dark')
+//     header.classList.remove('bg-transparent')
+// })
+
+jQuery(document).click(function() {
+
+});
+
+jQuery('#nav-menu').click(function(event) {
+    jQuery(".custom-mobile-navbar").collapse('hide');
+    event.stopPropagation();
+});
+$(function () {
+    $(document).scroll(function () {
+      var $nav = $(".navbar-fixed-top");
+      var $logoimg = $(".custom-navbar-full-image-logo");
+      var $activebtn = $(".border-btn");
+      var $ulnavmargin = $(".custom-mobile-navbar");
+      var $header = $("header");
+
+      $nav.toggleClass('scrolled', $(this).scrollTop() > $nav.height());
+      $logoimg.toggleClass('scrolled', $(this).scrollTop() > $nav.height());
+      $activebtn.toggleClass('scrolled',$(this).scrollTop() > $nav.height());
+      $ulnavmargin.toggleClass('scrolled',$(this).scrollTop() > $nav.height());
+      $header.toggleClass('scrolled',$(this).scrollTop() > $nav.height());
+    });
+  });
 
 console.log("hello peter");
