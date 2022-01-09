@@ -26,14 +26,6 @@ closeMenu.addEventListener('click',() => {
 //     header.classList.remove('bg-transparent')
 // })
 
-jQuery(document).click(function() {
-
-});
-
-jQuery('#nav-menu').click(function(event) {
-    jQuery(".custom-mobile-navbar").collapse('hide');
-    event.stopPropagation();
-});
 $(function () {
     $(document).scroll(function () {
       var $nav = $(".navbar-fixed-top");
