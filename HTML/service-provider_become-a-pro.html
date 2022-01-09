@@ -1,225 +1,188 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-  <head>
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <!-- Bootstrap CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
-    <link rel="stylesheet" href="./assets/css/style_2.css">
-    <title>Service Provider -> Upcoming Service</title>
-  </head>
-  <body>
-    <div class="container-fluid p-0">
-      <div class="custom-service-navbar fixed-top">
-            <nav class="navbar navbar-expand-lg custom-service-navbar-color">
-               <a href="#" class="navbar-brand"> <img src="./assets/img/white-logo-transparent-background.png" alt="" class="logo"></a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarService" aria-controls="navbarService" aria-expanded="false" aria-label="Toggle navigation 1">
-                  <span class="navbar-toggler-icon"> </span>
-                </button>
-                <div class="collapse navbar-collapse bg-nav-color" id="navbarService">
-                  <ul class="nav navbar-nav me-auto mb-2 mb-lg-0 ">
-                    <li class="nav-item "><a href="#" class="nav-link">Prices & services</a></li>
-                    <li class="nav-item"><a href="#" class="nav-link">Warranty</a></li>
-                    <li class="nav-item"><a href="#" class="nav-link">Blog</a></li>
-                    <li class="nav-item"><a href="#" class="nav-link">Contact</a></li>
-                    <li><div class="Rectangle-2-copy-2"></div></li>
-                    <li class="nav-item"><a href="#" class="nav-link"><img src="./assets/img/icon-notification.webp" class="navbar-icon-img" alt=""></a></li>
-                    <li><div class="Rectangle-2-copy-2"></div></li>
-                    <li class="nav-item"><a href="#" class="nav-link"><img src="/img/profile.webp" class="navbar-icon-img" alt=""></a></li>
-                    <li class="mt-4"><img src="./assets/img/keyboard-right-arrow-button.webp" alt="" class="downarrow mb-4"></li> 
-                  </ul>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no">
+    <title>Service Provider -> Become a pro</title>
+
+    
+    <link rel="manifest" href="images/favicon/manifest.json">
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="msapplication-TileImage" content="images/favicon/ms-icon-144x144.png">
+    <meta name="theme-color" content="#ffffff">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/css/select2.min.css" rel=stylesheet>
+    <link rel='stylesheet' href="./assets/css/style_1.css">
+</head>
+
+<body>
+        <!-- header -->
+        <div>
+            <header class="fixed-top bg-transparent"  id="abc">
+                <div class="custom-navbar-full-image-logo ">
+                    <img src="assets/img/white-logo-transparent-background.png" alt="" class="mt-5 ms-3 img-fluid">
                 </div>
-                
-                <div>
-                  
-                </div>
-              
-            </nav> 
-      </div>
-      
-    </div>
-    <!--#region Main Page Upcoming Service  -->
-
-      <!-- Username Starts -->
-      <section class="custom-username">
-        <div class="container-fluid">
-          <div class="row">
-            <div class="custom-service-header align-center">
-                Welcome, <b>Sandip!</b>
-            </div>
-          </div>
+                <nav class="custom-mobile-navbar fixed-top" id="nav-menu">
+                    <ul class="nav__list">
+                        <i class="bi bi-x-lg header__close" id="close-menu"></i>
+                        <li class="nav__items border-btn"><a href="" class="nav__link">Book Cleaner</a></li>
+                        <li class="nav__items"><a href="" class="nav__link">Prices & Services</a></li>
+                        <li class="nav__items"><a href="" class="nav__link">Warranty</a></li>
+                        <li class="nav__items"><a href="" class="nav__link">Blog</a></li>
+                        <li class="nav__items"><a href="" class="nav__link">Contact</a></li>
+                        <li class="nav__items border-btn"><a href="" class="nav__link">Login</a></li>
+                        <li class="nav__items border-btn"><a href="" class="nav__link">Become a Helper</a></li>
+                        <div class="custom-line-mobile-view"></div>
+                        <li class="nav__items"><a href="" class="nav__link custom-navbar-icon-show-hide"><img src="./assets/img/fb.png" alt=""></a>
+                        <a href="" class="nav__link custom-navbar-icon-show-hide"><img src="./assets/img/insta.png" alt=""></a></li>
+                    </ul>
+                </nav>
+                <i class="bi bi-list header__toggle" id="toggle-menu"></i>
+            </header>
         </div>
-      </section>
-      
-      
-      <!-- Username End -->
-
-      <!-- Dashboard Table Navbar Starts -->
-      <section class="custom-upcoming-service">
-        <div class="container">
-          <div class="row">
-            <div class="offset-1 col-md-3 custom-service-left-side-navbar">
-                <ul class="list-group bg-transparent list-group-flush">
-                  <li class="list-group-item borderless"><a href="#" class="text-decoration-none ">Dashboard</a></li>
-                  <div class="white-hr"></div>
-                  <li class="list-group-item borderless"><a href="#" class="text-decoration-none">New Service Request</a></li>
-                  <div class="white-hr"></div>
-                  <li class="list-group-item active-dark-green borderless "><a href="#" class="text-decoration-none">Upcoming Services </a></li>
-                  <div class="white-hr"></div>
-                  <li class="list-group-item borderless"><a href="#" class="text-decoration-none">Service Schedeule</a></li>
-                  <div class="white-hr"></div>
-                  <li class="list-group-item borderless"><a href="#" class="text-decoration-none">Service History</a></li>
-                  <div class="white-hr"></div>
-                  <li class="list-group-item borderless"><a href="#" class="text-decoration-none">My Ratings</a></li>
-                  <div class="white-hr"></div>
-                  <li class="list-group-item borderless"><a href="#" class="text-decoration-none">Block Customer</a></li>
-                </ul>
-            </div>
-          <!-- Dashboard Table Navbar End -->
-  
-          <!-- Dashboard Table Navbar Details Starts -->
-            <div class="mx-5 col-md-7  custom-service-right-side-navbar-details">
-              <table class="table table-responsive border">
-                <thead class="table-light borderless">
-                  <tr> 
-                    <th>&nbsp;&nbsp;&nbsp;Service ID <img src="/img/up-down-arrows.webp" alt="" ></th>
-                    <th>Service date <img src="/img/up-down-arrows.webp" alt="" class="updown-arrows-dashboard"></th>
-                    <th>Customer details <img src="/img/up-down-arrows.webp" alt="" class="updown-arrows-dashboard"></th>
-                    <th>&nbsp;&nbsp;Distance <img src="/img/up-down-arrows.webp" alt="" class="updown-arrows-dashboard"></th>
-                    <th>&nbsp;&nbsp;&nbsp;Action</th>
-                  </tr>
-                </thead>
-                  <tbody>
-                    <tr>
-                      <td class="pt-3 ps-4">323436</td>
-                      <td><img src="/img/calendar2.png" alt="" > 09/04/2018 <br> <img src="/img/clock.png" alt=""> 12:00 - 18:00</td>
-                      <td class="custom-break-text">David Bough<img src="/img/home.png" alt=""> <br> Musterstrabe 5,12345 Bonn</td>
-                      <td class="text-center pt-3">15 km</td>
-                      <td><button class="custom-cancel-btn">Cancel</button></td>
-                    </tr>
-                    <tr>
-                      <td class="pt-3 ps-4">323437</td>
-                      <td><img src="/img/calendar2.png" alt="" > 09/04/2018 <br> <img src="/img/clock.png" alt=""> 12:00 - 18:00</td>
-                      <td class="custom-break-text">David Bough<img src="/img/home.png" alt=""> <br> Musterstrabe 5,12345 Bonn</td>
-                      <td class="text-center pt-3">10 km</td>
-                      <td><button class="custom-cancel-btn">Cancel</button></td>
-                    </tr>
-                    <tr>
-                      <td class="pt-3 ps-4">323438</td>
-                      <td><img src="/img/calendar2.png" alt="" > 09/04/2018 <br> <img src="/img/clock.png" alt=""> 12:00 - 18:00</td>
-                      <td class="custom-break-text">David Bough<img src="/img/home.png" alt=""> <br> Musterstrabe 5,12345 Bonn</td>
-                      <td class="text-center pt-3">15 km</td>
-                      <td><button class="custom-cancel-btn">Cancel</button></td>
-                    </tr>
-                    <tr>
-                      <td class="pt-3 ps-4">323438</td>
-                      <td><img src="/img/calendar2.png" alt="" > 09/04/2018 <br> <img src="/img/clock.png" alt=""> 12:00 - 18:00</td>
-                      <td class="custom-break-text">David Bough<img src="/img/home.png" alt=""> <br> Musterstrabe 5,12345 Bonn</td>
-                      <td class="text-center pt-3">15 km</td>
-                      <td><button class="custom-cancel-btn">Cancel</button></td>
-                    </tr>
-                    <tr>
-                      <td class="pt-3 ps-4">323438</td>
-                      <td><img src="/img/calendar2.png" alt="" > 09/04/2018 <br> <img src="/img/clock.png" alt=""> 12:00 - 18:00</td>
-                      <td class="custom-break-text">David Bough<img src="/img/home.png" alt=""> <br> Musterstrabe 5,12345 Bonn</td>
-                      <td class="text-center pt-3">10 km</td>
-                      <td><button class="custom-cancel-btn">Cancel</button></td>
-                    </tr>
-                    <tr>
-                      <td class="pt-3 ps-4">323438</td>
-                      <td><img src="/img/calendar2.png" alt="" > 09/04/2018 <br> <img src="/img/clock.png" alt=""> 12:00 - 18:00</td>
-                      <td class="custom-break-text">David Bough<img src="/img/home.png" alt=""> <br> Musterstrabe 5,12345 Bonn</td>
-                      <td class="text-center pt-3">25 km</td>
-                      <td><button class="custom-cancel-btn">Cancel</button></td>
-                    </tr>
-                    <tr>
-                      <td class="pt-3 ps-4">323438</td>
-                      <td><img src="/img/calendar2.png" alt="" > 09/04/2018 <br> <img src="/img/clock.png" alt=""> 12:00 - 18:00</td>
-                      <td class="custom-break-text">David Bough<img src="/img/home.png" alt=""> <br> Musterstrabe 5,12345 Bonn</td>
-                      <td class="text-center pt-3">15 km</td>
-                      <td><button class="custom-cancel-btn">Cancel</button></td>
-                    </tr>
-                    <tr>
-                      <td class="pt-3 ps-4">323438</td>
-                      <td><img src="/img/calendar2.png" alt="" > 09/04/2018 <br> <img src="/img/clock.png" alt=""> 12:00 - 18:00</td>
-                      <td class="custom-break-text">David Bough<img src="/img/home.png" alt=""> <br> Musterstrabe 5,12345 Bonn</td>
-                      <td class="text-center pt-3">05 km</td>
-                      <td><button class="custom-cancel-btn">Cancel</button></td>
-                    </tr>
-                    <tr>
-                      <td class="pt-3 ps-4">323438</td>
-                      <td><img src="/img/calendar2.png" alt="" > 09/04/2018 <br> <img src="/img/clock.png" alt=""> 12:00 - 18:00</td>
-                      <td class="custom-break-text">David Bough<img src="/img/home.png" alt=""> <br> Musterstrabe 5,12345 Bonn</td>
-                      <td class="text-center pt-3">15 km</td>
-                      <td><button class="custom-cancel-btn">Cancel</button></td>
-                    </tr>
-                    <tr>
-                      <td class="pt-3 ps-4">323438</td>
-                      <td><img src="/img/calendar2.png" alt="" > 09/04/2018 <br> <img src="/img/clock.png" alt=""> 12:00 - 18:00</td>
-                      <td class="custom-break-text">David Bough<img src="/img/home.png" alt=""> <br> Musterstrabe 5,12345 Bonn</td>
-                      <td class="text-center pt-3">05 km</td>
-                      <td><button class="custom-cancel-btn">Cancel</button></td>
-                    </tr>
-                  </tbody>
-              </table>
-            </div>
-          </div>
-        </div>
-      </section>
-      
-      <!-- Dashboard Table Navbar Details End -->
-    <!-- #endregion Main Page Upcoming Service -->
-
-    <!--#region Footer Start  -->
-    <footer class="custom-footer container-fluid">
-      <div class="row">
-        <div class="offset-1 col-2 my-3">
-          <img src="./assets/img/white-logo-transparent-background-copy-4.png" class="custom-logo-footer">
-        </div>
-        <div class="col-7">
-          <ul>
-            <li>Home</li>
-            <li>About</li>
-            <li>Testimonials</li>
-            <li>FAQs</li>
-            <li>Insurance Policy</li>
-            <li>Impressum</li>
-          </ul>
-        </div>
-          <div class="col-2 icons d-flex justify-content-center mx-auto">
-            <div class="col-2 align">
-              <a href="#"><img src="./assets/img/fb.png" class="custom-footer-icons-img-1"></a>
-            </div>
+        
+        
+            <section class="hero-banner-section" style="background-image: url(/assets/img/Service_Provider_Become_Pro_Main_Img.webp);">
+                <div class="container">
+                    <div class="row justify-content-center" >
+                        <div class="card col-lg-4 col-md-4 col-sm-12">
+                            <div class="card-body">
+                              <h5 class="card-title text-center" >Register Now!</h5>
+                              <div class="input-group mb-3">
+                                <input type="text" class="form-control" placeholder="First Name" aria-label="Username" aria-describedby="basic-addon1">
+                              </div>
+                              <div class="input-group mb-3">
+                                <input type="text" class="form-control" placeholder="Last name" aria-label="Username" aria-describedby="basic-addon1">
+                              </div>
+                              <div class="input-group mb-3">
+                                <input type="email" class="form-control" placeholder="Email Address" aria-label="Username" aria-describedby="basic-addon1">
+                              </div>
+                              <div class="input-group mb-3">
+                                <div class="input-group-prepend">
+                                  <span class="input-group-text" id="basic-addon1">+46</span>
+                                </div>
+                                <input type="text" class="form-control" placeholder="Phone Number" aria-label="Username" aria-describedby="basic-addon1">
+                              </div>
+                              <div class="input-group mb-3">
+                                <input type="password" class="form-control" placeholder="password" aria-label="Username" aria-describedby="basic-addon1">
+                              </div>
+                              <div class="input-group mb-3">
+                                <input type="password" class="form-control" placeholder="Confirm password" aria-label="Username" aria-describedby="basic-addon1">
+                              </div>
+                              <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                                <label class="form-check-label" for="flexCheckDefault">
+                                  Send me newslatter from Helperland
+                                </label>
+                              </div>
+                              <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                                <label class="form-check-label" for="flexCheckDefault">
+                                I accept <span style="color: blue;">terms and conditons</span> and <span style="color: blue;">privacy policy</span> 
+                                </label>
+                              </div>
             
-            <div class="col-1">
-              <a href="#"><img src="./assets/img/insta.png" class="custom-footer-icons-img-2"></a>
+                              <div class="p-0 mt-3 "> 
+                                <img src="./assets/img/captcha.webp" class="img-fluid" alt="Responsive image">
+                              </div>
+                        
+                              <div class="input-group mb-3 mt-3">
+                                
+                                <button type="button" class="btn btn-primary btn-lg btn-block custom-get-started-button" >Get Started 
+                                    <img src="shape-2.webp" class="img-fluid " alt="">
+                                  </button>
+                              </div>
+                            </div>
+                          </div>
+                    </div>
+                </div>
+
+            </section>
+            
+            <br>
+            <br>
+            <br>
+            <section class="our-news-letter bg-white">
+                <div class="container text-center">
+                    <a href="#" class="scroll-top"><img src="./assets/img/forma-1.png" alt="up-arrow"></a>
+                    <a href="#" class="message-boat"><img src="./assets/img/contact.webp" alt="message-boat"></a>
+                    <h2>GET OUR NEWSLETTER</h2>
+                    <div class="form-row d-flex justify-content-center align-items-center">
+                        <div class="form-group">
+                            <label for="email" style="display: none;">YOUR EMAIL</label>
+                            <input type="text" placeholder="YOUR EMAIL" id="email" onkeyup="EnableDisable(this)" class="form-control">
+                        </div>
+                        <div class="btn-wrapper">
+                            <button class="red-btn" id="btnSubmit" disabled="disabled">Submit</button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+        
+    <footer class="site-footer">
+        <div class="footer-top">
+            <div class="container">
+                <div class="row align-items-center">
+                    <div class="col-lg-2 footer-widget">
+                        <a href="#" title="Helper Hand">
+                            <img src="./assets/img/site-logo.png" alt="Helper Hand">
+                        </a>
+                    </div>
+                    <div class="col-lg-8 footer-widget">
+                        <ul class="footer-navigation d-flex justify-content-center">
+                            <li>
+                                <a href="#" title="Home">Home</a>
+                            </li>
+                            <li>
+                                <a href="#" title="About">About</a>
+                            </li>
+                            <li>
+                                <a href="#" title="Testimonials">Testimonials</a>
+                            </li>
+                            <li>
+                                <a href="#" title="FAQs">FAQs</a>
+                            </li>
+                            <li>
+                                <a href="#" title="Insurance Policy">Insurance Policy</a>
+                            </li>
+                            <li>
+                                <a href="#" title="Impressum">Impressum</a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="col-lg-2 footer-widget">
+                        <ul class="social-media-list d-flex justify-content-end">
+                            <li>
+                                <a href="#" target="_blank" title="Facebook">
+                                    <img src="./assets/img/fb.png" alt="Facebook">
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#" target="_blank" title="Instagram">
+                                    <img src="./assets/img/insta.png" alt="Instagram">
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
             </div>
-          </div>
-      </div>
-      <div class="row">
-        <div class="col-1"></div>
-        <div class="col-10 custom-footer-hr"></div>
-        <div class="col-1"></div>
-      </div>
-      
-      <div class="row">
-        <div class="col-12 text-center ">
-          <div class="custom-footer-text-color">
-            <span>©2018 Helperland. All rights reserved. Terms and Conditions | Privacy Policy
-            </span>
+            <div class="container col-12">
+                <hr class="text-light">
+                <div class="custom-footer-text text-center">
+                    ©2018 Helperland. All rights reserved. Terms and Conditions | Privacy Policy
+                </div>
+            </div>
         </div>
-        </div>
-      </div>
-  </footer>
+        
+    </footer>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/js/select2.min.js"></script>
+    <script type="text/javascript" src="./assets/js/main.js"></script>
+</body>
 
-  <!-- #endregion -->
-
-
-
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
-
-
-  </body>
 </html>
