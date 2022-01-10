@@ -18,14 +18,6 @@ closeMenu.addEventListener('click',() => {
 })
 
 
-// var header = document.getElementById('abc')
-
-// header.addEventListener('scroll',() =>{
-//     console.log("hello");
-//     header.classList.add('bg-dark')
-//     header.classList.remove('bg-transparent')
-// })
-
 $(function () {
     $(document).scroll(function () {
       var $nav = $(".navbar-fixed-top");
@@ -41,5 +33,3 @@ $(function () {
       $header.toggleClass('scrolled',$(this).scrollTop() > $nav.height());
     });
   });
-
-console.log("hello peter");
