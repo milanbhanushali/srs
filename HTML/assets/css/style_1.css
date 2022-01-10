@@ -334,11 +334,24 @@ p { font-size: 16px; font-weight: 400; color: #4F4F4F; line-height: 1.3; }
 /*#endregion Service Provider -> Upcoming Service */
 
 /*#region Service Provider -> Become a Pro*/
-
 .custom-logo-img-top-on-another{position: absolute; top: 3px; width: 156px !important;height:auto !important;}
 .custom-get-started-button{border-radius: 20px; background: #1D7A8C 0% 0% no-repeat padding-box;text-align: center;margin-left: auto;margin-right: auto;margin-top: 10px;}
 .custom-get-started-button:hover{background: #1D7A8C 0% 0% no-repeat padding-box;}
 /*#endregion Service Provider -> Become a Pro*/
+
+
+/*#region Customer Service History*/
+.custom-border-cap{width: 44px;height: 44px;padding: 9px 6px;border: solid 1px #aaa;background-color: #fff; border-radius: 50%;}
+.custom-text-color-green{color: #1d7a8c; font-weight: bold;}
+.custom-font-size-24{font-size: 24px;}
+.custom-font-size-20{font-size: 20px;}
+.custom-status-completed{height: 20px;padding: 0px 10px 2px 9px;background-color: #67b644; font-size: 13px; color: #fff; line-height: 1.85;}
+.custom-status-cancelled{height: 20px;padding: 0px 10px 2px 9px;background-color: #ff6b6b;; font-size: 13px; color: #fff; line-height: 1.85;}
+.custom-rate-sp {height: 34px;padding: 5px 10px 13px 10px;border-radius: 17px;background-color: #6da9b5;}
+.custom-header-text-22{font-size: 22px; font-weight: bold;}
+.custom-export-round-button{  padding: 8px 14px 10px 16px;height: 34px;background: #146371 0% 0% no-repeat padding-box;border-radius: 17px;opacity: 1; font-size: 14px; }
+.custom-bg-for-dropdown{ background-color: #e1e1e1}
+/*#endregion Customer Service History*/
 
 
 /*#region media*/
