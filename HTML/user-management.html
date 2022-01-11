@@ -6,305 +6,306 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>User Management</title>
-  <link rel="stylesheet" href="assets/css/style.css">
+  <!--#region Links Bootstrap CSS icons -->
+  <link rel="icon" href="./assets/img/favicon_img.png" type="image/x-icon">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/css/select2.min.css" rel=stylesheet>
+  <link rel='stylesheet' href="./assets/css/style_1.css">
+  <!--#endregion Links Bootstrap CSS icons -->
 </head>
 
 <body>
-  <div class="main">
-      <div class="row">
-        <div class="helperhand-navbar">
-          <div class="row w-full">
-            <p class="helperland-heading-text">helperland</p>
-            <img src="assets/img/user.png" alt="" class="user-profile">
-            <span class="user-name">James Smith</span>
-            <img src="assets/img/logout.png" alt="" class="user-logout">
-          </div>
+
+  <!--#region Navbar - User management-->
+  <div class="container-fluid p-0">
+    <nav class="navbar navbar-light custom-user-management-navbar-bg">
+      <div class="container-fluid">
+        <a class="navbar-brand custom-user-management-font" href="#">helperland</a>
+        <div class="text-center " id="navbarText">
+          <ul class="navbar-nav list-group-horizontal me-auto mb-2 mb-lg-0">
+            <li class="nav-item me-3">
+              <a class="nav-link text-white" aria-current="page" href="#"><img src="./assets/img/profile.webp" alt="">
+                James Smith</a>
+            </li>
+            <li class="nav-item mt-1 me-3">
+              <a class="nav-link" href="#"><img src="./assets/img/logout.png" alt=""></a>
+            </li>
+          </ul>
         </div>
       </div>
-    <div class="user-profile-left-right bg-grey">
-      <div class="row">
-        <div class="user-profile-left-navbar">
-          <p class="user-profile-left-text">Service Management</p>
-          <div class="user-grey-hr"></div>
-          <p class="user-profile-left-text">Role Management</p>
-          <div class="user-grey-hr"></div>
-          <p class="user-profile-left-text">Coupon Code Management</p>
-          <div class="user-grey-hr"></div>
-          <p class="user-profile-left-text">Escalation Management</p>
-          <div class="user-grey-hr"></div>
-          <p class="user-profile-left-text">Service Request</p>
-          <div class="user-grey-hr"></div>
-          <p class="user-profile-left-text">Service Providers</p>
-          <div class="user-grey-hr"></div>
-          <p class="user-profile-left-text color-blue">User Management</p>
-          <div class="user-grey-hr"></div>
-          <p class="user-profile-left-text">Finance Module</p>
-          <div class="user-grey-hr"></div>
-          <p class="user-profile-left-text">Zip Code Management</p>
-          <div class="user-grey-hr"></div>
-          <p class="user-profile-left-text">Rating Management</p>
-          <div class="user-grey-hr"></div>
-          <p class="user-profile-left-text">Inquiry Management</p>
-          <div class="user-grey-hr"></div>
-          <p class="user-profile-left-text">Newsletter Management</p>
-          <div class="user-grey-hr"></div>
-          <p class="user-profile-left-text">Content Management</p>
-          <div class="user-grey-hr"></div>
-        </div>
-
-        <div class="user-management-right-navbar">
-          <div class="row">
-            <button class="add-new-user">
-                <img src="assets/img/addUserIcon.webp" class="add-new-user-img" alt="">
-                Add New User
-            </button>
-            <div class="user-management-form">
-                <div class="mt-4">
-                    <select name="Subjects" id="Subjects">
-                        <option value="volvo">User Name</option>
-                      </select>
-                      <select name="Subjects" id="Subjects">
-                        <option value="volvo">User Role</option>
-                      </select>
-                      <input type="text" id="phone" placeholder="Phone Number" >
-                      <input type="text" class="zip" id="Zipcode" placeholder="Zipcode" >
-                      <button class="user-management-form-btn-search">
-                        Search
-                    </button>
-                    <button class="user-management-form-btn-clear">
-                        Clear
-                    </button>
-                </div>
-            </div>
-        </div>
-          <table class="dashboard-table-user-management">
-            <tr class="background-grey">
-              <th>Username <img src="assets/img/up-down-arrows.webp" alt="" class="updown-arrows-dashboard"></th>
-              <th>User Type </th>
-              <th>Role </th>
-              <th>Postal Code <img src="assets/img/up-down-arrows.webp" alt="" class="updown-arrows-dashboard"></th>
-              <th>City</th>
-              <th>Radius <img src="assets/img/up-down-arrows.webp" alt="" class="updown-arrows-dashboard"></th>
-              <th>User Status <img src="assets/img/up-down-arrows.webp" alt="" class="updown-arrows-dashboard"></th>
-              <th>Action</th>
-            </tr>
-            <tr>
-              <td>
-                <p>Lyum Watson</p>
-              </td>
-              <td>
-                <p>Call Center</p>
-              </td>
-
-              <td>
-                <p>Inquiry Manager</p>
-              </td>
-              <td> 123456</td>
-              <td>Berlin</td>
-              <td></td>
-              <td>
-                <div class="rectangle-green center">Active</div>
-              </td>
-              <td>
-                <div class="menu-circle"><img src="assets/img/menu.png" alt="" class="user-menu"></div>
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <p>John Smith</p>
-              </td>
-              <td>
-                <p>Service Provider</p>
-              </td>
-
-              <td>
-                <p></p>
-              </td>
-              <td> 123456</td>
-              <td>Berlin</td>
-              <td>10 km</td>
-              <td>
-                <div class="rectangle-green center">Active</div>
-              </td>
-              <td>
-                <div class="menu-circle"><img src="assets/img/menu.png" alt="" class="user-menu"></div>
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <p>John Smith</p>
-              </td>
-              <td>
-                <p>Call Center</p>
-              </td>
-
-              <td>
-                <p>Inquiry Manager</p>
-              </td>
-              <td> 123456</td>
-              <td>Berlin</td>
-              <td></td>
-              <td>
-                <div class="rectangle-green center">Active</div>
-              </td>
-              <td>
-                <div class="menu-circle"><img src="assets/img/menu.png" alt="" class="user-menu"></div>
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <p>John Smith</p>
-              </td>
-              <td>
-                <p>Customer</p>
-              </td>
-
-              <td>
-                <p></p>
-              </td>
-              <td> 123456</td>
-              <td>Berlin</td>
-              <td></td>
-              <td>
-                <div class="rectangle-green center">Active</div>
-              </td>
-              <td>
-                <div class="menu-circle"><img src="assets/img/menu.png" alt="" class="user-menu"></div>
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <p>John Smith</p>
-              </td>
-              <td>
-                <p>Call Center</p>
-              </td>
-
-              <td>
-                <p>Call Center</p>
-              </td>
-              <td> 123456</td>
-              <td>Berlin</td>
-              <td></td>
-              <td>
-                <div class="rectangle-green center">Active</div>
-              </td>
-              <td>
-                <div class="menu-circle"><img src="assets/img/menu.png" alt="" class="user-menu"></div>
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <p>John Smith</p>
-              </td>
-              <td>
-                <p>Customer</p>
-              </td>
-
-              <td>
-                <p></p>
-              </td>
-              <td> 123456</td>
-              <td>Berlin</td>
-              <td></td>
-              <td>
-                <div class="rectangle-red center">Inactive</div>
-              </td>
-              <td>
-                <div class="menu-circle"><img src="assets/img/menu.png" alt="" class="user-menu"></div>
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <p>John Smith</p>
-              </td>
-              <td>
-                <p>Service Provider</p>
-              </td>
-
-              <td>
-                <p></p>
-              </td>
-              <td> 123456</td>
-              <td>Berlin</td>
-              <td>20km</td>
-              <td>
-                <div class="rectangle-green center">Active</div>
-              </td>
-              <td>
-                <div class="menu-circle"><img src="assets/img/menu.png" alt="" class="user-menu"></div>
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <p>John Smith</p>
-              </td>
-              <td>
-                <p>Call Center</p>
-              </td>
-
-              <td>
-                <p>Finance Manager</p>
-              </td>
-              <td> 123456</td>
-              <td>Berlin</td>
-              <td></td>
-              <td>
-                <div class="rectangle-green center">Active</div>
-              </td>
-              <td>
-                <div class="menu-circle"><img src="assets/img/menu.png" alt="" class="user-menu"></div>
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <p>John Smith</p>
-              </td>
-              <td>
-                <p>Customer</p>
-              </td>
-
-              <td>
-                <p></p>
-              </td>
-              <td> 123456</td>
-              <td>Berlin</td>
-              <td></td>
-              <td>
-                <div class="rectangle-green center">Active</div>
-              </td>
-              <td>
-                <div class="menu-circle"><img src="assets/img/menu.png" alt="" class="user-menu"></div>
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <p>John Smith</p>
-              </td>
-              <td>
-                <p>Customer</p>
-              </td>
-
-              <td>
-                <p></p>
-              </td>
-              <td> 123456</td>
-              <td>Berlin</td>
-              <td></td>
-              <td>
-                <div class="rectangle-green center">Active</div>
-              </td>
-              <td>
-                <div class="menu-circle"><img src="assets/img/menu.png" alt="" class="user-menu"></div>
-              </td>
-            </tr>
-          </table>
-        </div>
-      </div>
-
-    </div>
-
+    </nav>
   </div>
+  <!--#endregion Navbar - User management-->
+
+  <!--#region Dashboard -->
+  <div class="container-fluid">
+    <div class="row">
+      <div
+        class="col-xxl-2 col-xl-3 col-lg-3 col-md-3 col-sm-3  m-0 p-0 shadow mb-5 custom-user-management-left-side-height">
+        <ul class="list-group custom-text-dim-gray">
+          <li class="list-group-item list-group-item-action">Service Management</li>
+          <li class="list-group-item list-group-item-action">Role Management</li>
+          <li class="list-group-item list-group-item-action dropend">
+            <button type="button" class="btn dropdown-toggle p-0 " data-toggle="dropdown" aria-haspopup="true"
+              aria-expanded="false">
+              Coupon Code Management &nbsp;&nbsp;
+            </button>
+            <div class="dropdown-menu ">
+              <!-- Dropdown menu links -->
+            </div>
+          </li>
+          <li class="list-group-item list-group-item-action">Escalation Management</li>
+          <li class="list-group-item list-group-item-action">Service Request</li>
+          <li class="list-group-item list-group-item-action">Service Provider</li>
+          <li class="list-group-item list-group-item-action custom-text-blue">User Management</li>
+          <li class="list-group-item list-group-item-action dropend">
+            <button type="button" class="btn dropdown-toggle p-0 " data-toggle="dropdown" aria-haspopup="true"
+              aria-expanded="false">
+              Finance Module &nbsp;&nbsp;
+            </button>
+            <div class="dropdown-menu ">
+              <!-- Dropdown menu links -->
+            </div>
+          </li>
+          <li class="list-group-item list-group-item-action">Zip Code Management</li>
+          <li class="list-group-item list-group-item-action">Rating Management</li>
+          <li class="list-group-item list-group-item-action">Inquiry Management</li>
+          <li class="list-group-item list-group-item-action">Newsletter Management</li>
+          <li class="list-group-item list-group-item-action dropend">
+            <button type="button" class="btn dropdown-toggle p-0 " data-toggle="dropdown" aria-haspopup="true"
+              aria-expanded="false">
+              Content Management &nbsp;&nbsp;
+            </button>
+            <div class="dropdown-menu ">
+              <!-- Dropdown menu links -->
+            </div>
+          </li>
+        </ul>
+      </div>
+      <div class="col-xxl-10 col-xl-9 col-lg-9 col-md-9 col-sm-8">
+        <div class="row">
+          <div
+            class="col-xxl-5 col-xl-6 col-lg-4 col-md-6 col-sm-6 text-start custom-text-dim-gray custom-user-management-font-22">
+            User Management
+          </div>
+          <div class="col-xxl-7 col-xl-6 col-lg-8 col-md-5 col-sm-6 mt-3 text-end">
+            <button class="btn custom-btn-light-blue">
+              <img src="./assets/img/addUserIcon.webp" alt=""> &nbsp;Add New User
+            </button>
+          </div>
+          <div class="row mt-1">
+            <div class="col-xxl-12 col-xl-12 col-lg-12 col-md-12 col-sm-12 bg-white border ms-2  btn-group">
+              <div class="col-3 col-lg-2 col-sm-2 py-4 me-3">
+                <select class="form-select" aria-label="Default select example">
+                  <option selected>Username</option>
+                  <option value="1">One</option>
+                  <option value="2">Two</option>
+                  <option value="3">Three</option>
+                </select>
+              </div>
+              <div class="col-3 col-lg-2 col-sm-2 py-4 me-3">
+                <select class="form-select col-2" aria-label="Default select example">
+                  <option selected>Username</option>
+                  <option value="1">One</option>
+                  <option value="2">Two</option>
+                  <option value="3">Three</option>
+                </select>
+              </div>
+              <div class="col-2 col-lg-2 py-4 me-3">
+                <div class="input-group">
+                  <span class="input-group-text" id="basic-addon1">+49</span>
+                  <input type="text" class="form-control" placeholder="Phone Number" aria-label="Username"
+                    aria-describedby="basic-addon1">
+                </div>
+              </div>
+              <div class="col-1 col-lg-2 py-4 me-3">
+                <div class="input-group">
+                  <input type="text" class="form-control" placeholder="Zipcode" aria-label="Username"
+                    aria-describedby="basic-addon1">
+                </div>
+              </div>
+              <div class="col-3 col-md-2 col-sm-4 py-4 text-end">
+                <div class="input-group">
+                  <button class="custom-btn-light-blue custom-borderless px-3 py-2 rounded custom-margin-search me-2  ">
+                    Search </button>
+                  <button class="ms-3 border px-3 py-2 rounded bg-white text-dark me-2 ms-sm-0"> Clear </button>
+                </div>
+
+              </div>
+
+            </div>
+
+          </div>
+          <div class="row mt-3 bor">
+            <div
+              class="col-xxl-12 col-xl-12 col-lg-12 col-md-12 col-sm-12 table-responsive custom-user-management-color">
+              <table class="table border">
+                <thead class="table-light">
+                  <tr>
+                    <th scope="col">Username <img src="./assets/img/up-down-arrows.webp" alt="" class="user-profile">
+                    </th>
+                    <th scope="col">Usertype</th>
+                    <th scope="col">Role</th>
+                    <th scope="col">Postalcode <img src="./assets/img/up-down-arrows.webp" alt="" class="user-profile">
+                    </th>
+                    <th scope="col">City</th>
+                    <th scope="col">Radius <img src="./assets/img/up-down-arrows.webp" alt="" class="user-profile"></th>
+                    <th scope="col">User Status <img src="./assets/img/up-down-arrows.webp" alt="" class="user-profile">
+                    </th>
+                    <th scope="col">Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr class="align-middle my-5">
+                    <td scope="row">Lyum Watson</td>
+                    <td>Call Center</td>
+                    <td>Inquiry Manager</td>
+                    <td>123456</td>
+                    <td>Berlin</td>
+                    <td></td>
+                    <td>
+                      <div class="custom-active-status">Active</div>
+                    </td>
+                    <td><button class="btn btn-light rounded-circle"><i class="bi bi-three-dots-vertical"></i></button>
+                    </td>
+                  </tr>
+                  <tr class="align-middle my-5">
+                    <td scope="row">Lyum Watson</td>
+                    <td>Call Center</td>
+                    <td>Inquiry Manager</td>
+                    <td>123456</td>
+                    <td>Berlin</td>
+                    <td></td>
+                    <td>
+                      <div class="custom-active-status">Active</div>
+                    </td>
+                    <td><button class="btn btn-light rounded-circle"><i class="bi bi-three-dots-vertical"></i></button>
+                    </td>
+                  </tr>
+                  <tr class="align-middle my-5">
+                    <td scope="row">Lyum Watson</td>
+                    <td>Call Center</td>
+                    <td>Inquiry Manager</td>
+                    <td>123456</td>
+                    <td>Berlin</td>
+                    <td></td>
+                    <td>
+                      <div class="custom-active-status">Active</div>
+                    </td>
+                    <td><button class="btn btn-light rounded-circle"><i class="bi bi-three-dots-vertical"></i></button>
+                    </td>
+                  </tr>
+                  <tr class="align-middle my-5">
+                    <td scope="row">Lyum Watson</td>
+                    <td>Call Center</td>
+                    <td>Inquiry Manager</td>
+                    <td>123456</td>
+                    <td>Berlin</td>
+                    <td></td>
+                    <td>
+                      <div class="custom-active-status">Active</div>
+                    </td>
+                    <td><button class="btn btn-light rounded-circle"><i class="bi bi-three-dots-vertical"></i></button>
+                    </td>
+                  </tr>
+                  <tr class="align-middle my-5">
+                    <td scope="row">Lyum Watson</td>
+                    <td>Call Center</td>
+                    <td>Inquiry Manager</td>
+                    <td>123456</td>
+                    <td>Berlin</td>
+                    <td></td>
+                    <td>
+                      <div class="custom-active-status">Active</div>
+                    </td>
+                    <td><button class="btn btn-light rounded-circle"><i class="bi bi-three-dots-vertical"></i></button>
+                    </td>
+                  </tr>
+                  <tr class="align-middle my-5">
+                    <td scope="row">Lyum Watson</td>
+                    <td>Call Center</td>
+                    <td>Inquiry Manager</td>
+                    <td>123456</td>
+                    <td>Berlin</td>
+                    <td></td>
+                    <td>
+                      <div class="custom-inactive-status">Inactive</div>
+                    </td>
+                    <td><button class="btn btn-light rounded-circle"><i class="bi bi-three-dots-vertical"></i></button>
+                    </td>
+                  </tr>
+                  <tr class="align-middle my-5">
+                    <td scope="row">Lyum Watson</td>
+                    <td>Call Center</td>
+                    <td>Inquiry Manager</td>
+                    <td>123456</td>
+                    <td>Berlin</td>
+                    <td></td>
+                    <td>
+                      <div class="custom-active-status">Active</div>
+                    </td>
+                    <td><button class="btn btn-light rounded-circle"><i class="bi bi-three-dots-vertical"></i></button>
+                    </td>
+                  </tr>
+                  <tr class="align-middle my-5">
+                    <td scope="row">Lyum Watson</td>
+                    <td>Call Center</td>
+                    <td>Inquiry Manager</td>
+                    <td>123456</td>
+                    <td>Berlin</td>
+                    <td></td>
+                    <td>
+                      <div class="custom-active-status">Active</div>
+                    </td>
+                    <td><button class="btn btn-light rounded-circle"><i class="bi bi-three-dots-vertical"></i></button>
+                    </td>
+                  </tr>
+                  <tr class="align-middle my-5">
+                    <td scope="row">Lyum Watson</td>
+                    <td>Call Center</td>
+                    <td>Inquiry Manager</td>
+                    <td>123456</td>
+                    <td>Berlin</td>
+                    <td></td>
+                    <td>
+                      <div class="custom-active-status">Active</div>
+                    </td>
+                    <td><button class="btn btn-light rounded-circle"><i class="bi bi-three-dots-vertical"></i></button>
+                    </td>
+                  </tr>
+                  <tr class="align-middle my-5">
+                    <td scope="row">Lyum Watson</td>
+                    <td>Call Center</td>
+                    <td>Inquiry Manager</td>
+                    <td>123456</td>
+                    <td>Berlin</td>
+                    <td></td>
+                    <td>
+                      <div class="custom-active-status">Active</div>
+                    </td>
+                    <td><button class="btn btn-light rounded-circle"><i class="bi bi-three-dots-vertical"></i></button>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+    <!--#endregion Dashboard -->
+
+  <!--#region Javascript-->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+      crossorigin="anonymous"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/js/select2.min.js"></script>
+    <script type="text/javascript" src="./assets/js/main.js"></script>
+    <!--#endregion Javascript-->
 
 </body>
 
