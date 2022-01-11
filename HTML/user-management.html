@@ -48,12 +48,12 @@
           <li class="list-group-item list-group-item-action">Service Management</li>
           <li class="list-group-item list-group-item-action">Role Management</li>
           <li class="list-group-item list-group-item-action dropend">
-            <button type="button" class="btn dropdown-toggle p-0 " data-toggle="dropdown" aria-haspopup="true"
-              aria-expanded="false">
+            <a type="button" class="dropdown-click btn dropdown-toggle p-0 dropdown-btn" role="button">
               Coupon Code Management &nbsp;&nbsp;
-            </button>
-            <div class="dropdown-menu ">
-              <!-- Dropdown menu links -->
+            </a>
+            <div class="dropdown-container">
+                <a class="dropdown-item" href="#">Coupon Codes</a>
+                <a class="dropdown-item" href="#">Usage History</a>
             </div>
           </li>
           <li class="list-group-item list-group-item-action">Escalation Management</li>
@@ -61,12 +61,14 @@
           <li class="list-group-item list-group-item-action">Service Provider</li>
           <li class="list-group-item list-group-item-action custom-text-blue">User Management</li>
           <li class="list-group-item list-group-item-action dropend">
-            <button type="button" class="btn dropdown-toggle p-0 " data-toggle="dropdown" aria-haspopup="true"
+            <a type="button" class="dropdown-click btn dropdown-toggle p-0 dropdown-btn" data-toggle="dropdown" aria-haspopup="true"
               aria-expanded="false">
               Finance Module &nbsp;&nbsp;
-            </button>
-            <div class="dropdown-menu ">
-              <!-- Dropdown menu links -->
+            </a>
+            <div class="dropdown-container">
+                <a class="dropdown-item" href="#">All Transaction</a>
+                <a class="dropdown-item" href="#">Generate Payment</a>
+                <a class="dropdown-item" href="#">Customer Invoices</a>
             </div>
           </li>
           <li class="list-group-item list-group-item-action">Zip Code Management</li>
@@ -74,12 +76,13 @@
           <li class="list-group-item list-group-item-action">Inquiry Management</li>
           <li class="list-group-item list-group-item-action">Newsletter Management</li>
           <li class="list-group-item list-group-item-action dropend">
-            <button type="button" class="btn dropdown-toggle p-0 " data-toggle="dropdown" aria-haspopup="true"
+            <a type="button" class="dropdown-click btn dropdown-toggle p-0 dropdown-btn" data-toggle="dropdown" aria-haspopup="true"
               aria-expanded="false">
-              Content Management &nbsp;&nbsp;
-            </button>
-            <div class="dropdown-menu ">
-              <!-- Dropdown menu links -->
+              Content Management&nbsp;&nbsp;
+            </a>
+            <div class="dropdown-container">
+                <a class="dropdown-item" href="#">Blog</a>
+                <a class="dropdown-item" href="#">FAQs</a>
             </div>
           </li>
         </ul>
@@ -305,6 +308,25 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/js/select2.min.js"></script>
     <script type="text/javascript" src="./assets/js/main.js"></script>
+    <script>
+      /* Loop through all dropdown buttons to toggle between hiding and showing its dropdown content - This allows the user to have multiple dropdowns without any conflict */
+      var dropdown = document.getElementsByClassName("dropdown-btn");
+      
+      var i;
+      
+      for (i = 0; i < dropdown.length; i++) {
+        dropdown[i].addEventListener("click", function() {
+        this.classList.toggle("active");
+        var dropdownContent = this.nextElementSibling;
+        if (dropdownContent.style.display === "block") {
+          dropdownContent.style.display = "none";
+        }
+        else {
+          dropdownContent.style.display = "block";
+        }
+        });
+      }
+  </script>
     <!--#endregion Javascript-->
 
 </body>
