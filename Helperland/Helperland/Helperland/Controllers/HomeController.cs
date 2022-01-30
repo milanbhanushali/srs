@@ -22,8 +22,20 @@ namespace Helperland.Controllers
         {
             return View();
         }
+        public IActionResult FAQ()
+        {
+            return View();
+        }
+        public IActionResult Prices()
+        {
+            return View();
+        }
+        public IActionResult Contact()
+        {
+            return View();
+        }
 
-        public IActionResult Privacy()
+        public IActionResult About()
         {
             return View();
         }
