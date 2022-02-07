@@ -164,3 +164,4 @@ D:\Extra\TatvaSoft\SRS\srs\Helperland\Helperland\Helperland\obj\Debug\netcoreapp
 D:\Extra\TatvaSoft\SRS\srs\Helperland\Helperland\Helperland\obj\Debug\netcoreapp3.1\Helperland.Views.pdb
 D:\Extra\TatvaSoft\SRS\srs\Helperland\Helperland\Helperland\obj\Debug\netcoreapp3.1\Helperland.csproj.CopyComplete
 D:\Extra\TatvaSoft\SRS\srs\Helperland\Helperland\Helperland\obj\Debug\netcoreapp3.1\Helperland.genruntimeconfig.cache
+D:\Extra\TatvaSoft\SRS\srs\Helperland\Helperland\Helperland\obj\Debug\netcoreapp3.1\Razor\Views\Shared\_partialLoginView.cshtml.g.cs

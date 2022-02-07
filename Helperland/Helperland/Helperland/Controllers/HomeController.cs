@@ -1,4 +1,7 @@
-﻿using Helperland.Models;
+﻿using Helperland.Data;
+using Helperland.Models;
+using Helperland.Models.ViewModel;
+using Helperland.Repository;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using System;
@@ -12,12 +15,31 @@ namespace Helperland.Controllers
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
+        private readonly ILoginRepository _iLoginRepository;
 
-        public HomeController(ILogger<HomeController> logger)
+        public HomeController(ILogger<HomeController> logger,ILoginRepository iLoginRepository)
         {
             _logger = logger;
+            _iLoginRepository = iLoginRepository;
         }
-
+        [HttpPost]
+        public IActionResult Login(LoginViewModel loginViewModel)
+        {
+            if (ModelState.IsValid)
+            {
+                if (_iLoginRepository.IsUserValid(loginViewModel))
+                {
+                    ModelState.Clear();
+                }
+                else
+                {
+                    ModelState.AddModelError("", _iLoginRepository.Message());
+                    ViewBag.isOpen = true;
+                }
+            }
+            
+            return View("Index");
+        }
         public IActionResult Index()
         {
             return View();

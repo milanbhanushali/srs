@@ -28,21 +28,29 @@
             <ul class="nav__list">
                 <i class="bi bi-x-lg header__close" id="close-menu" ></i>
                 <li class="nav__items ">
-                    <a href="" class="nav__link border-btn custom-bg-green-btn" id="btnBookNow">Book now</a>
+                    <a class="nav__link border-btn custom-bg-green-btn"
+                       asp-controller="Home" asp-action="" id="btnBookNow">Book now</a>
                 </li>
-                <li class="nav__items border-btn"><a href="" class="nav__link ">Prices & Services</a></li>
-                <li class="nav__items"><a href="" class="nav__link">Warranty</a></li>
-                <li class="nav__items"><a href="" class="nav__link">Blog</a></li>
-                <li class="nav__items"><a href="" class="nav__link">Contact</a></li>
+                <li class="nav__items border-btn">
+                    <a asp-controller="Home" asp-action="Prices" class="nav__link ">Prices & Services</a>
+                </li>
+                <li class="nav__items">
+                    <a asp-controller="Home" asp-action=""  class="nav__link">Warranty</a>
+                </li>
+                <li class="nav__items">
+                    <a asp-controller="Home" asp-action="" class="nav__link">Blog</a>
+                </li>
+                <li class="nav__items">
+                    <a asp-controller="Home" asp-action="Contact" class="nav__link">Contact</a>
+                </li>
                 <li class="nav__items">
                     <button type="button" class="btn nav__link" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
                         Login
                     </button>
                 </li>
                 <li class="nav__items">
-                    <a href="" class="nav__link border-btn custom-bg-green-btn" id="btnBecomeHelper">
-                        Become a
-                        Helper
+                    <a asp-controller="Home" asp-action="" class="nav__link border-btn custom-bg-green-btn" id="btnBecomeHelper">
+                        Become a Helper
                     </a>
                 </li>
                 <li class="custom-line-mobile-view"></li>
