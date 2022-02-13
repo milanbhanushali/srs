@@ -1,0 +1,113 @@
+﻿@model Helperland.Models.ViewModel.InsertUserViewModel
+@{
+    ViewData["Title"] = "UserRegistration";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container custom-mt-user-registration">
+    <div class="row text-center">
+        <h3>Create an account</h3>
+    </div>
+    <div class="row">
+        <div class="col-12 text-center">
+            <span>
+                <span class="custom-separator-line"></span>
+                <span> <img src="~/img/separator.png" alt=""></span>
+                <span class="custom-separator-line"></span>
+            </span>
+        </div>
+    </div>
+</div>
+@if (ViewBag.IsSuccess)
+{
+    <div class="container mt-3">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="alert alert-success align-items-center" role="alert">
+                    <strong>Congratulations !!</strong> User Added Successfully
+                </div>
+            </div>
+        </div>
+    </div>
+}
+
+
+<form method="post" asp-controller="Home" asp-action="AddNewUser">
+    <div class="container mt-3">
+        <div class="row g-3 justify-content-center">
+            <div asp-validation-summary="All"></div>
+            <div class="col-3">
+                <input asp-for="FirstName" class="form-control p-2" placeholder="First name" aria-label="First name">
+                <span asp-validation-for="FirstName" class="text-danger"> </span>
+            </div>
+            <div class="col-3">
+                <input asp-for="LastName" class="form-control p-2" placeholder="Last name" aria-label="Last name">
+                <span asp-validation-for="LastName"> </span>
+            </div>
+        </div>
+        <div class="row mt-1 g-3 justify-content-center">
+            <div class="col-3">
+                <input type="email" asp-for="Email" class="form-control p-2" placeholder="Email Address" aria-label="Email Address">
+                <span asp-validation-for="Email"> </span>
+            </div>
+            <div class="col-3">
+                <div class="input-group">
+                    <div class="input-group-text">+91</div>
+                    <input asp-for="Mobile" class="form-control p-2" id="txtMobile" placeholder="Mobile Number">
+                    <span asp-validation-for="Mobile"> </span>
+                </div>
+            </div>
+        </div>
+        <div class="row mt-1 g-3 justify-content-center">
+            <div class="col-3">
+                <input asp-for="Password" type="password" class="form-control p-2" placeholder="Password" aria-label="Password">
+                <span asp-validation-for="Password"> </span>
+            </div>
+            <div class="col-3">
+                <input type="password" class="form-control p-2" placeholder="Confirm Password" aria-label="Confirm Password">
+            </div>
+        </div>
+        <div class="row mt-2 g-3 justify-content-center">
+            <div class="col-6">
+                <div class="form-check">
+                    <input class="form-check-input p-2" type="checkbox" value="" id="flexCheckDefault">
+                    <label class="form-check-label" for="flexCheckDefault">
+                        Yes, I would like to subscribe to the newsletter of Helperland GmbH with vouchers, trends, promotions and individualized offers. I can unsubscribe from the newsletter at any time in the newsletter and in the customer account itself.
+                    </label>
+                </div>
+            </div>
+        </div>
+        <div class="row mt-2 g-3 justify-content-center">
+            <div class="col-6 mt-1">
+                <div class="form-check">
+                    <input class="form-check-input p-2" type="checkbox" value="" id="flexCheckDefault">
+                    <label class="form-check-label" for="flexCheckDefault">
+                        I agree with the <span class="text-primary">terms and conditions</span>  of Helperland GmbH.
+                    </label>
+                </div>
+            </div>
+        </div>
+        <div class="row mt-2 justify-content-center">
+            <div class="col-6 mt-1">
+                <div class="form-check">
+                    <input class="form-check-input p-2" type="checkbox" value="" id="flexCheckDefault">
+                    <label class="form-check-label" for="flexCheckDefault">
+                        I have read the  <span class="text-primary">privacy policy</span>.
+                    </label>
+                </div>
+            </div>
+        </div>
+        <div class="row mt-2 justify-content-center">
+            <div class="text-center">
+                <button type="submit" class="modal-btn-login fw-bold"> Register</button>
+            </div>
+        </div>
+        <div class="row mt-2 justify-content-center mb-3">
+            <div class="text-center">
+                Already Registered
+                <a href="" class="a-tag-green-color">Login Now</a>
+            </div>
+        </div>
+    </div>
+</form>
+

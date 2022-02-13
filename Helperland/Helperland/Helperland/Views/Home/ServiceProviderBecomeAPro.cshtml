@@ -1,0 +1,154 @@
+﻿@model Helperland.Models.ViewModel.ServiceUserRegistrationModel
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewData["Title"] = "Service Provider - Become A Pro";
+}
+
+<!--#region Registration Form-->
+<section class="hero-banner-section"
+         style="background-image: url(~/img/Service_Provider_Become_Pro_Main_Img.webp);">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="card col-lg-4 col-md-4 col-sm-12">
+                <div class="card-body">
+                    <h5 class="card-title text-center">Register Now!</h5>
+                    <form method="post" asp-controller="User" asp-action="ServiceUserRegistration">
+                        @Html.ValidationMessageFor(m => m.FirstName, "Please enter First name.", new { @class = "text-danger" })
+                        <div class="input-group mb-3">
+                            <input asp-for="FirstName" class="form-control" placeholder="First Name" aria-label="First Name">
+                        </div>
+                        <div class="input-group mb-3">
+                            <input asp-for="LastName" class="form-control" placeholder="Last name" aria-label="Last Name">
+                        </div>
+                        <div class="input-group mb-3">
+                            <input asp-for="Email" class="form-control" placeholder="Email Address" aria-label="Email">
+                        </div>
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text" id="basic-addon1">+46</span>
+                            </div>
+                            <input asp-for="PhoneNumber" class="form-control" placeholder="Phone Number" aria-label="Phone Number">
+                        </div>
+                        <div class="input-group mb-3">
+                            <input asp-for="Password" class="form-control" placeholder="Password" aria-label="Password">
+                        </div>
+                        <div class="input-group mb-3">
+                            <input asp-for="ConfirmPassword" class="form-control" placeholder="Confirm password"
+                                   aria-label="Confirm Password">
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                            <label class="form-check-label" for="flexCheckDefault">
+                                Send me newslatter from Helperland
+                            </label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                            <label class="form-check-label" for="flexCheckDefault">
+                                I accept <span style="color: blue;">terms and conditons</span> and <span style="color: blue;">privacy policy</span>
+                            </label>
+                        </div>
+
+                        <div class="p-0 mt-3 ">
+                            <img src="~/img/captcha.webp" class="img-fluid" alt="Responsive image">
+                        </div>
+                    </form>
+                    
+
+                    <div class="input-group mb-3 mt-3">
+
+                        <button type="submit" class="btn btn-primary btn-lg btn-block custom-get-started-button custom-borderless">
+                            Get
+                            Started
+                            <img src="~/img/shape-2.webp" class="img-fluid " alt="">
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</section>
+<br>
+<br>
+<br>
+<!--#endregion Registration Form-->
+<!--#region Service Provider Become Pro Starts -->
+<div class="container-fluid">
+    <div class="row text-center ">
+        <h2 class="custom-text-dim-gray">How it Works</h2>
+    </div>
+    <section class="blog-section">
+        <div class="col-12 custom-how-it-works">
+            <div class="d-flex flex-wrap flex-md-nowrap justify-content-center mt-5">
+                <div class="d-flex order-1 order-md-0 flex-column justify-content-center text-center text-md-start me-5">
+                    <h3 class="mb-3 fw-bold ">Register Yourself</h3>
+                    <p class="mb-3 mb-md-5 custom-para">
+                        Provide your basic information to register<br>
+                        yourself as a service provider
+                    </p>
+                    <p class="custom-para">
+                        Read more <img src="~/img/right-arrow-gray.png" alt="" />
+                    </p>
+                </div>
+                <div class="d-flex justify-content-space-between justify-content-md-end">
+                    <img class="img-fluid mb-3 mb-md-0" src="~/img/floorcleaning.webp" alt="" />
+                </div>
+            </div>
+        </div>
+        <div class="col-12 custom-how-it-works">
+            <div class="d-flex flex-wrap flex-md-nowrap justify-content-center">
+                <div class="d-flex justify-content-center justify-content-md-start me-5">
+                    <img class="img-fluid mb-3 mb-md-0" src="~/img/girlcleaning.webp" alt="" />
+                </div>
+                <div class="d-flex flex-column  justify-content-center text-center text-md-start">
+                    <h3 class="mb-3 fw-bold t-30">Get service requests</h3>
+                    <p class="mb-3 mb-md-5 custom-para">
+                        You will get service requests from <br>customers depending upon
+                        service area and profile.
+                    </p>
+                    <p class="custom-para">
+                        Read more <img src="~/img/right-arrow-gray.png" alt="" />
+                    </p>
+                </div>
+            </div>
+        </div>
+        <div class="col-12 custom-how-it-works">
+            <div class="d-flex flex-wrap flex-md-nowrap justify-content-center mt-5">
+                <div class="d-flex order-1 order-md-0 flex-column justify-content-center text-center text-md-start me-5">
+                    <h3 class="mb-3 fw-bold ">Complete service</h3>
+                    <p class="mb-3 mb-md-5 custom-para">
+                        Accept service requests from your customers<br>
+                        and complete your work.
+                    </p>
+                    <p class="custom-para">
+                        Read more <img src="~/img/right-arrow-gray.png" alt="" />
+                    </p>
+                </div>
+                <div class="d-flex justify-content-space-between justify-content-md-end">
+                    <img class="img-fluid mb-3 mb-md-0" src="~/img/floorcleaning.webp" alt="" />
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+<!--#endregion Service Provider Become Pro Starts -->
+<!--#region Get Our Newsletter-->
+<section class="our-news-letter bg-white">
+    <div class="container text-center">
+        <a href="#" class="scroll-top"><img src="~/img/forma-1.png" alt="up-arrow"></a>
+        <a href="#" class="message-boat"><img src="~/img/contact.webp" alt="message-boat"></a>
+        <h2>GET OUR NEWSLETTER</h2>
+        <div class="form-row d-flex justify-content-center align-items-center">
+            <div class="form-group">
+                <label for="email" style="display: none;">YOUR EMAIL</label>
+                <input type="text" placeholder="YOUR EMAIL" id="email" onkeyup="EnableDisable(this)"
+                       class="form-control">
+            </div>
+            <div class="btn-wrapper">
+                <button class="red-btn" id="btnSubmit" disabled="disabled">Submit</button>
+            </div>
+        </div>
+    </div>
+</section>
+<!--#endregion Get Our Newsletter-->

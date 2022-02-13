@@ -10,7 +10,6 @@ namespace Helperland.Models.ViewModel
     {
         public int UserID { get; set; }
 
-        [Required (ErrorMessage = "Please Enter The Username")]
         [EmailAddress (ErrorMessage = "Please Enter Valid Email")]
         public string Email { get; set; }
 

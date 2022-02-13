@@ -16,12 +16,18 @@ namespace Helperland.Controllers
     {
         private readonly ILogger<HomeController> _logger;
         private readonly ILoginRepository _iLoginRepository;
+        private readonly IInsertUserRepository _iInsertUserRepository;
 
-        public HomeController(ILogger<HomeController> logger,ILoginRepository iLoginRepository)
+        #region HomeController Constructor
+        public HomeController(ILogger<HomeController> logger,ILoginRepository iLoginRepository,IInsertUserRepository insertUserRepository)
         {
             _logger = logger;
             _iLoginRepository = iLoginRepository;
+            _iInsertUserRepository = insertUserRepository;
         }
+        #endregion HomeController Constructor
+
+        #region Login
         [HttpPost]
         public IActionResult Login(LoginViewModel loginViewModel)
         {
@@ -40,10 +46,37 @@ namespace Helperland.Controllers
             
             return View("Index");
         }
+        #endregion Login
+
         public IActionResult Index()
         {
             return View();
         }
+        public IActionResult UserRegistration(bool isSuccess=false)
+        {
+            ViewBag.IsSuccess = isSuccess;
+            return View();
+        }
+
+        #region AddNewUser
+        [HttpPost]
+        public IActionResult AddNewUser(User objUser)
+        {
+            if (ModelState.IsValid)
+            {
+                int id = _iInsertUserRepository.AddNewUser(objUser);
+                if (id > 0)
+                {
+                    return RedirectToAction("UserRegistration",new { isSuccess = true });
+                }
+                return RedirectToAction("UserRegistration");
+            }
+            else
+            {
+                return View();
+            }
+        }
+        #endregion AddNewUser
         public IActionResult FAQ()
         {
             return View();
@@ -58,6 +91,10 @@ namespace Helperland.Controllers
         }
 
         public IActionResult About()
+        {
+            return View();
+        }
+        public IActionResult ServiceProviderBecomeAPro()
         {
             return View();
         }

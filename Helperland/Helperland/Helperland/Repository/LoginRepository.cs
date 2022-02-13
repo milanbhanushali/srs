@@ -50,7 +50,8 @@ namespace Helperland.Repository
         public string _Message { get; set; }
         public string Message()
         {
-            throw new NotImplementedException();
+            _Message = "User is invalid";
+            return _Message;
         }
     }
 }
