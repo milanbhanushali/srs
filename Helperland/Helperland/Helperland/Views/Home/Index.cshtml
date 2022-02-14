@@ -1,8 +1,8 @@
-﻿@{
+﻿@using Microsoft.AspNetCore.Http;
+@{
     Layout = "";
     ViewData["Title"] = "Home Page";
 }
-
 
 <!DOCTYPE html>
 <html lang="en">
@@ -43,6 +43,7 @@
                 <i class="bi bi-x-lg header__close" id="close-menu"></i>
                 <li class="nav__items border-btn"><a href="" class="nav__link">Book Cleaner</a></li>
                 <li class="nav__items"><a href="" class="nav__link">Prices & Services</a></li>
+                <li class="nav__items"><span class="nav__link">@Context.Session.GetString("Email")</span></li>
                 <li class="nav__items"><a href="" class="nav__link">Warranty</a></li>
                 <li class="nav__items"><a href="" class="nav__link">Blog</a></li>
                 <li class="nav__items"><a href="" class="nav__link">Contact</a></li>

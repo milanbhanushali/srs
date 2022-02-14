@@ -29,6 +29,13 @@ namespace Helperland
             services.AddScoped<ILoginRepository, LoginRepository>();
             services.AddScoped<IInsertUserRepository, InsertUserRepository>();
             services.AddDbContext<HelperlandsContext>();
+
+            services.AddSession(options =>
+            {
+                options.IdleTimeout = TimeSpan.FromMinutes(30);//We set Time here 
+                options.Cookie.HttpOnly = true;
+                options.Cookie.IsEssential = true;
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -46,6 +53,8 @@ namespace Helperland
             app.UseStaticFiles();
 
             app.UseRouting();
+
+            app.UseSession();
 
             app.UseAuthorization();
 

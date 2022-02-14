@@ -29,7 +29,7 @@ namespace Helperland.Repository
         {
             try
             {
-                User objUser = (User)_helperlandsContext.User.Where(x => x.Password == loginViewModel.Password && x.Email == loginViewModel.Email);
+                string objUser = _helperlandsContext.User.Where(x => x.Password == loginViewModel.Password && x.Email == loginViewModel.Email).ToString();
                 if(objUser == null)
                 {
                     _Message += " Invalid username or password";

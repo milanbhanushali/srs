@@ -1,3 +1,65 @@
+
+
+//#region This Jquery will check input field for postal code
+$(document).ready(function () {
+    $("#btnCheckPostalCode").click(function () {
+        var inputVal = $("#txtPostalCode").val();
+        var gfg = $.isNumeric(inputVal);
+        if (inputVal.length == 0) {
+            $("#error").text("Please enter postal code");
+        }
+        else if (!gfg)
+            $("#error").text("Postal code should be in numbers");
+    });
+
+    function validateEmail($email) {
+        var emailReg = /^([\w-\.]+@([\w-]+\.)+[\w-]{2,4})?$/;
+        return emailReg.test($email);
+    }
+
+    $("#btnLogin").click(function () {
+        var emailAddress = $("#txtEmail").val();
+        var loginPassword = $("#txtPassword").val();
+        if (emailAddress.length == 0 && loginPassword.length == 0) {
+            $("#loginError").text("Please enter email and password");
+        }
+        else if (emailAddress.length == 0) {
+            $("#loginError").text("Please Enter Email Address");
+        }
+        else if (loginPassword.length == 0) {
+            $("#loginError").text("Please Enter Password");
+        }
+        else if (!validateEmail(emailAddress))
+            $("#loginError").text("Please Enter Valid Email Address");
+    });
+
+    
+
+
+
+});
+//#endregion
+
+
+(function () {
+    'use strict'
+
+    var forms = document.querySelectorAll('.needs-validation')
+
+
+    Array.prototype.slice.call(forms)
+        .forEach(function (form) {
+            form.addEventListener('submit', function (event) {
+                if (!form.checkValidity()) {
+                    event.preventDefault()
+                    event.stopPropagation()
+                }
+
+                form.classList.add('was-validated')
+            }, false)
+        })
+})()
+
 const navMenu = document.getElementById('nav-menu'),
 toggleMenu = document.getElementById('toggle-menu'),
 closeMenu = document.getElementById('close-menu'),

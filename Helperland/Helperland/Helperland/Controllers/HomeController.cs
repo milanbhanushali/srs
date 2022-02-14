@@ -2,6 +2,7 @@
 using Helperland.Models;
 using Helperland.Models.ViewModel;
 using Helperland.Repository;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using System;
@@ -35,7 +36,7 @@ namespace Helperland.Controllers
             {
                 if (_iLoginRepository.IsUserValid(loginViewModel))
                 {
-                    ModelState.Clear();
+                    HttpContext.Session.SetString("Email", loginViewModel.Email);
                 }
                 else
                 {
@@ -76,6 +77,7 @@ namespace Helperland.Controllers
                 return View();
             }
         }
+
         #endregion AddNewUser
         public IActionResult FAQ()
         {
