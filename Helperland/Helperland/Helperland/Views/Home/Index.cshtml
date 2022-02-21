@@ -41,18 +41,60 @@
         <nav class="custom-mobile-navbar fixed-top mt-4" id="nav-menu">
             <ul class="nav__list">
                 <i class="bi bi-x-lg header__close" id="close-menu"></i>
-                <li class="nav__items border-btn"><a href="" class="nav__link">Book Cleaner</a></li>
-                <li class="nav__items"><a href="" class="nav__link">Prices & Services</a></li>
-                <li class="nav__items"><span class="nav__link">@Context.Session.GetString("Email")</span></li>
-                <li class="nav__items"><a href="" class="nav__link">Warranty</a></li>
-                <li class="nav__items"><a href="" class="nav__link">Blog</a></li>
-                <li class="nav__items"><a href="" class="nav__link">Contact</a></li>
-                <li class="nav__items border-btn">
-                    <a class="btn text-white" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                        Login
-                    </a>
+                <li class="nav__items ">
+                    <a class="nav__link border-btn custom-bg-green-btn"
+                       asp-controller="BookMyService" asp-action="Index" id="btnBookNow">Book now</a>
                 </li>
-                <li class="nav__items border-btn"><a href="" class="nav__link">Become a Helper</a></li>
+                <li class="nav__items border-btn">
+                    <a asp-controller="Home" asp-action="Prices" class="nav__link ">Prices & Services</a>
+                </li>
+                <li class="nav__items">
+                    <a asp-controller="Home" asp-action="" class="nav__link">Warranty</a>
+                </li>
+                <li class="nav__items">
+                    <a asp-controller="Home" asp-action="Contact" class="nav__link">Contact</a>
+                </li>
+                @if (ViewBag.IsLogged == true)
+                {
+                    <li class="custom-vertical-bar ms-2">|</li>
+                    <li class="nav__items">
+                        <a href="" class="nav__link p-0">
+                            <img src="~/img/icon-notification.webp" alt="" class="custom-notification-size">
+                        </a>
+                    </li>
+                    <li class="custom-vertical-bar me-1">|</li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarUserLoggedInDropDown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            <img src="~/img/profile.webp" alt="" class="custom-notification-size">
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="navbarUserLoggedInDropDown">
+                            <li><a class="dropdown-item" href="#">Welcome @Context.Session.GetString("Email")</a></li>
+                            <li><hr class="dropdown-divider"></li>
+                            <li><a class="dropdown-item" href="#">My Dashboard</a></li>
+                            <li><a class="dropdown-item" href="#">My Setting</a></li>
+                            <li><a class="dropdown-item" href="#">Logout</a></li>
+                        </ul>
+                    </li>
+                }
+                else
+                {
+                    <li class="nav__items border-btn">
+                        <a class="btn text-white" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                            Login
+                        </a>
+                    </li>
+                    <li class="nav__items border-btn"><a href="" class="nav__link">Become a Helper</a></li>
+                }
+
+                @*<li class="nav__items"><span class="nav__link">@Context.Session.GetString("Email")</span></li>*@
+
+
+                @*<li class="nav__items border-btn">
+            <a class="btn text-white" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                Login
+            </a>
+        </li>*@
+
                 <li class="custom-line-mobile-view"></li>
                 <li class="nav__items">
                     <a href="" class="nav__link custom-navbar-icon-show-hide"><img asp-append-version="true" src="~/img/fb.png" alt=""></a>
@@ -69,16 +111,16 @@
     <!--#region Main Page-->
     <main>
 
-        <section class="hero-banner-section" style="background-image: url(/img/Home_Img.png);">
-            <div class="container">
+        <section class="hero-banner-section" style="background: linear-gradient(0deg, rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), url(/img/banner-bg.jpg); background-attachment: fixed">
+            <div class="container ">
                 <h1>Lorem ipsum text</h1>
                 <ul>
                     <li>Lorem ipsum dolor sit amet, consectetur adipiscing</li>
                     <li>Lorem ipsum dolor sit amet, consectetur adipiscing</li>
                     <li>Lorem ipsum dolor sit amet, consectetur adipiscing</li>
                 </ul>
-                <div class="btn-wrapper text-center">
-                    <a href="#" title="Let's Book a Cleaner" class="blue-btn">Let's Book a Cleaner</a>
+                <div class="btn-wrapper text-center ">
+                    <a href="#" title="Let's Book a Cleaner" class="opacity-100 blue-btn">Let's Book a Cleaner</a>
                 </div>
 
                 <partial name="_partialLoginView" model="Model" view />

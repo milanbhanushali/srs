@@ -6,14 +6,13 @@
 
 <!--#region Registration Form-->
 <section class="hero-banner-section"
-         style="background-image: url(~/img/Service_Provider_Become_Pro_Main_Img.webp);">
+         style="background-image:url(/img/Service_Provider_Become_Pro_Main_Img.webp); background-attachment:fixed">
     <div class="container">
         <div class="row justify-content-center">
             <div class="card col-lg-4 col-md-4 col-sm-12">
                 <div class="card-body">
                     <h5 class="card-title text-center">Register Now!</h5>
                     <form method="post" asp-controller="User" asp-action="ServiceUserRegistration">
-                        @Html.ValidationMessageFor(m => m.FirstName, "Please enter First name.", new { @class = "text-danger" })
                         <div class="input-group mb-3">
                             <input asp-for="FirstName" class="form-control" placeholder="First Name" aria-label="First Name">
                         </div>

@@ -1,4 +1,6 @@
-﻿<!DOCTYPE html>
+﻿@model Helperland.Models.ViewModel.LoginViewModel
+@using Microsoft.AspNetCore.Http;
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8" />
@@ -26,7 +28,7 @@
         </div>
         <nav class="custom-mobile-navbar fixed-top" id="nav-menu">
             <ul class="nav__list">
-                <i class="bi bi-x-lg header__close" id="close-menu" ></i>
+                <i class="bi bi-x-lg header__close" id="close-menu"></i>
                 <li class="nav__items ">
                     <a class="nav__link border-btn custom-bg-green-btn"
                        asp-controller="Home" asp-action="" id="btnBookNow">Book now</a>
@@ -35,24 +37,54 @@
                     <a asp-controller="Home" asp-action="Prices" class="nav__link ">Prices & Services</a>
                 </li>
                 <li class="nav__items">
-                    <a asp-controller="Home" asp-action=""  class="nav__link">Warranty</a>
-                </li>
-                <li class="nav__items">
-                    <a asp-controller="Home" asp-action="" class="nav__link">Blog</a>
+                    <a asp-controller="Home" asp-action="" class="nav__link">Warranty</a>
                 </li>
                 <li class="nav__items">
                     <a asp-controller="Home" asp-action="Contact" class="nav__link">Contact</a>
                 </li>
-                <li class="nav__items">
-                    <button type="button" class="btn nav__link" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
-                        Login
-                    </button>
-                </li>
-                <li class="nav__items">
-                    <a asp-controller="Home" asp-action="" class="nav__link border-btn custom-bg-green-btn" id="btnBecomeHelper">
-                        Become a Helper
-                    </a>
-                </li>
+                @if (ViewBag.IsLogged == true)
+                {
+                    <li class="custom-vertical-bar ms-2">|</li>
+                    <li class="nav__items">
+                        <a href="" class="nav__link p-0">
+                            <img src="~/img/icon-notification.webp" alt="" class="custom-notification-size">
+                        </a>
+                    </li>
+                    <li class="custom-vertical-bar me-1">|</li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarUserLoggedInDropDown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            <img src="~/img/profile.webp" alt="" class="custom-notification-size">
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="navbarUserLoggedInDropDown">
+                            <li><a class="dropdown-item" href="#">Welcome @Context.Session.GetString("Email")</a></li>
+                            <li><hr class="dropdown-divider"></li>
+                            <li><a class="dropdown-item" href="#">My Dashboard</a></li>
+                            <li><a class="dropdown-item" href="#">My Setting</a></li>
+                            <li><a class="dropdown-item" href="#">Logout</a></li>
+                        </ul>
+                    </li>
+                }
+                else
+                {
+                    <li class="nav__items border-btn">
+                        <a class="btn text-white" data-bs-toggle="modal" data-bs-target="#exampleModal" data-backdrop="static" data-keyboard="false">
+                            Login
+                        </a>
+                    </li>
+                    <li class="nav__items border-btn"><a href="" class="nav__link" id="btnBecomeHelper">Become a Helper</a></li>
+                }
+                @*<li class="nav__items">
+                        <button type="button" class="btn nav__link" data-bs-toggle="modal" data-bs-target="#exampleModal"
+                                data-backdrop="static" data-keyboard="false">
+                            Login
+                        </button>
+
+                    </li>
+                    <li class="nav__items">
+                        <a asp-controller="Home" asp-action="" class="nav__link border-btn custom-bg-green-btn" id="btnBecomeHelper">
+                            Become a Helper
+                        </a>
+                    </li>*@
                 <li class="custom-line-mobile-view"></li>
                 <li class="nav__items">
                     <a href="" class="nav__link custom-navbar-icon-show-hide">
@@ -66,7 +98,86 @@
         <i class="bi bi-list header__toggle" id="toggle-menu"></i>
     </header>
     <!--#endregion Navbar-->
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="modal fade p-5" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-sm  modal-dialog-centered">
+                    <!-- Modal content-->
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title custom-text-dim-gray fw-bold"> Login to your account</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
 
+                        </div>
+                        <form method="post" asp-controller="Home" asp-action="Login">
+                            <div class="container custom-borderless mt-3">
+                                <div class="form-group">
+                                    <div class="">
+                                        <span id="loginError" class="text-danger"></span>
+                                    </div>
+                                    <div class="mb-3">
+                                        <i class="fas fa-user fs-5"></i>
+                                        <input asp-for="Email" class="form-control" id="txtEmail" placeholder="Email">
+
+                                    </div>
+                                    <div class="mb-3">
+                                        <i class="fas fa-lock fs-5"></i>
+                                        <input type="password" asp-for="Password" class="form-control" id="txtPassword" placeholder="Password">
+                                    </div>
+
+                                    <div class="form-check">
+                                        <input type="checkbox" class="form-check-input" id="cbRememberMe">
+                                        <label class="form-check-label" for="exampleCheck1">Remeber me</label>
+                                    </div>
+                                    <div class="text-center">
+                                        <button type="submit" class="modal-btn-login fw-bold" id="btnLogin"> Login</button>
+                                    </div>
+                                    <div class="text-center mt-2 mb-3">
+                                        <a href="" class="a-tag-green-color" data-target="#forgotPassword"
+                                           data-toggle="modal" data-dismiss="modal">Forgot Password?</a>
+                                    </div>
+                                    <div class="text-center mt-3">
+                                        Don't have account?
+                                        <span>
+                                            <a asp-controller="Home" asp-action="UserRegistration" class="a-tag-green-color">Create an account? </a>
+                                        </span>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+            <div class="modal fade" id="forgotPassword" role="dialog">
+                <div class="modal-dialog modal-dialog-centered">
+
+                    <!-- Modal content-->
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h1 id="fg">Forgot password </h1>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span id="new" aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <form method="post" asp-controller="Account" asp-action="ForgotPasswordResetlink">
+                                <div id="not" class="mb-5">
+                                    @Html.TextBox("Email", "", new { @class = "form-control form-control-lg" })
+                                </div>
+                                <button type="submit" class="btn btn-primary btn-lg btn-block rounded-pill mb-3" id="thispw">Send</button>
+                            </form>
+
+                            <div>
+                                <a href="#myModal" data-toggle="modal" data-dismiss="modal" data-target="#myModal" class="d-flex justify-content-center mb-3">Login now</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <div class="container-fluid p-0">
         <main role="main" class="">
@@ -139,6 +250,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/js/select2.min.js"></script>
     <script src="~/js/main.js" asp-append-version="true"></script>
+
     @RenderSection("Scripts", required: false)
     <!--#endregion Javascript-->
 

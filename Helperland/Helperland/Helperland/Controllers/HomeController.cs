@@ -9,6 +9,7 @@ using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
+using System.Net.Mail;
 using System.Threading.Tasks;
 
 namespace Helperland.Controllers
@@ -34,9 +35,11 @@ namespace Helperland.Controllers
         {
             if (ModelState.IsValid)
             {
+                
                 if (_iLoginRepository.IsUserValid(loginViewModel))
                 {
                     HttpContext.Session.SetString("Email", loginViewModel.Email);
+                    return RedirectToAction("Index", new { isLogged = true });
                 }
                 else
                 {
@@ -49,8 +52,38 @@ namespace Helperland.Controllers
         }
         #endregion Login
 
-        public IActionResult Index()
+        //[HttpPost]
+        //[ValidateAntiForgeryToken]
+        //public ActionResult ForgotPasswordResetlink(User uc)
+        //{
+        //    string baseUrl = string.Format("{0}://{1}", HttpContext.Request.Scheme, HttpContext.Request.Host);
+        //    var activationUrl = $"{baseUrl}/Account/NewPassword";
+        //    var verify = (from x in _iLoginRepository.Users where x.Email == uc.Email select x).FirstOrDefault();
+
+        //    String To = uc.Email;
+        //    String subject = "Helperland - Reset your password ";
+        //    String Body = "Reset password" + " : " + activationUrl;
+        //    MailMessage obj = new MailMessage();
+        //    obj.To.Add(To);
+        //    obj.Subject = subject;
+        //    obj.Body = Body;
+        //    obj.From = new MailAddress("harshitrajani1988@gmail.com");
+        //    obj.IsBodyHtml = true;
+        //    SmtpClient smtp = new SmtpClient("smtp.gmail.com");
+        //    smtp.Port = 587;
+        //    smtp.UseDefaultCredentials = true;
+        //    smtp.EnableSsl = true;
+        //    smtp.Credentials = new System.Net.NetworkCredential("harshitrajani1988@gmail.com", "harshit@Ldrp.");
+        //    smtp.Send(obj);
+        //    ViewBag.message = "The email has been sent";
+        //    return RedirectToAction("Index", "Home");
+
+
+        //}
+
+        public IActionResult Index(bool isLogged = false)
         {
+            ViewBag.IsLogged = isLogged;
             return View();
         }
         public IActionResult UserRegistration(bool isSuccess=false)
@@ -89,6 +122,7 @@ namespace Helperland.Controllers
         }
         public IActionResult Contact()
         {
+            ViewBag.IsLogged = true;
             return View();
         }
 
