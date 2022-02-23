@@ -275,7 +275,7 @@ namespace Helperland.Data
 
                 entity.Property(e => e.AddressLine2).HasMaxLength(200);
 
-                entity.Property(e => e.City)
+                entity.Property(e => e.CityId)
                     .IsRequired()
                     .HasMaxLength(50);
 
@@ -287,7 +287,7 @@ namespace Helperland.Data
                     .IsRequired()
                     .HasMaxLength(20);
 
-                entity.Property(e => e.State).HasMaxLength(50);
+                entity.Property(e => e.StateId).HasMaxLength(50);
 
                 entity.HasOne(d => d.User)
                     .WithMany(p => p.UserAddress)

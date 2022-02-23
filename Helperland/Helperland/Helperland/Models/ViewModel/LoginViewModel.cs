@@ -15,5 +15,7 @@ namespace Helperland.Models.ViewModel
 
         [Required(ErrorMessage = "Please Enter The Password")]
         public string Password { get; set; }
+
+        public string FirstName { get; set; }
     }
 }

@@ -1,4 +1,5 @@
-﻿using Helperland.Models.ViewModel;
+﻿using Helperland.Models;
+using Helperland.Models.ViewModel;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,6 +14,6 @@ namespace Helperland.Repository
         public Boolean IsUserValid(LoginViewModel loginViewModel);
         public Boolean IsUserEmailValid(LoginViewModel loginViewModel);
 
-        public int GetUserID(string Email);
+        public User GetUser(int userID);
     }
 }

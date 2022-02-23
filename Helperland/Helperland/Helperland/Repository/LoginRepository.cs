@@ -15,21 +15,55 @@ namespace Helperland.Repository
         {
             _helperlandsContext = helperlandsContext;
         }
-        public int GetUserID(string Email)
+        public User GetUser(int userID)
         {
-            throw new NotImplementedException();
+            try
+            {
+                User objUser = _helperlandsContext.User.Where(x => x.UserId == userID).FirstOrDefault();
+                if (objUser == null)
+                {
+                    _Message += " Invalid username or password";
+                    return null;
+                }
+                else
+                {
+                    return objUser;
+                }
+            }
+            catch (Exception ex)
+            {
+                _Message += ex.Message;
+                return null;
+            }
         }
 
         public bool IsUserEmailValid(LoginViewModel loginViewModel)
         {
-            throw new NotImplementedException();
+            try
+            {
+                User objUser = _helperlandsContext.User.Where(x =>x.Email == loginViewModel.Email).FirstOrDefault();
+                if (objUser == null)
+                {
+                    _Message += " Invalid username or password";
+                    return false;
+                }
+                else
+                {
+                    return true;
+                }
+            }
+            catch (Exception ex)
+            {
+                _Message += ex.Message;
+                return false;
+            }
         }
 
         public bool IsUserValid(LoginViewModel loginViewModel)
         {
             try
             {
-                string objUser = _helperlandsContext.User.Where(x => x.Password == loginViewModel.Password && x.Email == loginViewModel.Email).ToString();
+                User objUser = _helperlandsContext.User.Where(x => x.Password == loginViewModel.Password && x.Email == loginViewModel.Email).FirstOrDefault();
                 if(objUser == null)
                 {
                     _Message += " Invalid username or password";
@@ -37,6 +71,7 @@ namespace Helperland.Repository
                 }
                 else
                 {
+                    loginViewModel.UserID = objUser.UserId;
                     return true;
                 }
             }

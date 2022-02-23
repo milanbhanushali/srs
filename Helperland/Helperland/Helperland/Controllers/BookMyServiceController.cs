@@ -1,6 +1,9 @@
 ﻿using Helperland.Models;
+using Helperland.Models.ViewModel;
 using Helperland.Repository;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,14 +16,23 @@ namespace Helperland.Controllers
     {
 
         private readonly IBookServiceRepository _iBookServiceRepository;
+        private readonly IUserAddressRepository _iUserAddress;
 
-        public BookMyServiceController(IBookServiceRepository iBookServiceRepository)
+        public BookMyServiceController(IBookServiceRepository iBookServiceRepository , IUserAddressRepository iUserAddress)
         {
             _iBookServiceRepository = iBookServiceRepository;
+            _iUserAddress = iUserAddress;
         }
 
-        public IActionResult Index()
+        public IActionResult Index(bool isLogged = false)
         {
+            ViewBag.IsLogged = isLogged;
+
+            ViewBag.city = _iBookServiceRepository.GetAllCity().Select(x => new SelectListItem()
+            {
+                Text = x.CityName,
+                Value = x.Id.ToString()
+            });
             return View();
         }
 
@@ -49,6 +61,38 @@ namespace Helperland.Controllers
             {
                 return Json("Enter Pincode Properly");
             }
+        }
+
+        [HttpPost]
+        public IActionResult AddAddress([FromBody] UserAddressModel userAddressModel)
+        {
+            if (userAddressModel.UserId != null && userAddressModel.AddressLine1 != null && userAddressModel.AddressLine2 != null && userAddressModel.CityId != null)
+            {
+                if (_iBookServiceRepository.SetAddress(userAddressModel))
+                {
+                    return Json(true);
+                }
+                else
+                {
+                    return Json(false);
+                }
+            }
+            else
+            {
+                return Json(false);
+            }
+
+        }
+
+        public IActionResult GetAddress(string userID)
+        {
+            List<UserAddressModel> addresses = _iBookServiceRepository.GetAddress(Int32.Parse(userID));
+            if (addresses == null)
+            {
+                Json(false);
+            }
+            return Json(JsonConvert.SerializeObject(addresses));
+
         }
     }
 }

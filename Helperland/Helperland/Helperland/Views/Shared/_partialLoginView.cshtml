@@ -1,13 +1,13 @@
 ﻿@model Helperland.Models.ViewModel.LoginViewModel
 
-<div class="modal fade p-5" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade p-5" id="LoginModel" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-sm  modal-dialog-centered">
         <!-- Modal content-->
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title custom-text-dim-gray fw-bold"> Login to your account</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                
+                <button type="button" class="btn-close" data-bs-bs-dismiss="modal" aria-label="Close"></button>
+
             </div>
             <form method="post" asp-controller="Home" asp-action="Login">
                 <div class="container custom-borderless mt-3">
@@ -30,11 +30,11 @@
                             <label class="form-check-label" for="exampleCheck1">Remeber me</label>
                         </div>
                         <div class="text-center">
-                            <button type="submit" class="modal-btn-login fw-bold" id="btnLogin"> Login</button>
+                            <button type="submit" class="modal-btn-login fw-bold" id="btnLogin">Login</button>
                         </div>
                         <div class="text-center mt-2 mb-3">
-                            <a href="" class="a-tag-green-color" data-target="#forgotPassword"
-                               data-toggle="modal" data-dismiss="modal">Forgot Password?</a>
+                            <a class="a-tag-green-color" 
+                               data-bs-toggle="modal" data-bs-dismiss="modal" href="#ForgetPasswordModel">Forgot Password?</a>
                         </div>
                         <div class="text-center mt-3">
                             Don't have account?
@@ -50,27 +50,33 @@
     </div>
 </div>
 
-<div class="modal fade" id="forgotPassword" role="dialog">
-    <div class="modal-dialog modal-dialog-centered">
+<div id="ForgetPasswordModel" class="modal fade"  role="dialog" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-sm modal-dialog-centered">
 
         <!-- Modal content-->
         <div class="modal-content">
             <div class="modal-header">
-                <h1 id="fg">Forgot password </h1>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span id="new" aria-hidden="true">&times;</span>
-                </button>
+                <h5 class="modal-title custom-text-dim-gray fw-bold">Forgot Password</h5>
+                <button type="button" class="btn-close" data-bs-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-            <div class="modal-body">
-                <form method="post" asp-controller="Account" asp-action="ForgotPasswordResetlink">
-                    <div id="not" class="mb-5">
-                        @Html.TextBox("Email", "", new { @class = "form-control form-control-lg" })
-                    </div>
-                    <button type="submit" class="btn btn-primary btn-lg btn-block rounded-pill mb-3" id="thispw">Send</button>
-                </form>
+            <div class="modal-body ">
 
-                <div>
-                    <a href="#myModal" data-toggle="modal" data-dismiss="modal" data-target="#myModal" class="d-flex justify-content-center mb-3">Login now</a>
+                <div class="row justify-content-center">
+                    <form method="post" asp-controller="Home" asp-action="ForgotPasswordResetlink" >
+                        <div class="col-12 mb-3" id="not">
+                            <input type="email" asp-for="Email" class="form-control" id="txtEmailForgot" placeholder="Email">
+                            <div id="errForgotPasswordEmail" class="text-danger">
+                               
+                            </div>
+                        </div>
+                        <div class="offset-2 col-6 mb-2">
+                            <button type="submit" class="modal-btn-login fw-bold" id="btnSubmitPassword">Send</button>
+                        </div>
+                    </form>
+                    <div class="text-center">
+                        <a href="#LoginModel" data-bs-toggle="modal" data-bs-dismiss="modal" data-bs-target="#LoginModel" class="a-tag-green-color">Login now</a>
+                    </div>
+                    
                 </div>
             </div>
         </div>

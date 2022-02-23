@@ -1,8 +1,9 @@
-﻿@{
+﻿@model IEnumerable<Helperland.Models.ViewModel.UserAddressModel>
+@{
     ViewData["Title"] = "Book My Service";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-
+@using Microsoft.AspNetCore.Http
 <link href="~/css/BookMyService.css" rel="stylesheet" />
 
 <div class="row mt-5"></div>
@@ -78,223 +79,189 @@
                             <div class="d-flex custom-hyper custom-pstcd">
                                 <input type="text" class="form-control me-2" id="txtPostalCode" placeholder="Postal code"
                                        name="postalcode">
-                                @*<button class="nav-link text-light custom-gnbtn rounded-pill form-control"
-                                        type="button" id="btnCheckPostalCode" onclick='$("#schedulePlanTabController").prop("disabled" , false);
-                                    document.getElementById("schedulePlanTabController").click();
-                                    return false;'>
-                                    Check Availability
-                                </button>*@
+
                                 <button class="nav-link text-light custom-gnbtn rounded-pill form-control"
                                         type="button" id="btnCheckPostalCode">
                                     Check Availability
                                 </button>
                             </div>
                             <div id="errMsgPincode" class="text-danger"></div>
+                            <div class="d-flex ">
+                                <img src="~/img/undraw_Current_location_re_j130 (1).png" alt="Alternate Text" class="img-fluid"/>
+                            </div>
+
                     </div>
                     <!-- ------------- Schedule and plan ----------- -->
-                    <div class="tab-pane fade" role="tabpanel" id="schedulePlanTab"
+                    <div class="tab-pane fade needs-validation" role="tabpanel" id="schedulePlanTab"
                          aria-labelledby="schedulePlan">
-                        @*<form action="" id="schedulePlanForm" onsubmit='
-                                    $("#yourDetailsTabController").prop("disabled" , false);
-                                    document.getElementById("yourDetailsTabController").click();
-                                    return false;
-                                    '>*@
-                            <div class="row custom-borbot pb-3 custom-clscn">
-                                <div class="col-md-6">
-                                    <p class="fw-bold mb-1">When do you need the cleaner?</p>
-                                    <div>
-                                        <input type="date" name="servicedate" required
-                                               class="custom-hyper custom-padin custom-borlft custom-clscn mb-1"
-                                               id="datepicker">
-                                        <select name="servicetime" id="dropdownTime"
-                                                class="custom-hyper custom-padin custom-borlft mb-1 custom-clscn">
-                                            <option value="8:00">8:00</option>
-                                            <option value="8:30">8:30</option>
-                                            <option value="9:00">9:00</option>
-                                            <option value="9:30">9:30</option>
-                                            <option value="10:00">10:00</option>
-                                            <option value="10:30">10:30</option>
-                                        </select>
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <p class="fw-bold mb-1">How long do you need your cleaner to stay?</p>
-                                    <select name="servicetime" id=""
+                        <div class="row custom-borbot pb-3 custom-clscn">
+                            <div class="col-md-6">
+                                <p class="fw-bold mb-1">When do you need the cleaner?</p>
+                                <div>
+                                    <input type="date" name="servicedate" required
+                                           class="custom-hyper custom-padin custom-borlft custom-clscn mb-1"
+                                           id="datepicker">
+                                    <select name="servicetime" id="dropdownTime"
                                             class="custom-hyper custom-padin custom-borlft mb-1 custom-clscn">
-                                        <option value="3hrs">3 Hrs</option>
-                                        <option value="3.5hrs">3.5 Hrs</option>
-                                        <option value="4hrs">4 Hrs</option>
-                                        <option value="4.5hrs">4.5 Hrs</option>
-                                        <option value="5hrs">5 Hrs</option>
-                                        <option value="5.5hrs">5.5 Hrs</option>
+                                        <option value="8:00">8:00</option>
+                                        <option value="8:30">8:30</option>
+                                        <option value="9:00">9:00</option>
+                                        <option value="9:30">9:30</option>
+                                        <option value="10:00">10:00</option>
+                                        <option value="10:30">10:30</option>
                                     </select>
                                 </div>
-                            </div>
-                            <div><label class="mb-2 mt-3 fw-bold">Extra Services</label></div>
-                            <div class="mt-5 mb-5 custom-clscn d-flex align-items-center mt-3 mb-3 justify-content-center ">
-
-                                <div class="btn-group custom-avtgp" role="group"
-                                     aria-label="Basic checkbox toggle button group">
-                                    <div class="d-flex flex-column align-items-center justify-content-between  custom-lbldt"
-                                         onclick="give();sub1();sub2();sub3();">
-                                        <label class="btn custom-btnpm custom-avtdt" for="cabinet">
-                                            <input type="checkbox" name="cabinet" id="cabinet">
-                                            <div class="tog">
-                                                <div class="custom-imdt custom-rounded-circle">
-
-                                                    <img src="~/img/3.png">
-                                                    <img src="~/img/3-green.png" style="display:none;">
-
-                                                </div>
-                                            </div>
-                                        </label>
-                                        <span class="text-center">Clean cabinet interiors</span>
-                                    </div>
-
-                                    <div class="d-flex flex-column align-items-center justify-content-center  custom-lbldt ">
-                                        <label class="btn custom-btnpm custom-avtdt" for="refrigerator">
-                                            <input type="checkbox" name="refrigerator" id="refrigerator">
-                                            <div class="tog">
-                                                <div class="custom-imdt custom-rounded-circle">
-
-                                                    <img src="~/img/5.png">
-                                                    <img src="~/img/5-green.png" style="display:none;">
-
-                                                </div>
-                                            </div>
-                                        </label>
-                                        <span class="text-center">Cleaning the refrigerator</span>
-                                    </div>
-                                    <div class="d-flex flex-column align-items-center  custom-lbldt">
-                                        <label class="btn custom-btnpm custom-avtdt" for="oven">
-                                            <input type="checkbox" name="oven" id="oven">
-                                            <div class="tog">
-                                                <div class="custom-imdt custom-rounded-circle">
-
-                                                    <img src="~/img/4.png" style="margin-top: 25%;">
-                                                    <img src="~/img/4-green.png"
-                                                         style="display:none; margin-top: 2%;">
-
-                                                </div>
-                                            </div>
-                                        </label>
-                                        <span class="text-center">Cleaning the oven</span>
-                                    </div>
-                                    <div class="d-flex flex-column align-items-center  custom-lbldt">
-                                        <label class="btn custom-btnpm custom-avtdt" for="laundry">
-                                            <input type="checkbox" name="laundry" id="laundry">
-                                            <div class="tog">
-                                                <div class="custom-imdt custom-rounded-circle">
-
-                                                    <img class="" src="~/img/2.png" style="margin: auto;">
-                                                    <img src="~/img/2-green.png"
-                                                         style="display:none; margin: auto;">
-
-                                                </div>
-                                            </div>
-                                        </label>
-                                        <span class="text-center">Wash and dry laundry</span>
-                                    </div>
-                                    <div class="d-flex flex-column align-items-center custom-lbldt ">
-                                        <label class="btn custom-btnpm custom-avtdt" for="windows">
-                                            <input type="checkbox" name="windows" id="windows">
-                                            <div class="tog">
-                                                <div class="custom-imdt custom-rounded-circle">
-
-                                                    <img src="~/img/1.png">
-                                                    <img src="~/img/1-green.png" style="display:none;">
-
-                                                </div>
-                                            </div>
-                                        </label>
-                                        <span class="text-center">Clean windows</span>
-                                    </div>
-
+                                <div class="text-danger" id="errMsgSelectDate">
                                 </div>
                             </div>
-                            <div class="d-flex flex-column py-4">
-                                <label for="comments" class="custom-clscn fw-bold mb-3">Comments</label>
-                                <textarea name="commnets" id="commnets" maxlength="500" placeholder="Comments"
-                                          rows="3" class="custom-padin"></textarea>
+                            <div class="col-md-6">
+                                <p class="fw-bold mb-1">How long do you need your cleaner to stay?</p>
+                                <select name="servicetime" id="dropdownForCleanerStay"
+                                        class="custom-hyper custom-padin custom-borlft mb-1 custom-clscn">
+                                    <option value="3hrs">3 Hrs</option>
+                                    <option value="3.5hrs">3.5 Hrs</option>
+                                    <option value="4hrs">4 Hrs</option>
+                                    <option value="4.5hrs">4.5 Hrs</option>
+                                    <option value="5hrs">5 Hrs</option>
+                                    <option value="5.5hrs">5.5 Hrs</option>
+                                </select>
                             </div>
-                            <div class="d-flex align-items-center custom-borbot pb-4">
-                                <input type="checkbox" name="pets" id="chkbxPets">
-                                <label for="pets" class="ms-2">I have pets at home.</label>
+                        </div>
+                        <div><label class="mb-2 mt-3 fw-bold">Extra Services</label></div>
+                        <div class="mt-5 mb-5 custom-clscn d-flex align-items-center mt-3 mb-3 justify-content-center ">
+
+                            <div class="btn-group custom-avtgp" role="group"
+                                 aria-label="Basic checkbox toggle button group">
+                                <div class="d-flex flex-column align-items-center justify-content-between  custom-lbldt"
+                                     onclick="give();sub1();sub2();sub3();">
+                                    <label class="btn custom-btnpm custom-avtdt" for="cabinet">
+                                        <input type="checkbox" name="cabinet" id="cabinet" value="cabinet">
+                                        <div class="tog">
+                                            <div class="custom-imdt custom-rounded-circle">
+
+                                                <img src="~/img/3.png">
+                                                <img src="~/img/3-green.png" style="display:none;">
+
+                                            </div>
+                                        </div>
+                                    </label>
+                                    <span class="text-center">Clean cabinet interiors</span>
+                                </div>
+
+                                <div class="d-flex flex-column align-items-center justify-content-center  custom-lbldt ">
+                                    <label class="btn custom-btnpm custom-avtdt" for="refrigerator">
+                                        <input type="checkbox" name="refrigerator" id="refrigerator" value="refrigerator">
+                                        <div class="tog">
+                                            <div class="custom-imdt custom-rounded-circle">
+
+                                                <img src="~/img/5.png">
+                                                <img src="~/img/5-green.png" style="display:none;">
+
+                                            </div>
+                                        </div>
+                                    </label>
+                                    <span class="text-center">Cleaning the refrigerator</span>
+                                </div>
+                                <div class="d-flex flex-column align-items-center  custom-lbldt">
+                                    <label class="btn custom-btnpm custom-avtdt" for="oven">
+                                        <input type="checkbox" name="oven" id="oven" value="oven">
+                                        <div class="tog">
+                                            <div class="custom-imdt custom-rounded-circle">
+
+                                                <img src="~/img/4.png" style="margin-top: 25%;">
+                                                <img src="~/img/4-green.png"
+                                                     style="display:none; margin-top: 25%;">
+
+                                            </div>
+                                        </div>
+                                    </label>
+                                    <span class="text-center">Cleaning the oven</span>
+                                </div>
+                                <div class="d-flex flex-column align-items-center  custom-lbldt">
+                                    <label class="btn custom-btnpm custom-avtdt" for="laundry">
+                                        <input type="checkbox" name="laundry" id="laundry" value="laundry">
+                                        <div class="tog">
+                                            <div class="custom-imdt custom-rounded-circle">
+
+                                                <img class="" src="~/img/2.png" style="margin: auto;">
+                                                <img src="~/img/2-green.png"
+                                                     style="display:none; margin: auto;">
+
+                                            </div>
+                                        </div>
+                                    </label>
+                                    <span class="text-center">Wash and dry laundry</span>
+                                </div>
+                                <div class="d-flex flex-column align-items-center custom-lbldt ">
+                                    <label class="btn custom-btnpm custom-avtdt" for="windows">
+                                        <input type="checkbox" name="windows" id="windows" value="windows">
+                                        <div class="tog">
+                                            <div class="custom-imdt custom-rounded-circle">
+
+                                                <img src="~/img/1.png">
+                                                <img src="~/img/1-green.png" style="display:none;">
+
+                                            </div>
+                                        </div>
+                                    </label>
+                                    <span class="text-center">Clean windows</span>
+                                </div>
+
                             </div>
-                            <div class="d-flex justify-content-end">
-                                <button type="submit" class="custom-gnbtn1 my-2 text-light rounded-pill">
-                                    Continue
-                                </button>
-                            </div>  
+                        </div>
+                        <div class="d-flex flex-column py-4">
+                            <label for="comments" class="custom-clscn fw-bold mb-3">Comments</label>
+                            <textarea name="commnets" id="txtAreaComments" maxlength="500" placeholder="Comments"
+                                      rows="3" class="custom-padin"></textarea>
+                        </div>
+                        <div class="d-flex align-items-center custom-borbot pb-4">
+                            <input type="checkbox" name="pets" id="chkbxPets" value="pets">
+                            <label for="pets" class="ms-2"> 🐶 I have pets at home.</label>
+                        </div>
+                        <div class="d-flex justify-content-end">
+                            <button type="submit" id="btnScheduleAndPlan" class="custom-gnbtn1 my-2 text-light rounded-pill">
+                                Continue
+                            </button>
+                        </div>
                     </div>
                     <!-- ----------- your details ----------- -->
                     <div class="tab-pane fade" role="tabpanel" id="yourDetailsTab"
                          aria-labelledby="yourDetails">
-                        <form action="" id="yourDetailsForm" onsubmit='
-                                    $("#makePaymentTabController").prop("disabled" , false);
-                                    document.getElementById("makePaymentTabController").click();
-                                    return false;'>
-                            <p class="fw-bold">
-                                Enter your contact details, so we can serve you in better way!
-                            </p>
-                            <ul class="custom-ya p-0">
-                                <li class="custom-yadt px-3 py-2 my-2">
-                                    <label class="d-flex align-items-center">
-                                        <input type="radio" id="address1" name="address" checked>
-                                        <div class="ms-4">
-                                            <p class="mb-1">
-                                                <b style="color: grey;">Address:</b>
-                                                Street 54, Troisdorf 53844
-                                            </p>
-                                            <p class="mb-1">
-                                                <b style="color: grey;">Phone number:</b>
-                                                9988556644
-                                            </p>
-                                        </div>
-                                    </label>
-                                </li>
-                                <li class="custom-yadt px-3 py-2 my-2">
-                                    <label class="d-flex align-items-center">
-                                        <input type="radio" id="address1" name="address">
-                                        <div class="ms-4">
-                                            <p class="mb-1">
-                                                <b style="color: grey;">Address:</b>
-                                                Street 54, Troisdorf 53844
-                                            </p>
-                                            <p class="mb-1">
-                                                <b style="color: grey;">Phone number:</b>
-                                                9988556644
-                                            </p>
-                                        </div>
-                                    </label>
-                                </li>
-                            </ul>
-                            <input type="button" class="btn custom-nadbtn px-4 mt-3 rounded-pill fw-bolder"
-                                   value="+ Add New Address" data-bs-toggle="collapse" href="#newAddressCollapse"
-                                   role="button" aria-expanded="false" aria-controls="newAddressCollapse">
-                            <hr class="mt-4 mb-3">
-                        </form>
+
+                        <p class="fw-bold">
+                            Enter your contact details, so we can serve you in better way!
+                        </p>
+                        <ul class="custom-ya p-0">
+                            <div id="showAddress"></div>
+                        </ul>
+                        <input type="button" class="btn custom-nadbtn px-4 mt-3 rounded-pill fw-bolder"
+                               value="+ Add New Address" data-bs-toggle="collapse" href="#newAddressCollapse"
+                               role="button" aria-expanded="false" aria-controls="newAddressCollapse">
+                        <hr class="mt-4 mb-3">
+
                         <div class="my-3 collapse multi-collapse custom-nwad" id="newAddressCollapse">
-                            <form action="" onsubmit="return false;">
+                            
                                 <div class="row newAddress_form">
                                     <div class="col-sm-6 mb-4">
                                         <div class="form-group d-flex flex-column">
                                             <label for="streetname">Street Name</label>
-                                            <input type="text" placeholder="Street Name" name="streetname"
+                                            <input type="text" placeholder="Street Name" name="streetname" id="txtAddAddressLine1"
                                                    class="custom-borlft custom-hyper custom-padin w-100">
+                                            <span id="errtxtAddressLine1" class="text-danger"> </span>
                                         </div>
                                     </div>
                                     <div class="col-sm-6 mb-4">
                                         <div class="form-group d-flex flex-column">
                                             <label for="housenumber">House number</label>
-                                            <input type="text" placeholder="House Number" name="housenumber"
+                                            <input type="text" placeholder="House Number" name="housenumber" id="txtAddAddressLine2"
                                                    class="custom-borlft custom-hyper custom-padin w-100">
+                                            <span id="errtxtAddressLine2" class="text-danger"> </span>
                                         </div>
                                     </div>
                                     <div class="col-sm-6 mb-4">
                                         <div class="form-group d-flex flex-column">
                                             <label for="postalcode">Postal Code</label>
-                                            <input type="text" disabled value="43212" placeholder="Postal Code"
+                                            <input type="text" disabled id="txtAddressPostalCode" 
                                                    name="postalcode"
                                                    class="custom-borlft custom-hyper custom-padin w-100">
                                         </div>
@@ -303,10 +270,10 @@
                                         <div class="form-group d-flex flex-column">
                                             <label for="city">City</label>
                                             <div class="d-inline-block">
-                                                <select name="city" id=""
-                                                        class="custom-hyper custom-borlft custom-padin w-100">
-                                                    <option value="troisdorf">Troisdorf</option>
+                                                <select id="dropdownCityList" asp-items="@ViewBag.city" class="form-control form-select">
+                                                    <option value="-1">- Select City -</option>
                                                 </select>
+                                                <span id="errSelectCity" class="text-danger"> </span>
                                             </div>
                                         </div>
                                     </div>
@@ -317,15 +284,15 @@
                                                 <input type="text" name="phonecode"
                                                        class="custom-borlft custom-hyper custom-padin" value="+49"
                                                        disabled style="max-width: 55px;">
-                                                <input type="text" placeholder="Phone Number" name="phonenumber"
-                                                       class="custom-borlft minheight46 custom-padin"
-                                                       value="3423423423">
+                                                <input type="text" placeholder="Phone Number" name="phonenumber" id="txtPhoneNumber"
+                                                       class="custom-borlft minheight46 custom-padin">
+                                                <span class="text-danger" id="errtxtPhoneNumber"></span>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                                <button type="submit"
-                                        class="custom-gnbtn rounded-pill custom-borlft text-light px-3 custom-padin">
+                                <button type="button"
+                                        class="custom-gnbtn rounded-pill custom-borlft text-light px-3 custom-padin" id="btnAddNewAddress">
                                     Save
                                 </button>
                                 <a role="button" class="btn border custom-hyper custom-padin rounded-pill"
@@ -333,7 +300,7 @@
                                    aria-controls="newAddressCollapse">
                                     Cancel
                                 </a>
-                            </form>
+
                         </div>
                         <div id="favouriteTable my-3">
                             <h4 class="border-bottom pb-2">Your favourite service providers.</h4>
@@ -377,8 +344,7 @@
                             </div>
                         </div>
                         <div class="d-flex justify-content-end">
-                            <button type="submit" class="rounded-pill cudtom-gnbtn1 my-2 text-light"
-                                    onclick="$('#yourDetailsForm').submit();">
+                            <button type="button" class="rounded-pill custom-gnbtn1 my-2 text-light" id="btnAddressCompleted">
                                 Continue
                             </button>
                         </div>
@@ -395,11 +361,11 @@
                             <div class="">
                                 <div class="form-group mx-sm-1 mb-2">
                                     <label for="inputPassword2" class="sr-only">Promocode</label>
-                                    <input type="password" style="width: 900px;" class="form-control col-sm-4"
+                                    <input type="password" style="width: 800px;" class="form-control col-sm-4"
                                            id="inputPassword2" placeholder="Promo code (optional)">
                                 </div>
                                 <button type="submit"
-                                        class="d-inline ml-2 mb-2 rounded-pill custom-nadbtn">
+                                        class="d-inline ml-2 mb-2 rounded-pill custom-nadbtn p-2">
                                     Apply
                                 </button>
                             </div>
@@ -628,140 +594,141 @@
         $(".tog").click(function () {
             $('img', this).toggle();
         });
-    });
-    var i, hrs = 3,
-        price = 54;
 
-    $('#cabinet').change(function () {
-        if (this.checked) {
-            extraTableBody = $("#extraTable tbody");
-            extraTableBody.append("<tr id='cabinetRow'><td>Clean cabinet interiors</td><td>30 mins</td></tr>");
-            hrs = hrs + 0.5;
-            $("#totalService").html(hrs);
-            price = price + 9;
-            $("#clean").html(price);
-            $("#totalPay").html(price);
-            $("#EffectivePay").html(price)
-        } else {
-            hrs = hrs - 0.5;
-            price = price - 9;
-            $("#clean").html(price);
-            $("#totalService").html(hrs);
-            $("#cabinetRow").remove();
-            $("#totalPay").html(price);
-            $("#EffectivePay").html(price)
-        }
+        var i, hrs = 3, price = 54;
 
-    });
+        $('#cabinet').change(function () {
+            if (this.checked) {
+                extraTableBody = $("#extraTable tbody");
+                extraTableBody.append("<tr id='cabinetRow'><td>Clean cabinet interiors</td><td>30 mins</td></tr>");
+                hrs = hrs + 0.5;
+                $("#totalService").html(hrs);
+                price = price + 9;
+                $("#clean").html(price);
+                $("#totalPay").html(price);
+                $("#EffectivePay").html(price)
+            } else {
+                hrs = hrs - 0.5;
+                price = price - 9;
+                $("#clean").html(price);
+                $("#totalService").html(hrs);
+                $("#cabinetRow").remove();
+                $("#totalPay").html(price);
+                $("#EffectivePay").html(price)
+            }
 
-    $('#refrigerator').change(function () {
-        if (this.checked) {
-            extraTableBody = $("#extraTable tbody");
-            extraTableBody.append("<tr id='refrigeratorRow'><td>Cleaning the refrigerator</td><td>30 mins</td></tr>");
-            hrs = hrs + 0.5;
-            $("#totalService").html(hrs);
-            price = price + 9;
-            $("#clean").html(price);
-            $("#totalPay").html(price);
-            $("#EffectivePay").html(price)
-        } else {
-            $("#refrigeratorRow").remove();
-            hrs = hrs - 0.5;
-            $("#totalService").html(hrs);
-            price = price - 9;
-            $("#clean").html(price);
-            $("#totalPay").html(price);
-            $("#EffectivePay").html(price)
-        }
+        });
 
-    });
+        $('#refrigerator').change(function () {
+            if (this.checked) {
+                extraTableBody = $("#extraTable tbody");
+                extraTableBody.append("<tr id='refrigeratorRow'><td>Cleaning the refrigerator</td><td>30 mins</td></tr>");
+                hrs = hrs + 0.5;
+                $("#totalService").html(hrs);
+                price = price + 9;
+                $("#clean").html(price);
+                $("#totalPay").html(price);
+                $("#EffectivePay").html(price)
+            } else {
+                $("#refrigeratorRow").remove();
+                hrs = hrs - 0.5;
+                $("#totalService").html(hrs);
+                price = price - 9;
+                $("#clean").html(price);
+                $("#totalPay").html(price);
+                $("#EffectivePay").html(price)
+            }
 
-    $('#oven').change(function () {
-        if (this.checked) {
-            extraTableBody = $("#extraTable tbody");
-            extraTableBody.append("<tr id='ovenRow'><td>Cleaning the oven</td><td>30 mins</td></tr>");
-            hrs = hrs + 0.5;
-            $("#totalService").html(hrs);
-            price = price + 9;
-            $("#clean").html(price);
-            $("#totalPay").html(price);
-            $("#EffectivePay").html(price)
-        } else if (!this.checked) {
-            $("#ovenRow").remove();
-            hrs = hrs - 0.5;
-            $("#totalService").html(hrs);
-            price = price - 9;
-            $("#clean").html(price);
-            $("#totalPay").html(price);
-            $("#EffectivePay").html(price)
-        }
+        });
 
-    });
+        $('#oven').change(function () {
+            if (this.checked) {
+                extraTableBody = $("#extraTable tbody");
+                extraTableBody.append("<tr id='ovenRow'><td>Cleaning the oven</td><td>30 mins</td></tr>");
+                hrs = hrs + 0.5;
+                $("#totalService").html(hrs);
+                price = price + 9;
+                $("#clean").html(price);
+                $("#totalPay").html(price);
+                $("#EffectivePay").html(price)
+            } else if (!this.checked) {
+                $("#ovenRow").remove();
+                hrs = hrs - 0.5;
+                $("#totalService").html(hrs);
+                price = price - 9;
+                $("#clean").html(price);
+                $("#totalPay").html(price);
+                $("#EffectivePay").html(price)
+            }
 
-    $('#laundry').change(function () {
-        if (this.checked) {
-            extraTableBody = $("#extraTable tbody");
-            extraTableBody.append("<tr id='laundryRow'><td>Wash and dry laundry</td><td>30 mins</td></tr>");
-            hrs = hrs + 0.5;
-            $("#totalService").html(hrs);
-            price = price + 9;
-            $("#clean").html(price);
-            $("#totalPay").html(price);
-            $("#EffectivePay").html(price)
-        } else if (!this.checked) {
-            $("#laundryRow").remove();
-            hrs = hrs - 0.5;
-            $("#totalService").html(hrs);
-            price = price - 9;
-            $("#clean").html(price);
-            $("#totalPay").html(price);
-            $("#EffectivePay").html(price)
-        }
-    });
+        });
 
-    $('#windows').change(function () {
-        if (this.checked) {
-            extraTableBody = $("#extraTable tbody");
-            extraTableBody.append("<tr id='windowsRow'><td>Clean windows</td><td>30 mins</td></tr>");
-            hrs = hrs + 0.5;
-            $("#totalService").html(hrs);
-            price = price + 9;
-            $("#clean").html(price);
-            $("#totalPay").html(price);
-            $("#EffectivePay").html(price)
-        } else if (!this.checked) {
-            $("#windowsRow").remove();
-            hrs = hrs - 0.5;
-            $("#totalService").html(hrs);
-            price = price - 9;
-            $("#clean").html(price);
-            $("#totalPay").html(price);
-            $("#EffectivePay").html(price)
-        }
-    });
-
-    $(document).ready(function () {
-        $(document).click(function (event) {
-            var clickover = $(event.target);
-            var _opened = $(".navbar-collapse").hasClass("show");
-            if (_opened === true && !clickover.hasClass("navbar-toggler")) {
-                $(".navbar-toggler").click();
+        $('#laundry').change(function () {
+            if (this.checked) {
+                extraTableBody = $("#extraTable tbody");
+                extraTableBody.append("<tr id='laundryRow'><td>Wash and dry laundry</td><td>30 mins</td></tr>");
+                hrs = hrs + 0.5;
+                $("#totalService").html(hrs);
+                price = price + 9;
+                $("#clean").html(price);
+                $("#totalPay").html(price);
+                $("#EffectivePay").html(price)
+            } else if (!this.checked) {
+                $("#laundryRow").remove();
+                hrs = hrs - 0.5;
+                $("#totalService").html(hrs);
+                price = price - 9;
+                $("#clean").html(price);
+                $("#totalPay").html(price);
+                $("#EffectivePay").html(price)
             }
         });
-    });
 
-    $("#bookForm").submit(function (e) {
-        $("#successModal").modal("show");
-        e.preventDefault();
+        $('#windows').change(function () {
+            if (this.checked) {
+                extraTableBody = $("#extraTable tbody");
+                extraTableBody.append("<tr id='windowsRow'><td>Clean windows</td><td>30 mins</td></tr>");
+                hrs = hrs + 0.5;
+                $("#totalService").html(hrs);
+                price = price + 9;
+                $("#clean").html(price);
+                $("#totalPay").html(price);
+                $("#EffectivePay").html(price)
+            } else if (!this.checked) {
+                $("#windowsRow").remove();
+                hrs = hrs - 0.5;
+                $("#totalService").html(hrs);
+                price = price - 9;
+                $("#clean").html(price);
+                $("#totalPay").html(price);
+                $("#EffectivePay").html(price)
+            }
+        });
 
-    });
+        $(document).ready(function () {
+            $(document).click(function (event) {
+                var clickover = $(event.target);
+                var _opened = $(".navbar-collapse").hasClass("show");
+                if (_opened === true && !clickover.hasClass("navbar-toggler")) {
+                    $(".navbar-toggler").click();
+                }
+            });
+        });
 
-    $(document).ready(function () {
+        $("#bookForm").submit(function (e) {
+            $("#successModal").modal("show");
+            e.preventDefault();
+        });
+
+        var dateSelected;
+        var timeSelected;
+        var selectedExtraServices = [];
+        var comment;
         $("#btnCheckPostalCode").on("click", function () {
             var data = $("#txtPostalCode").val();
             if (data.length != 6) {
                 $("#errMsgPincode").text("Enter 6 digit valid code");
-                
+
             }
             else if (!$.isNumeric(data)) {
                 $("#errMsgPincode").text("Enter Number only");
@@ -775,6 +742,7 @@
                     if (response) {
                         $("#schedulePlanTabController").prop("disabled", false);
                         document.getElementById("schedulePlanTabController").click();
+                        getAddress();
                     }
                     else {
                             if (!response) {
@@ -791,22 +759,122 @@
                 });
                 }
         })
-        $("#datepicker").on("change",function () {
-            var dateSelected = $(this).val();
-            var timeSelected = $("#dropdownTime").val();
-            $("#msgDateSelected").text(dateSelected + " " + timeSelected);
-          alert(selected);
-        });
-        //$("#datepicker").on("click", function () {
-        //    var dateSelected = $(this).val();
-        //    var timeSelected = $("dropdownTime:selected").text();
-        //    $("#msgDateSelected").text(dateSelected + " " + timeSelected);
-        //    alert(dateSelected);
-        //})
 
-       
-        
-    })
+        $("#datepicker").on("change", function () {
+            dateSelected = $(this).val();
+            timeSelected = $("#dropdownTime").val();
+            $("#msgDateSelected").text(dateSelected + " " + timeSelected);
+        });
+
+        $("#dropdownTime").on("change", function () {
+            timeSelected = $(this).val();
+            dateSelected = $(datepicker).val();
+            $("#msgDateSelected").text(dateSelected + " " + timeSelected);
+        });
+
+        $("#btnScheduleAndPlan").on("click", function () {
+            if (dateSelected == null) {
+                $("#errMsgSelectDate").text("❌ Select date ");
+            }
+            else
+            {
+                $(':checkbox:checked').each(function (i) {
+                    selectedExtraServices[i] = $(this).val();
+                });
+
+                comment = $("#txtAreaComments").val();
+                $("#yourDetailsTabController").prop("disabled", false);
+                document.getElementById("yourDetailsTabController").click();
+
+            }
+        });
+
+        $("#btnAddNewAddress").on("click", function () {
+            var check = false;
+            if ($("#txtAddAddressLine1").val() == "") {
+                $("#errtxtAddressLine1").text("Enter Street");
+                check = true;
+            }
+            if ($("#txtAddAddressLine2").val() == "") {
+                $("#errtxtAddressLine2").text("Enter House Number");
+                check = true;
+            }
+            if ($("#dropdownCityList").val() == -1) {
+                $("#errSelectCity").text("Select City");
+                check = true;
+            }
+            if ($("#txtPhoneNumber").val() == "") {
+                $("#errtxtPhoneNumber").text("Enter Phone number");
+                check = true;
+            }
+            if (check) {
+                return;
+            }
+            $("#txtAddressPostalCode").text($("#txtPostalCode").val());
+            addAddress();
+        })
+
+        $("#btnAddressCompleted").on("click", function () {
+            $("#yourDetailsTab").prop("disabled", false);
+            document.getElementById("yourDetailsTab").click();
+        });
+
+
+
+        function addAddress() {
+            var data = $("#txtPostalCode").val();
+            $("#txtAddressPostalCode").text(" " + data);
+            var address = {};
+
+            address.userId = parseInt($("#userID").val());
+            address.AddressLine1 = $("#txtAddAddressLine1").val();
+            address.AddressLine2 = $("#txtAddAddressLine2").val();
+            address.cityId = parseInt($("#dropdownCityList").val());
+            address.PostalCode = $("#txtAddressPostalCode").val();
+            address.Mobile = $("#txtPhoneNumber").val();
+            $.ajax({
+                type: "POST",
+                url: "@Url.Action("AddAddress")",
+                data:JSON.stringify(address),
+                dataType: 'json',
+                contentType: 'application/json',
+                success: function (responce) {
+                    if (responce) {
+                        $("#newAddressCollapse").hide();
+/*                        $("#btnAddNewAddress").show();*/
+                        getAddress();
+                    }
+
+                },
+                failure: function (response) {
+                    alert("failure");
+                },
+                error: function (response) {
+                    alert("Something went Wrong");
+                }
+
+            });
+        }
+
+        function getAddress() {
+            $.ajax({
+                    type: "POST",
+                    url: "@Url.Action("GetAddress")",
+                    data: { "userID": $("#userID").val() },
+                    success: function (response) {
+                        var obj = JSON.parse(response);
+                        $("#showAddress").empty();
+                        for (var i = 0; i < obj.length; i++) {
+                            $("#showAddress").append(' <li class= "custom-yadt px-3 py-2 my-2" > <label class="d-flex align-items-center"><input type="radio" id="address1" name="address"><div class="ms-4"><p class="mb-1"> <b style = "color: grey;" > Address:</b >' + obj[i].AddressLine1 + ' , ' + obj[i].AddressLine2 + '</p> <p class="mb-1"><b style="color: grey;">Phone number:</b>' + obj[i].Mobile + '</p></div></label></li>');
+                        }
+                    },
+                    failure: function (response) {
+                        alert("failure");
+                    }
+                });
+        }
+    });
+
 </script>
 
 <script type="text/javascript">
@@ -861,7 +929,7 @@
         });
     })
 </script>
-        
+
 
 
 

@@ -33,7 +33,12 @@ $(document).ready(function () {
             $("#loginError").text("Please Enter Valid Email Address");
     });
 
-    
+    $("#btnSubmitPassword").on("click", function () {
+        var forgotEmailAddress = $("#txtEmailForgot").val();
+        if (forgotEmailAddress.length == 0) {
+            $("#errForgotPasswordEmail").text("Please enter email");
+        }
+    })
 
 
 

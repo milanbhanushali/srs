@@ -35,10 +35,25 @@ namespace Helperland.Controllers
         {
             if (ModelState.IsValid)
             {
-                
                 if (_iLoginRepository.IsUserValid(loginViewModel))
                 {
-                    HttpContext.Session.SetString("Email", loginViewModel.Email);
+                    
+                    if(loginViewModel.Email != null)
+                    {
+                        User objUser =_iLoginRepository.GetUser(loginViewModel.UserID);
+                        HttpContext.Session.SetInt32("userID", loginViewModel.UserID);
+                        HttpContext.Session.SetString("FirstName", objUser.FirstName);
+
+                        CookieOptions options = new CookieOptions();
+                        options.Expires = DateTime.Now.AddMinutes(20);
+                        Response.Cookies.Append("userID", objUser.UserId.ToString(), options);
+                        Response.Cookies.Append("username", objUser.FirstName, options);
+                        Response.Cookies.Append("usertype", objUser.UserTypeId.ToString(), options);
+                        HttpContext.Session.SetInt32("userID", objUser.UserId);
+                        HttpContext.Session.SetString("username", objUser.FirstName);
+                        HttpContext.Session.SetInt32("usertype", objUser.UserTypeId);
+                    }
+
                     return RedirectToAction("Index", new { isLogged = true });
                 }
                 else
@@ -52,38 +67,60 @@ namespace Helperland.Controllers
         }
         #endregion Login
 
-        //[HttpPost]
-        //[ValidateAntiForgeryToken]
-        //public ActionResult ForgotPasswordResetlink(User uc)
-        //{
-        //    string baseUrl = string.Format("{0}://{1}", HttpContext.Request.Scheme, HttpContext.Request.Host);
-        //    var activationUrl = $"{baseUrl}/Account/NewPassword";
-        //    var verify = (from x in _iLoginRepository.Users where x.Email == uc.Email select x).FirstOrDefault();
 
-        //    String To = uc.Email;
-        //    String subject = "Helperland - Reset your password ";
-        //    String Body = "Reset password" + " : " + activationUrl;
-        //    MailMessage obj = new MailMessage();
-        //    obj.To.Add(To);
-        //    obj.Subject = subject;
-        //    obj.Body = Body;
-        //    obj.From = new MailAddress("harshitrajani1988@gmail.com");
-        //    obj.IsBodyHtml = true;
-        //    SmtpClient smtp = new SmtpClient("smtp.gmail.com");
-        //    smtp.Port = 587;
-        //    smtp.UseDefaultCredentials = true;
-        //    smtp.EnableSsl = true;
-        //    smtp.Credentials = new System.Net.NetworkCredential("harshitrajani1988@gmail.com", "harshit@Ldrp.");
-        //    smtp.Send(obj);
-        //    ViewBag.message = "The email has been sent";
-        //    return RedirectToAction("Index", "Home");
+        #region Logout
+        public IActionResult Logout()
+        {
+            HttpContext.Session.Clear();
+            Response.Cookies.Delete("userID");
+            Response.Cookies.Delete("username");
+            Response.Cookies.Delete("usertype");
+            return RedirectToAction("Index", new { isLogged = false });
+        }
+        #endregion Logout
 
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult ForgotPasswordResetlink(LoginViewModel uc)
+        {
+            if (ModelState.IsValid)
+            {
+                string baseUrl = string.Format("{0}://{1}", HttpContext.Request.Scheme, HttpContext.Request.Host);
+                var activationUrl = $"{baseUrl}/Account/NewPassword";
+                var verify = _iLoginRepository.IsUserEmailValid(uc);
 
-        //}
+                String To = uc.Email;
+                String subject = "Helperland - Reset your password ";
+                String Body = "Reset password" + " : " + activationUrl;
+                MailMessage obj = new MailMessage();
+                obj.To.Add(To);
+                obj.Subject = subject;
+                obj.Body = Body;
+                obj.From = new MailAddress("180540107015@darshan.ac.in");
+                obj.IsBodyHtml = true;
+                SmtpClient smtp = new SmtpClient("smtp.gmail.com");
+                smtp.Port = 587;
+                smtp.UseDefaultCredentials = true;
+                smtp.EnableSsl = true;
+                smtp.Credentials = new System.Net.NetworkCredential("180540107015@darshan.ac.in", "6354699577");
+                smtp.Send(obj);
+                ViewBag.message = "The email has been sent";
+                return RedirectToAction("Index", "Home");
+            }
+            else
+            {
+                return RedirectToAction("Index", "Home");
+            }
+            
+        }
 
-        public IActionResult Index(bool isLogged = false)
+        public IActionResult Index(bool isLogged = false , bool isLoginOpen = false)
         {
             ViewBag.IsLogged = isLogged;
+            ViewBag.isLoginOpen = isLoginOpen;
+            ViewBag.isOpen = false;
+            ViewBag.isForgetPasswordOpen = false;
+            ViewBag.Success = false;
             return View();
         }
         public IActionResult UserRegistration(bool isSuccess=false)
@@ -122,7 +159,6 @@ namespace Helperland.Controllers
         }
         public IActionResult Contact()
         {
-            ViewBag.IsLogged = true;
             return View();
         }
 
