@@ -33,15 +33,41 @@ $(document).ready(function () {
             $("#loginError").text("Please Enter Valid Email Address");
     });
 
-    $("#btnSubmitPassword").on("click", function () {
-        var forgotEmailAddress = $("#txtEmailForgot").val();
-        if (forgotEmailAddress.length == 0) {
-            $("#errForgotPasswordEmail").text("Please enter email");
+    $("#btnForgotForm").click(function () {
+        var emailAddress = $("#txtForgottedEmail").val();
+        var loginPassword = $("#txtForgottedPassword").val();
+        var confirmPassword = $("#txtForgottedConfirmPassword").val();
+        if (emailAddress.length == 0 && loginPassword.length == 0) {
+            $("#errForgotEmailPassword").text("Please enter email and password");
+        }
+        else if (emailAddress.length == 0) {
+            $("#errForgotEmailPassword").text("Please Enter Email Address");
+        }
+        else if (loginPassword.length == 0) {
+            $("#errForgotEmailPassword").text("Please Enter Password");
+        }
+        else if (confirmPassword.length == 0) {
+            $("#errForgotEmailPassword").text("Please Enter Confirm Password");
+        }
+        else if (!validateEmail(emailAddress)) {
+            $("#errForgotEmailPassword").text("Please Enter Valid Email Address");
+        }
+        else if (loginPassword != confirmPassword) {
+            $("#errForgotEmailPassword").text("Password & Confirm Password should be equal");
+        }
+            
+    });
+
+    $("#btnBookNow").on("click", function () {
+        if ($("#userID").val() == "") {
+            showLoginModel();
+            return;
         }
     })
 
-
-
+    function showLoginModel() {
+        $('#LoginModel').modal('show');
+    }
 
 
 });

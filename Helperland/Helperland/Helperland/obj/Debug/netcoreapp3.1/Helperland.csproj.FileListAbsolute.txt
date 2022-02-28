@@ -168,3 +168,5 @@ D:\Extra\TatvaSoft\SRS\srs\Helperland\Helperland\Helperland\obj\Debug\netcoreapp
 D:\Extra\TatvaSoft\SRS\srs\Helperland\Helperland\Helperland\obj\Debug\netcoreapp3.1\Razor\Views\Home\UserRegistration.cshtml.g.cs
 D:\Extra\TatvaSoft\SRS\srs\Helperland\Helperland\Helperland\obj\Debug\netcoreapp3.1\Razor\Views\Home\ServiceProviderBecomeAPro.cshtml.g.cs
 D:\Extra\TatvaSoft\SRS\srs\Helperland\Helperland\Helperland\obj\Debug\netcoreapp3.1\Razor\Views\BookMyService\Index.cshtml.g.cs
+D:\Extra\TatvaSoft\SRS\srs\Helperland\Helperland\Helperland\obj\Debug\netcoreapp3.1\Razor\Views\Home\NewPassword.cshtml.g.cs
+D:\Extra\TatvaSoft\SRS\srs\Helperland\Helperland\Helperland\obj\Debug\netcoreapp3.1\Razor\Views\Home\ServiceProviderDetails.cshtml.g.cs

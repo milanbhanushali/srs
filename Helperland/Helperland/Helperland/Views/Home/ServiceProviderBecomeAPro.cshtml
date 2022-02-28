@@ -5,35 +5,59 @@
 }
 
 <!--#region Registration Form-->
+
 <section class="hero-banner-section"
          style="background-image:url(/img/Service_Provider_Become_Pro_Main_Img.webp); background-attachment:fixed">
     <div class="container">
         <div class="row justify-content-center">
             <div class="card col-lg-4 col-md-4 col-sm-12">
                 <div class="card-body">
-                    <h5 class="card-title text-center">Register Now!</h5>
-                    <form method="post" asp-controller="User" asp-action="ServiceUserRegistration">
-                        <div class="input-group mb-3">
-                            <input asp-for="FirstName" class="form-control" placeholder="First Name" aria-label="First Name">
+                    @if (ViewBag.IsSuccessForSP)
+                    {
+                        <div class="container mt-3">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="alert alert-success align-items-center" role="alert">
+                                        <strong>Congratulations !!</strong> User Added Successfully
+                                    </div>
+                                </div>
+                            </div>
                         </div>
+                    }
+                    <h5 class="card-title text-center">Register Now!</h5>
+                    <span class="text-success alert-success" style="display:none" id="service-provider-alert">Data Enter Succesfully </span>
+                    <div asp-validation-summary="ModelOnly" class="text-danger alert-danger alerts"></div>
+                    <form method="post" asp-controller="Home" asp-action="ServiceUserRegistration">
+                        <div><span asp-validation-for="FirstName" class="text-danger"></span></div>
+                        <div class="input-group mb-3">
+                            <input asp-for="FirstName" id="txtSPUserFirstName" class="form-control" placeholder="First Name" aria-label="First Name">
+
+                        </div>
+                        <div><span asp-validation-for="LastName" class="text-danger"></span></div>
                         <div class="input-group mb-3">
                             <input asp-for="LastName" class="form-control" placeholder="Last name" aria-label="Last Name">
                         </div>
+                        <div><span asp-validation-for="Email" class="text-danger"></span></div>
                         <div class="input-group mb-3">
                             <input asp-for="Email" class="form-control" placeholder="Email Address" aria-label="Email">
                         </div>
+                        <div><span asp-validation-for="PhoneNumber" class="text-danger"></span></div>
                         <div class="input-group mb-3">
                             <div class="input-group-prepend">
                                 <span class="input-group-text" id="basic-addon1">+46</span>
                             </div>
                             <input asp-for="PhoneNumber" class="form-control" placeholder="Phone Number" aria-label="Phone Number">
                         </div>
+                        <div><span asp-validation-for="Password" class="text-danger"></span></div>
                         <div class="input-group mb-3">
                             <input asp-for="Password" class="form-control" placeholder="Password" aria-label="Password">
+
                         </div>
+                        <div><span asp-validation-for="ConfirmPassword" class="text-danger"></span></div>
                         <div class="input-group mb-3">
                             <input asp-for="ConfirmPassword" class="form-control" placeholder="Confirm password"
                                    aria-label="Confirm Password">
+
                         </div>
                         <div class="form-check">
                             <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
@@ -51,17 +75,15 @@
                         <div class="p-0 mt-3 ">
                             <img src="~/img/captcha.webp" class="img-fluid" alt="Responsive image">
                         </div>
+                        <div class="input-group mb-3 mt-3">
+                            <button type="submit" id="btnServiceProviderFormSignUp"
+                                    class="btn btn-primary btn-lg btn-block custom-get-started-button custom-borderless">
+                                Get
+                                Started
+                                <img src="~/img/shape-2.webp" class="img-fluid " alt="">
+                            </button>
+                        </div>
                     </form>
-                    
-
-                    <div class="input-group mb-3 mt-3">
-
-                        <button type="submit" class="btn btn-primary btn-lg btn-block custom-get-started-button custom-borderless">
-                            Get
-                            Started
-                            <img src="~/img/shape-2.webp" class="img-fluid " alt="">
-                        </button>
-                    </div>
                 </div>
             </div>
         </div>
@@ -132,6 +154,7 @@
     </section>
 </div>
 <!--#endregion Service Provider Become Pro Starts -->
+
 <!--#region Get Our Newsletter-->
 <section class="our-news-letter bg-white">
     <div class="container text-center">

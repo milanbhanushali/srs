@@ -82,6 +82,32 @@ namespace Helperland.Repository
             }
         }
 
+
+        public bool updateUserNewPassword(User user)
+        {
+            try
+            {
+                User objUser = _helperlandsContext.User.Where(x => x.Email == user.Email).FirstOrDefault();
+                if (objUser != null)
+                {
+                    objUser.Email = user.Email;
+                    objUser.Password = user.Password;
+                    _helperlandsContext.User.Update(objUser);
+                    _helperlandsContext.SaveChanges();
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+            catch(Exception ex)
+            {
+                _Message += ex.Message;
+                return false;
+            }
+        }
+
         public string _Message { get; set; }
         public string Message()
         {

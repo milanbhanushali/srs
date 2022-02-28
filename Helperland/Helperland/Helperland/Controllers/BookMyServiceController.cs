@@ -63,8 +63,10 @@ namespace Helperland.Controllers
             }
         }
 
+
+        #region AddAddress( UserAddressModel )
         [HttpPost]
-        public IActionResult AddAddress([FromBody] UserAddressModel userAddressModel)
+        public IActionResult AddAddress(UserAddressModel userAddressModel)
         {
             if (userAddressModel.UserId != null && userAddressModel.AddressLine1 != null && userAddressModel.AddressLine2 != null && userAddressModel.CityId != null)
             {
@@ -83,6 +85,7 @@ namespace Helperland.Controllers
             }
 
         }
+        #endregion AddAddress( UserAddressModel )
 
         public IActionResult GetAddress(string userID)
         {
@@ -94,5 +97,24 @@ namespace Helperland.Controllers
             return Json(JsonConvert.SerializeObject(addresses));
 
         }
+
+
+        [HttpPost]
+        public int ServiceSchedule(BookServiceViewModel bookServiceViewModels)
+        {
+            try
+            {
+                int serviceID = _iBookServiceRepository.AddService(bookServiceViewModels);
+                return serviceID;
+            }
+            catch(Exception ex)
+            {
+                return -1;
+            }
+           
+        }
+        
+        
+
     }
 }

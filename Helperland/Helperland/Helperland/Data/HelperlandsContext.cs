@@ -186,7 +186,7 @@ namespace Helperland.Data
 
                 entity.Property(e => e.AddressLine2).HasMaxLength(200);
 
-                entity.Property(e => e.City).HasMaxLength(50);
+                entity.Property(e => e.CityId).HasMaxLength(50);
 
                 entity.Property(e => e.Email).HasMaxLength(100);
 
@@ -194,7 +194,7 @@ namespace Helperland.Data
 
                 entity.Property(e => e.PostalCode).HasMaxLength(20);
 
-                entity.Property(e => e.State).HasMaxLength(50);
+                entity.Property(e => e.StateId).HasMaxLength(50);
 
                 entity.HasOne(d => d.ServiceRequest)
                     .WithMany(p => p.ServiceRequestAddress)

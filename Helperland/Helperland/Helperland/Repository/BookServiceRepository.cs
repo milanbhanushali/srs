@@ -13,16 +13,22 @@ namespace Helperland.Repository
 
         public HelperlandsContext _helperlandsContext;
         public string _Message { get; set; }
+
+        public int intServiceRequestID;
+
+        public int serviceID = 0;
+        Random random = new Random();
         public BookServiceRepository(HelperlandsContext helperlandsContext)
         {
             _helperlandsContext = helperlandsContext;
         }
 
-
+        #region Message
         public string Message()
         {
             throw new NotImplementedException();
         }
+        #endregion Message
 
         #region Method - IsPinCodeAvailable
         public bool IsPincodeAvailable(string strZipcode)
@@ -107,6 +113,50 @@ namespace Helperland.Repository
             }
         }
         #endregion Method - GetAddress
+
+        #region Method - AddService
+        public int AddService(BookServiceViewModel bookServiceViewModel)
+        {
+            try
+            {
+                ServiceRequest serviceRequest = new ServiceRequest();
+                serviceRequest.UserId = bookServiceViewModel.UserId;
+                serviceRequest.ServiceStartDate = bookServiceViewModel.ServiceStartDate;
+                serviceRequest.ZipCode = bookServiceViewModel.ZipCode;
+                serviceRequest.Comments = bookServiceViewModel.Comments;
+                serviceRequest.TotalCost = bookServiceViewModel.TotalCost;
+                serviceRequest.SubTotal = bookServiceViewModel.SubTotal;
+                serviceRequest.HasPets = bookServiceViewModel.HasPets;
+                serviceRequest.PaymentDone = true;
+                serviceRequest.ServiceId = random.Next(11,200);
+                serviceRequest.CreatedDate = DateTime.Now;
+                serviceRequest.ServiceHourlyRate = 18;
+                _helperlandsContext.ServiceRequest.Add(serviceRequest);
+                _helperlandsContext.SaveChanges();
+
+                UserAddress userAddress = _helperlandsContext.UserAddress.Where(x => x.AddressId == bookServiceViewModel.AddressId).FirstOrDefault();
+                ServiceRequestAddress serviceRequestAddress = new ServiceRequestAddress();
+                serviceRequestAddress.ServiceRequestId = serviceRequest.ServiceRequestId;
+                serviceRequestAddress.AddressLine1 = userAddress.AddressLine1;
+                serviceRequestAddress.AddressLine2 = userAddress.AddressLine2;
+                serviceRequestAddress.CityId = userAddress.CityId;
+                serviceRequestAddress.StateId = userAddress.StateId;
+                serviceRequestAddress.PostalCode = userAddress.PostalCode;
+                serviceRequestAddress.Mobile = userAddress.Mobile;
+                serviceRequestAddress.Email = userAddress.Email;
+                _helperlandsContext.ServiceRequestAddress.Add(serviceRequestAddress);
+                _helperlandsContext.SaveChanges();
+                return serviceRequest.ServiceId;
+            }
+            catch(Exception ex)
+            {
+                _Message = ex.Message.ToString();
+                return -1;
+            }
+        }
+        #endregion Method - AddService
+
+
 
 
     }

@@ -1,4 +1,5 @@
 ﻿using Helperland.Models;
+using Helperland.Models.ViewModel;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,5 +12,7 @@ namespace Helperland.Repository
         public string Message();
 
         public int AddNewUser(User user);
+
+        public Boolean AddServiceProvider(ServiceUserRegistrationModel serviceUserRegistrationModel);
     }
 }

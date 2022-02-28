@@ -1,5 +1,6 @@
 ﻿using Helperland.Data;
 using Helperland.Models;
+using Helperland.Models.ViewModel;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,11 +10,12 @@ namespace Helperland.Repository
 {
     public class InsertUserRepository : IInsertUserRepository
     {
-        private readonly HelperlandsContext _context = null;
+        private readonly HelperlandsContext _helperlandsContext = null;
         public string ExceptionMessage;
-        public InsertUserRepository(HelperlandsContext context)
+        public string _Message { get; set; }
+        public InsertUserRepository(HelperlandsContext helperlandsContext)
         {
-            _context = context;
+            _helperlandsContext = helperlandsContext;
         }
 
         public int AddNewUser(User user)
@@ -36,9 +38,9 @@ namespace Helperland.Repository
                     IsActive = true,
                     IsDeleted = true
                 };
-                _context.User.Add(newUser);
-                
-                _context.SaveChanges();
+                _helperlandsContext.User.Add(newUser);
+
+                _helperlandsContext.SaveChanges();
 
                 return newUser.UserId;
             }
@@ -51,7 +53,42 @@ namespace Helperland.Repository
         }
         public string Message()
         {
-            throw new NotImplementedException();
+            _Message = "User is invalid";
+            return _Message;
         }
+
+        public Boolean AddServiceProvider(ServiceUserRegistrationModel serviceUserRegistrationModel)
+        {
+            User check = _helperlandsContext.User.Where(x => x.Email == serviceUserRegistrationModel.Email).FirstOrDefault();
+            if (check == null)
+            {
+                try
+                {
+                    User user = new User();
+                    user.FirstName = serviceUserRegistrationModel.FirstName;
+                    user.LastName = serviceUserRegistrationModel.LastName;
+                    user.Email = serviceUserRegistrationModel.Email;
+                    user.Mobile = serviceUserRegistrationModel.PhoneNumber;
+                    user.Password = serviceUserRegistrationModel.Password;
+                    user.CreatedDate = DateTime.Now.Date;
+                    user.ModifiedDate = DateTime.Now.Date;
+                    user.UserTypeId = 2;
+                    _helperlandsContext.User.Add(user);
+                    _helperlandsContext.SaveChanges();
+                    return true;
+                }
+                catch (Exception ex)
+                {
+                    _Message += ex.Message;
+                    return false;
+                }
+            }
+            else
+            {
+                _Message += "Already register User with this email ";
+                return false;
+            }
+        }
+
     }
 }

@@ -15,5 +15,7 @@ namespace Helperland.Repository
         public Boolean IsUserEmailValid(LoginViewModel loginViewModel);
 
         public User GetUser(int userID);
+
+        public Boolean updateUserNewPassword(User uc);
     }
 }

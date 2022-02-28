@@ -1,8 +1,10 @@
-﻿@model IEnumerable<Helperland.Models.ViewModel.UserAddressModel>
-@{
+﻿@{
     ViewData["Title"] = "Book My Service";
     Layout = "~/Views/Shared/_Layout.cshtml";
+    int? userID = Context.Session.GetInt32("userID");
+
 }
+@model IEnumerable<Helperland.Models.ViewModel.UserAddressModel>
 @using Microsoft.AspNetCore.Http
 <link href="~/css/BookMyService.css" rel="stylesheet" />
 
@@ -92,7 +94,7 @@
 
                     </div>
                     <!-- ------------- Schedule and plan ----------- -->
-                    <div class="tab-pane fade needs-validation" role="tabpanel" id="schedulePlanTab"
+                    <div class="tab-pane fade needs-validation " role="tabpanel" id="schedulePlanTab"
                          aria-labelledby="schedulePlan">
                         <div class="row custom-borbot pb-3 custom-clscn">
                             <div class="col-md-6">
@@ -100,7 +102,7 @@
                                 <div>
                                     <input type="date" name="servicedate" required
                                            class="custom-hyper custom-padin custom-borlft custom-clscn mb-1"
-                                           id="datepicker">
+                                           id="datepicker" min="2022-02-28">
                                     <select name="servicetime" id="dropdownTime"
                                             class="custom-hyper custom-padin custom-borlft mb-1 custom-clscn">
                                         <option value="8:00">8:00</option>
@@ -116,7 +118,7 @@
                             </div>
                             <div class="col-md-6">
                                 <p class="fw-bold mb-1">How long do you need your cleaner to stay?</p>
-                                <select name="servicetime" id="dropdownForCleanerStay"
+                                <select name="servicetime" id="dropdownHours"
                                         class="custom-hyper custom-padin custom-borlft mb-1 custom-clscn">
                                     <option value="3hrs">3 Hrs</option>
                                     <option value="3.5hrs">3.5 Hrs</option>
@@ -132,8 +134,7 @@
 
                             <div class="btn-group custom-avtgp" role="group"
                                  aria-label="Basic checkbox toggle button group">
-                                <div class="d-flex flex-column align-items-center justify-content-between  custom-lbldt"
-                                     onclick="give();sub1();sub2();sub3();">
+                                <div class="d-flex flex-column align-items-center justify-content-between  custom-lbldt">
                                     <label class="btn custom-btnpm custom-avtdt" for="cabinet">
                                         <input type="checkbox" name="cabinet" id="cabinet" value="cabinet">
                                         <div class="tog">
@@ -231,8 +232,10 @@
                         <p class="fw-bold">
                             Enter your contact details, so we can serve you in better way!
                         </p>
+
+                        <p class="font-weight-bold text-danger" id="errAddressNotSelected"></p>
                         <ul class="custom-ya p-0">
-                            <div id="showAddress"></div>
+                            <div class="radioButtons" id="showAddress"></div>
                         </ul>
                         <input type="button" class="btn custom-nadbtn px-4 mt-3 rounded-pill fw-bolder"
                                value="+ Add New Address" data-bs-toggle="collapse" href="#newAddressCollapse"
@@ -240,66 +243,66 @@
                         <hr class="mt-4 mb-3">
 
                         <div class="my-3 collapse multi-collapse custom-nwad" id="newAddressCollapse">
-                            
-                                <div class="row newAddress_form">
-                                    <div class="col-sm-6 mb-4">
-                                        <div class="form-group d-flex flex-column">
-                                            <label for="streetname">Street Name</label>
-                                            <input type="text" placeholder="Street Name" name="streetname" id="txtAddAddressLine1"
-                                                   class="custom-borlft custom-hyper custom-padin w-100">
-                                            <span id="errtxtAddressLine1" class="text-danger"> </span>
-                                        </div>
+
+                            <div class="row newAddress_form">
+                                <div class="col-sm-6 mb-4">
+                                    <div class="form-group d-flex flex-column">
+                                        <label for="streetname">Street Name</label>
+                                        <input type="text" placeholder="Street Name" name="streetname" id="txtAddAddressLine1"
+                                               class="custom-borlft custom-hyper custom-padin w-100">
+                                        <span id="errtxtAddressLine1" class="text-danger"> </span>
                                     </div>
-                                    <div class="col-sm-6 mb-4">
-                                        <div class="form-group d-flex flex-column">
-                                            <label for="housenumber">House number</label>
-                                            <input type="text" placeholder="House Number" name="housenumber" id="txtAddAddressLine2"
-                                                   class="custom-borlft custom-hyper custom-padin w-100">
-                                            <span id="errtxtAddressLine2" class="text-danger"> </span>
-                                        </div>
+                                </div>
+                                <div class="col-sm-6 mb-4">
+                                    <div class="form-group d-flex flex-column">
+                                        <label for="housenumber">House number</label>
+                                        <input type="text" placeholder="House Number" name="housenumber" id="txtAddAddressLine2"
+                                               class="custom-borlft custom-hyper custom-padin w-100">
+                                        <span id="errtxtAddressLine2" class="text-danger"> </span>
                                     </div>
-                                    <div class="col-sm-6 mb-4">
-                                        <div class="form-group d-flex flex-column">
-                                            <label for="postalcode">Postal Code</label>
-                                            <input type="text" disabled id="txtAddressPostalCode" 
-                                                   name="postalcode"
-                                                   class="custom-borlft custom-hyper custom-padin w-100">
-                                        </div>
+                                </div>
+                                <div class="col-sm-6 mb-4">
+                                    <div class="form-group d-flex flex-column">
+                                        <label for="postalcode">Postal Code</label>
+                                        <input type="text" disabled id="txtAddressPostalCode"
+                                               class="custom-borlft custom-hyper custom-padin w-100" value="360001">
+                                        
                                     </div>
-                                    <div class="col-sm-6">
-                                        <div class="form-group d-flex flex-column">
-                                            <label for="city">City</label>
-                                            <div class="d-inline-block">
-                                                <select id="dropdownCityList" asp-items="@ViewBag.city" class="form-control form-select">
-                                                    <option value="-1">- Select City -</option>
-                                                </select>
-                                                <span id="errSelectCity" class="text-danger"> </span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6 mb-4">
-                                        <div class="form-group d-flex flex-column">
-                                            <label for="phonenumber"> Phone Number</label>
-                                            <div class="d-flex">
-                                                <input type="text" name="phonecode"
-                                                       class="custom-borlft custom-hyper custom-padin" value="+49"
-                                                       disabled style="max-width: 55px;">
-                                                <input type="text" placeholder="Phone Number" name="phonenumber" id="txtPhoneNumber"
-                                                       class="custom-borlft minheight46 custom-padin">
-                                                <span class="text-danger" id="errtxtPhoneNumber"></span>
-                                            </div>
+                                </div>
+                                <div class="col-sm-6">
+                                    <div class="form-group d-flex flex-column">
+                                        <label for="city">City</label>
+                                        <div class="d-inline-block">
+                                            <select id="dropdownCityList" asp-items="@ViewBag.city" class="form-control form-select">
+                                                <option value="-1">- Select City -</option>
+                                            </select>
+                                            <span id="errSelectCity" class="text-danger"> </span>
                                         </div>
                                     </div>
                                 </div>
-                                <button type="button"
-                                        class="custom-gnbtn rounded-pill custom-borlft text-light px-3 custom-padin" id="btnAddNewAddress">
-                                    Save
-                                </button>
-                                <a role="button" class="btn border custom-hyper custom-padin rounded-pill"
-                                   data-bs-toggle="collapse" href="#newAddressCollapse" aria-expanded="false"
-                                   aria-controls="newAddressCollapse">
-                                    Cancel
-                                </a>
+                                <div class="col-md-6 mb-4">
+                                    <div class="form-group d-flex flex-column">
+                                        <label for="phonenumber"> Phone Number</label>
+                                        <div class="d-flex">
+                                            <input type="text" name="phonecode"
+                                                   class="custom-borlft custom-hyper custom-padin" value="+49"
+                                                   disabled style="max-width: 55px;">
+                                            <input type="text" placeholder="Phone Number" name="phonenumber" id="txtPhoneNumber"
+                                                   class="custom-borlft minheight46 custom-padin">
+                                            <span class="text-danger" id="errtxtPhoneNumber"></span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <button type="button"
+                                    class="custom-gnbtn rounded-pill custom-borlft text-light px-3 custom-padin" id="btnAddNewAddress">
+                                Save
+                            </button>
+                            <a role="button" class="btn border custom-hyper custom-padin rounded-pill"
+                               data-bs-toggle="collapse" href="#newAddressCollapse" aria-expanded="false"
+                               aria-controls="newAddressCollapse">
+                                Cancel
+                            </a>
 
                         </div>
                         <div id="favouriteTable my-3">
@@ -308,35 +311,35 @@
                             <div class="custom-fvp">
                                 <div class="custom-fvpdt col-sm-12 w-100 d-flex align-items-center justify-content-center flex-column">
                                     <div class="spProfile mb-3 rounded-circle d-flex align-items-center justify-content-center">
-                                        <img src="~/img/avatar-car.png">
+                                        <img src="~/img/undraw_profile_pic_ic5t.png" style="width:70px;">
                                     </div>
                                     <p class="mb-3">First</p>
                                     <button class="btn custom-slctbtn rounded-pill">Select</button>
                                 </div>
                                 <div class="custom-fvpdt col-sm-12 w-100 d-flex align-items-center justify-content-center flex-column">
                                     <div class="spProfile mb-3 rounded-circle d-flex align-items-center justify-content-center">
-                                        <img src="~/img/avatar-car.png">
+                                        <img src="~/img/undraw_profile_pic_ic5t.png" style="width:70px;">
                                     </div>
                                     <p class="mb-3">Second</p>
                                     <button class="btn custom-slctbtn rounded-pill">Select</button>
                                 </div>
                                 <div class="custom-fvpdt col-sm-12 w-100 d-flex align-items-center justify-content-center flex-column">
                                     <div class="spProfile mb-3 rounded-circle d-flex align-items-center justify-content-center">
-                                        <img src="~/img/avatar-car.png">
+                                        <img src="~/img/undraw_profile_pic_ic5t.png" style="width:70px;">
                                     </div>
                                     <p class="mb-3">Third</p>
                                     <button class="btn custom-slctbtn rounded-pill">Select</button>
                                 </div>
                                 <div class="custom-fvpdt col-sm-12 w-100 d-flex align-items-center justify-content-center flex-column">
                                     <div class="spProfile mb-3 rounded-circle d-flex align-items-center justify-content-center">
-                                        <img src="~/img/avatar-car.png">
+                                        <img src="~/img/undraw_profile_pic_ic5t.png" style="width:70px;">
                                     </div>
                                     <p class="mb-3">Fourth</p>
                                     <button class="btn custom-slctbtn rounded-pill">Select</button>
                                 </div>
                                 <div class="custom-fvpdt col-sm-12 w-100 d-flex align-items-center justify-content-center flex-column">
                                     <div class="spProfile mb-3 rounded-circle d-flex align-items-center justify-content-center">
-                                        <img src="~/img/avatar-car.png">
+                                        <img src="~/img/undraw_profile_pic_ic5t.png" style="width:70px;">
                                     </div>
                                     <p class="mb-3">Fifth</p>
                                     <button class="btn custom-slctbtn rounded-pill">Select</button>
@@ -357,83 +360,81 @@
                             gateway!
                         </p>
                         <p>Promo code (optional)</p>
-                        <form action="" id="bookForm" class="">
-                            <div class="">
-                                <div class="form-group mx-sm-1 mb-2">
-                                    <label for="inputPassword2" class="sr-only">Promocode</label>
-                                    <input type="password" style="width: 800px;" class="form-control col-sm-4"
-                                           id="inputPassword2" placeholder="Promo code (optional)">
-                                </div>
-                                <button type="submit"
-                                        class="d-inline ml-2 mb-2 rounded-pill custom-nadbtn p-2">
-                                    Apply
-                                </button>
+                        <div class="">
+                            <div class="form-group mx-sm-1 mb-2">
+                                <label for="inputPassword2" class="sr-only">Promocode</label>
+                                <input type="password" style="width: 800px;" class="form-control col-sm-4"
+                                       id="inputPassword2" placeholder="Promo code (optional)">
                             </div>
-                            <hr>
-                            <div class="form-row">
-                                <div class="form-group col-md-6">
-                                    <label for="cc-number" class="control-label">Card number</label>
-                                    <input id="cr_no" name="cc-number" type="tel"
-                                           class="form-control cc-number identified visa" value="" data-val="true"
-                                           placeholder="0000-0000-0000-0000" minlength="19" maxlength="19">
-                                </div>
-                                <div class="col-3">
-                                    <div class="form-group">
-                                        <label for="cc-exp" class="control-label">Expiration</label>
-                                        <input id="exp" name="cc-exp" type="tel" class="form-control cc-exp"
-                                               value="" data-val="true"
-                                               data-val-required="Please enter the card expiration"
-                                               data-val-cc-exp="Please enter a valid month and year"
-                                               placeholder="MM / YY" autocomplete="cc-exp" minlength="5"
-                                               maxlength="5">
-                                        <span class="help-block" data-valmsg-for="cc-exp"
-                                              data-valmsg-replace="true"></span>
-                                    </div>
-                                </div>
-                                <div class="col-3">
-                                    <label for="x_card_code" class="control-label">CVV</label>
-                                    <div class="input-group">
-                                        <input id="x_card_code" name="x_card_code" type="password"
-                                               class="form-control cc-cvc" value="" data-val="true"
-                                               data-val-required="Please enter the security code"
-                                               data-val-cc-cvc="Please enter a valid security code"
-                                               autocomplete="off" minlength="3" maxlength="3"
-                                               placeholder="&#9679;&#9679;&#9679;">
-                                    </div>
+                            <button type="button"
+                                    class="d-inline ml-2 mb-2 rounded-pill custom-nadbtn p-2" disabled>
+                                Apply
+                            </button>
+                        </div>
+                        <hr>
+                        <div class="form-row">
+                            <div class="form-group col-md-6">
+                                <label for="cc-number" class="control-label">Card number</label>
+                                <input id="cr_no" name="cc-number" type="tel"
+                                       class="form-control cc-number identified visa" value="" data-val="true"
+                                       placeholder="0000-0000-0000-0000" minlength="19" maxlength="19">
+                            </div>
+                            <div class="col-3">
+                                <div class="form-group">
+                                    <label for="cc-exp" class="control-label">Expiration</label>
+                                    <input id="exp" name="cc-exp" type="tel" class="form-control cc-exp"
+                                           value="" data-val="true"
+                                           data-val-required="Please enter the card expiration"
+                                           data-val-cc-exp="Please enter a valid month and year"
+                                           placeholder="MM / YY" autocomplete="cc-exp" minlength="5"
+                                           maxlength="5">
+                                    <span class="help-block" data-valmsg-for="cc-exp"
+                                          data-valmsg-replace="true"></span>
                                 </div>
                             </div>
+                            <div class="col-3">
+                                <label for="x_card_code" class="control-label">CVV</label>
+                                <div class="input-group">
+                                    <input id="x_card_code" name="x_card_code" type="password"
+                                           class="form-control cc-cvc" value="" data-val="true"
+                                           data-val-required="Please enter the security code"
+                                           data-val-cc-cvc="Please enter a valid security code"
+                                           autocomplete="off" minlength="3" maxlength="3"
+                                           placeholder="&#9679;&#9679;&#9679;">
+                                </div>
+                            </div>
+                        </div>
 
-                            <div class="d-flex justify-content-end">
-                                <div class="d-block"><small>Accepted Cards</small></div>
+                        <div class="d-flex justify-content-end">
+                            <div class="d-block"><small>Accepted Cards</small></div>
+                        </div>
+                        <div class="d-flex justify-content-end">
+                            <div>
+                                <i class="fa fa-cc-visa" style="color:navy;"></i>
+                                <i class="fa fa-cc-amex" style="color:blue;"></i>
+                                <i class="fa fa-cc-mastercard" style="color:red;"></i>
+                                <i class="fa fa-cc-discover" style="color:orange;"></i>
                             </div>
-                            <div class="d-flex justify-content-end">
-                                <div>
-                                    <i class="fa fa-cc-visa" style="color:navy;"></i>
-                                    <i class="fa fa-cc-amex" style="color:blue;"></i>
-                                    <i class="fa fa-cc-mastercard" style="color:red;"></i>
-                                    <i class="fa fa-cc-discover" style="color:orange;"></i>
-                                </div>
-                            </div>
-                            <hr>
-                            <div class="d-flex align-items-center">
-                                <input type="checkbox" name="acceptterms" id="acceptterms" required>
-                                <label for="acceptterms" class="ms-4 mt-4">
-                                    I accept <a href="" class="custom-clr">terms and conditions</a>,<a href=""
-                                                                                                       class="custom-clr"> the cancellation policy</a> and the <a href=""
-                                                                                                                                                                  class="custom-clr">privacy policy</a>. I confirm that Helperland starts
-                                    to
-                                    execute the contract before the expiry of the withdrawal period and I lose
-                                    my right of withdrawal as a consumer with full performance of the contract.
-                                </label>
-                            </div>
-                            <hr class="mt-3 mb-3 lne">
-                            <div class="d-flex justify-content-end">
-                                <button type="submit"
-                                        class="custom-gnbtn2 my-2 text-light rounded-pill fw-bolder justify-content-end">
-                                    Complete Booking
-                                </button>
-                            </div>
-                        </form>
+                        </div>
+                        <hr>
+                        <div class="d-flex align-items-center">
+                            <input type="checkbox" name="acceptterms" id="acceptterms" required>
+                            <label for="acceptterms" class="ms-4 mt-4">
+                                I accept <a href="" class="custom-clr">terms and conditions</a>,<a href=""
+                                                                                                   class="custom-clr"> the cancellation policy</a> and the <a href=""
+                                                                                                                                                              class="custom-clr">privacy policy</a>. I confirm that Helperland starts
+                                to
+                                execute the contract before the expiry of the withdrawal period and I lose
+                                my right of withdrawal as a consumer with full performance of the contract.
+                            </label>
+                        </div>
+                        <hr class="mt-3 mb-3 lne">
+                        <div class="d-flex justify-content-end">
+                            <button type="button" id="btnCompleteBookService"
+                                    class="custom-gnbtn2 my-2 text-light rounded-pill fw-bolder justify-content-end">
+                                Complete Booking
+                            </button>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -570,7 +571,7 @@
                 </div>
                 <div class="text-center">
                     <h4 class="mb-2">Booking submitted successfully</h4>
-                    <p>Service id: 1234</p>
+                    <p id="txtServiceID">Service id: 1234</p>
                 </div>
                 <div class="text-center">
                     <button type="button" class="btn custom-gnbtn text-white rounded-pill"
@@ -585,7 +586,6 @@
 
 
 
-
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript">
 
 </script>
@@ -596,6 +596,16 @@
         });
 
         var i, hrs = 3, price = 54;
+        //var price;
+        var hourrs;
+
+        $('#dropdownHours').on("change", function () {
+            hrs = parseFloat($(this).val(), 10);
+            $("#totalService").text(hrs);
+            price = hourrs * 18;
+            $("#totalPay").text(price);
+            $("#EffectivePay").text(price);
+        });
 
         $('#cabinet').change(function () {
             if (this.checked) {
@@ -715,10 +725,8 @@
             });
         });
 
-        $("#bookForm").submit(function (e) {
-            $("#successModal").modal("show");
-            e.preventDefault();
-        });
+
+
 
         var dateSelected;
         var timeSelected;
@@ -761,6 +769,7 @@
         })
 
         $("#datepicker").on("change", function () {
+
             dateSelected = $(this).val();
             timeSelected = $("#dropdownTime").val();
             $("#msgDateSelected").text(dateSelected + " " + timeSelected);
@@ -774,7 +783,7 @@
 
         $("#btnScheduleAndPlan").on("click", function () {
             if (dateSelected == null) {
-                $("#errMsgSelectDate").text("❌ Select date ");
+                $("#errMsgSelectDate").text("❌ Select date ").delay(3000);
             }
             else
             {
@@ -783,9 +792,16 @@
                 });
 
                 comment = $("#txtAreaComments").val();
-                $("#yourDetailsTabController").prop("disabled", false);
-                document.getElementById("yourDetailsTabController").click();
-
+                var strUserID = parseInt($("#userID").val());
+                if (strUserID == "") {
+                    showLoginModel();
+                    return;
+                }
+                else {
+                    $("#yourDetailsTabController").prop("disabled", false);
+                    document.getElementById("yourDetailsTabController").click();
+                    $("#txtAddressPostalCode").val();
+                }
             }
         });
 
@@ -810,49 +826,89 @@
             if (check) {
                 return;
             }
-            $("#txtAddressPostalCode").text($("#txtPostalCode").val());
+
             addAddress();
+
         })
 
         $("#btnAddressCompleted").on("click", function () {
-            $("#yourDetailsTab").prop("disabled", false);
-            document.getElementById("yourDetailsTab").click();
+            $('.radioButtons').each(function () {
+                if ($(this).find('input[type="radio"]:checked').length > 0) {
+                    $("#makePaymentTabController").prop("disabled", false);
+                    document.getElementById("makePaymentTabController").click();
+                    addServiceRequestAddress();
+                }
+                else {
+                    $("#errAddressNotSelected").text("Select Address or Add new address !!");
+                }
+            });
+
         });
 
+        $("#btnCompleteBookService").click(function () {
+            console.log("Button Click !!!");
+            var bookServiceViewModel = {};
+            bookServiceViewModel.AddressId = $("input[type=radio][name=address]:checked").attr('id');
+            bookServiceViewModel.UserId = $('#userID').val();
+            bookServiceViewModel.ServiceStartDate = $('#datepicker').val();
+            bookServiceViewModel.ZipCode = $('#txtPostalCode').val();
+            bookServiceViewModel.ServiceHours = parseFloat($('#dropdownHours').val());
+            bookServiceViewModel.SubTotal = parseFloat($('#totalPay').text());
+            bookServiceViewModel.Comments = $("#txtAreaComments").val();
+            bookServiceViewModel.TotalCost = parseFloat($('#EffectivePay').text());
+            bookServiceViewModel.HasPets = $('#chkbxPets').is(':checked');
+            bookServiceViewModel.Email = $('#userEmail').val();
+            bookServiceViewModel.ExtraHours = parseFloat($("#totalService").text() - hrs);
 
+            var objSuccess = JSON.stringify(bookServiceViewModel);
+            console.log(objSuccess);
+            $.ajax({
+                type: 'POST',
+                url: '@Url.Action("ServiceSchedule")',
+                data: bookServiceViewModel,
+                success: function (response) {
+                    console.log(response);
+
+                    if (response > 0) {
+                        $("#txtServiceID").text(response);
+                        $("#successModal").modal("show");
+                    }
+                    else if (response == -1) {
+                        alert("Something went wrong");
+                    }
+                    },
+                error: function (err) {
+                        alert('error ' + err.text);
+                    }
+                });
+        });
 
         function addAddress() {
             var data = $("#txtPostalCode").val();
             $("#txtAddressPostalCode").text(" " + data);
             var address = {};
-
             address.userId = parseInt($("#userID").val());
             address.AddressLine1 = $("#txtAddAddressLine1").val();
             address.AddressLine2 = $("#txtAddAddressLine2").val();
             address.cityId = parseInt($("#dropdownCityList").val());
-            address.PostalCode = $("#txtAddressPostalCode").val();
+            address.PostalCode = $("#txtPostalCode").val();
             address.Mobile = $("#txtPhoneNumber").val();
             $.ajax({
                 type: "POST",
                 url: "@Url.Action("AddAddress")",
-                data:JSON.stringify(address),
-                dataType: 'json',
-                contentType: 'application/json',
-                success: function (responce) {
-                    if (responce) {
+                data: address,
+                success: function (response) {
+                    if (response) {
                         $("#newAddressCollapse").hide();
-/*                        $("#btnAddNewAddress").show();*/
                         getAddress();
                     }
-
                 },
                 failure: function (response) {
                     alert("failure");
                 },
                 error: function (response) {
-                    alert("Something went Wrong");
+                    alert("Something went Wrong!!");
                 }
-
             });
         }
 
@@ -865,7 +921,7 @@
                         var obj = JSON.parse(response);
                         $("#showAddress").empty();
                         for (var i = 0; i < obj.length; i++) {
-                            $("#showAddress").append(' <li class= "custom-yadt px-3 py-2 my-2" > <label class="d-flex align-items-center"><input type="radio" id="address1" name="address"><div class="ms-4"><p class="mb-1"> <b style = "color: grey;" > Address:</b >' + obj[i].AddressLine1 + ' , ' + obj[i].AddressLine2 + '</p> <p class="mb-1"><b style="color: grey;">Phone number:</b>' + obj[i].Mobile + '</p></div></label></li>');
+                            $("#showAddress").append(' <li class= "custom-yadt px-3 py-2 my-2" > <label class="d-flex align-items-center"><input type="radio" id="' + obj[i].AddressId + '" name="address"><div class="ms-4"><p class="mb-1"> <b style = "color: grey;" > Address:</b >' + obj[i].AddressLine1 + ' , ' + obj[i].AddressLine2 + '</p> <p class="mb-1"><b style="color: grey;">Phone number:</b>' + obj[i].Mobile + '</p></div></label></li>');
                         }
                     },
                     failure: function (response) {
@@ -873,6 +929,12 @@
                     }
                 });
         }
+
+        function showLoginModel() {
+            $('#LoginModel').modal('show');
+        }
+
+
     });
 
 </script>

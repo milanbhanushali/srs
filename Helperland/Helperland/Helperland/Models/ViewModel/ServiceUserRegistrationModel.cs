@@ -24,6 +24,7 @@ namespace Helperland.Models.ViewModel
 
         #region Email
         [EmailAddress(ErrorMessage = "Please Enter Valid Email")]
+        [Required(ErrorMessage = "Please Enter Email")]
         public string Email { get; set; }
         #endregion Email
 
@@ -41,8 +42,8 @@ namespace Helperland.Models.ViewModel
         #endregion Password
 
         #region ConfirmPassword
-        [Required(ErrorMessage = "Confirmation Password is required.")]
-        [Compare("Password", ErrorMessage = "Password and Confirmation Password must match.")]
+        [Required(ErrorMessage = "Confirm Password is required.")]
+        [Compare("Password", ErrorMessage = "Password and Confirm Password must match.")]
         public string ConfirmPassword { get; set; }
         #endregion ConfirmPassword
     }

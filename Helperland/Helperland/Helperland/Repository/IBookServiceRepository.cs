@@ -16,6 +16,8 @@ namespace Helperland.Repository
         public List<UserAddressModel> GetAddress(int userID);
         public List<City> GetAllCity();
         public Boolean SetAddress(UserAddressModel userAddressModel);
+        public int AddService(BookServiceViewModel bookServiceViewModel);
+
 
     }
 }

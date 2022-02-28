@@ -1,7 +1,9 @@
 ﻿@model Helperland.Models.ViewModel.LoginViewModel
 @using Microsoft.AspNetCore.Http;
 
-@{ int? userID = Context.Session.GetInt32("userID"); }
+@{ int? userID = Context.Session.GetInt32("userID");
+   string userEmail = Context.Session.GetString("userEmail");
+}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -31,16 +33,29 @@
         <nav class="custom-mobile-navbar fixed-top" id="nav-menu">
             <ul class="nav__list">
                 <i class="bi bi-x-lg header__close" id="close-menu"></i>
-                <li class="nav__items ">
-                    <a class="nav__link border-btn custom-bg-green-btn"
-                       asp-controller="Home" asp-action="" id="btnBookNow" asp-route-isLogged="@ViewBag.IsLogged">Book now</a>
-                </li>
+                @if (ViewBag.IsLogged == true)
+                {
+                    <li class="nav__items ">
+                        <a class="nav__link border-btn custom-bg-green-btn"
+                           asp-controller="BookMyService" asp-action="Index" id="btnBookNow" asp-route-isLogged="@ViewBag.IsLogged">Book now</a>
+                    </li>
+                }
+                else
+                {
+                    <li class="nav__items">
+                        <a class="nav__link border-btn custom-bg-green-btn" data-bs-toggle="modal" data-bs-target="#LoginModel">
+                            Book Now
+                        </a>
+                    </li>
+                }
+
                 <li class="d-none" id="userID" value="@Context.Session.GetInt32("userID")"></li>
+                <li class="d-none" id="userEmail" value="@Context.Session.GetString("userEmail")"></li>
                 <li class="nav__items border-btn">
-                    <a asp-controller="Home" asp-action="Prices" class="nav__link ">Prices & Services</a>
+                    <a asp-controller="Home" asp-action="Prices" asp-route-isLogged="@ViewBag.IsLogged"  class="nav__link ">Prices & Services</a>
                 </li>
                 <li class="nav__items">
-                    <a asp-controller="Home" asp-action="" class="nav__link">Warranty</a>
+                    <a asp-controller="Home" asp-action="FAQ" class="nav__link">Warranty</a>
                 </li>
                 <li class="nav__items">
                     <a asp-controller="Home" asp-action="Contact" class="nav__link">Contact</a>
@@ -64,7 +79,7 @@
                             <li><hr class="dropdown-divider"></li>
                             <li><a class="dropdown-item" href="#">My Dashboard</a></li>
                             <li><a class="dropdown-item" href="#">My Setting</a></li>
-                            <li><a class="dropdown-item" href="#">Logout</a></li>
+                            <li><a class="dropdown-item" asp-controller="Home" asp-action="Logout">Logout</a></li>
                         </ul>
                     </li>
                 }
@@ -75,7 +90,7 @@
                             Login
                         </a>
                     </li>
-                    <li class="nav__items border-btn"><a href="" class="nav__link" id="btnBecomeHelper">Become a Helper</a></li>
+                    <li class="nav__items border-btn"><a asp-controller="Home" asp-action="ServiceProviderBecomeAPro" class="nav__link" id="btnBecomeHelper">Become a Helper</a></li>
                 }
 
                 <li class="custom-line-mobile-view"></li>
@@ -108,14 +123,16 @@
                                     <div class="">
                                         <span id="loginError" class="text-danger"></span>
                                     </div>
+                                    <div class="text-danger">@Html.ValidationMessage("CustomError")</div>
                                     <div class="mb-3">
                                         <i class="fas fa-user fs-5"></i>
                                         <input asp-for="Email" class="form-control" id="txtEmail" placeholder="Email">
-
+                                        <span asp-validation-for="Email"></span>
                                     </div>
                                     <div class="mb-3">
                                         <i class="fas fa-lock fs-5"></i>
                                         <input type="password" asp-for="Password" class="form-control" id="txtPassword" placeholder="Password">
+                                        <span asp-validation-for="Password"></span>
                                     </div>
 
                                     <div class="form-check">
@@ -127,7 +144,7 @@
                                     </div>
                                     <div class="text-center mt-2 mb-3">
                                         <a href="#ForgetPasswordModel" class="a-tag-green-color"
-                                           data-bs-toggle="modal" data-bs-dismiss="modal" >Forgot Password?</a>
+                                           data-bs-toggle="modal" data-bs-dismiss="modal">Forgot Password?</a>
                                     </div>
                                     <div class="text-center mt-3">
                                         Don't have account?
@@ -188,16 +205,16 @@
                     <div class="col-lg-8 footer-widget">
                         <ul class="footer-navigation d-flex justify-content-center">
                             <li>
-                                <a href="#" title="Home">Home</a>
+                                <a asp-controller="Home" asp-action="Index" title="Home">Home</a>
                             </li>
                             <li>
-                                <a href="#" title="About">About</a>
+                                <a asp-controller="Home" asp-action="About" title="About">About</a>
                             </li>
                             <li>
                                 <a href="#" title="Testimonials">Testimonials</a>
                             </li>
                             <li>
-                                <a href="#" title="FAQs">FAQs</a>
+                                <a asp-controller="Home" asp-action="FAQ" title="FAQs">FAQs</a>
                             </li>
                             <li>
                                 <a href="#" title="Insurance Policy">Insurance Policy</a>
@@ -239,6 +256,9 @@
             crossorigin="anonymous"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/js/select2.min.js"></script>
+    <script src="~/jquery-validate/jquery.validate.js"></script>
+    <script src="~/jquery-validation-unobtrusive/jquery.validate.unobtrusive.js"></script>
+    <script src="~/jquery-ajax-unobtrusive/jquery.unobtrusive-ajax.js"></script>
     <script src="~/js/main.js" asp-append-version="true"></script>
 
     @RenderSection("Scripts", required: false)
