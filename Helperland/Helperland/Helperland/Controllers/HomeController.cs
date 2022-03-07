@@ -282,6 +282,18 @@ namespace Helperland.Controllers
         }
         #endregion Error
 
+        #region Service Provider Details
+        public IActionResult ServiceProviderDetails()
+        {
+            return View();
+        }
+        #endregion Service Provider Details
 
+        #region Customer
+        public IActionResult Customer()
+        {
+            return View();
+        }
+        #endregion Customer
     }
 }

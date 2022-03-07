@@ -81,12 +81,17 @@ namespace Helperland.Repository
                 return null;
             }
         }
+        #endregion Method - GetAddress
 
+
+        #region Method - GetAllCity
         public List<City> GetAllCity()
         {
             return _helperlandsContext.City.ToList();
         }
+        #endregion Method - GetAllCity
 
+        #region Method - SetAddress
         public bool SetAddress(UserAddressModel userAddressModel)
         {
             City city = _helperlandsContext.City.Where(x => x.Id == userAddressModel.CityId).FirstOrDefault();
@@ -112,7 +117,7 @@ namespace Helperland.Repository
                 return false;
             }
         }
-        #endregion Method - GetAddress
+        #endregion Method - SetAddress
 
         #region Method - AddService
         public int AddService(BookServiceViewModel bookServiceViewModel)

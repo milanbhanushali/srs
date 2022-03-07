@@ -85,7 +85,7 @@
                         <ul class="dropdown-menu" aria-labelledby="navbarUserLoggedInDropDown">
                             <li><a class="dropdown-item" href="#">Welcome @Context.Session.GetString("FirstName")</a></li>
                             <li><hr class="dropdown-divider"></li>
-                            <li><a class="dropdown-item" href="#">My Dashboard</a></li>
+                            <li><a class="dropdown-item" asp-controller="Customer" asp-action="Index" asp-route-isLogged="@ViewBag.IsLogged">My Dashboard</a></li>
                             <li><a class="dropdown-item" href="#">My Setting</a></li>
                             <li><a class="dropdown-item" asp-controller="Home" asp-action="Logout">Logout</a></li>
                         </ul>
@@ -129,7 +129,7 @@
                     <a href="#" title="Let's Book a Cleaner" class="opacity-100 blue-btn">Let's Book a Cleaner</a>
                 </div>
 
-                <partial name="_partialLoginView" model="Model" view />
+                <partial name="_partialLoginView" view />
 
                 <div class="step-wrapper">
                     <div class="row justify-content-center flex-wrap">
