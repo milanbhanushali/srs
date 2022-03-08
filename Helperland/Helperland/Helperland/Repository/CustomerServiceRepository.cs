@@ -1,9 +1,12 @@
 ﻿using Helperland.Data;
 using Helperland.Models;
 using Helperland.Models.ViewModel;
+using Microsoft.AspNetCore.Http;
+using Microsoft.Extensions.Configuration;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Mail;
 using System.Threading.Tasks;
 
 namespace Helperland.Repository
@@ -11,11 +14,13 @@ namespace Helperland.Repository
     public class CustomerServiceRepository : ICustomerServiceRepository
     {
         public HelperlandsContext _helperlandsContext;
+        private readonly IConfiguration _iconfiguration;
         public string _Message { get; set; }
 
-        public CustomerServiceRepository(HelperlandsContext helperlandsContext)
+        public CustomerServiceRepository(HelperlandsContext helperlandsContext, IConfiguration configuration)
         {
             _helperlandsContext = helperlandsContext;
+            _iconfiguration = configuration;
         }
 
         public string CustomerCancelService()
@@ -62,6 +67,7 @@ namespace Helperland.Repository
         }
         #endregion Get All Service History 
 
+        #region Get Service Request
         public CustomerServiceHistoryViewModel GetServiceRequestID(int ServiceRequestID)
         {
             try
@@ -96,6 +102,75 @@ namespace Helperland.Repository
                 return null;
             }
         }
+        #endregion Get Service Request
+
+        #region GetService Request Date
+        public string GetServiceDate(int serviceID)
+        {
+            try
+            {
+                ServiceRequest sr = _helperlandsContext.ServiceRequest.Where(x => x.ServiceId == serviceID).FirstOrDefault();
+                return sr.ServiceStartDate.ToString("yyyy-MM-dd");
+            }
+            catch(Exception ex)
+            {
+                _Message = ex.Message;
+                return _Message.ToString();
+            }
+            
+        }
+        #endregion
+
+        #region Update Service Date
+        public bool UpdateServiceDate(int serviceId, DateTime serviceDate)
+        {
+            ServiceRequest request = _helperlandsContext.ServiceRequest.Where(x => x.ServiceId == serviceId).FirstOrDefault();
+
+            if (request.ServiceProviderId == null)
+            {
+                request.ServiceStartDate = serviceDate;
+                _helperlandsContext.ServiceRequest.Update(request);
+                _helperlandsContext.SaveChanges();
+                return true;
+            }
+            else
+            {
+                ServiceRequest sr = _helperlandsContext.ServiceRequest.Where(x => x.ServiceProviderId == request.ServiceProviderId && x.ServiceStartDate == serviceDate).FirstOrDefault();
+                if (sr == null)
+                {
+                    User user = _helperlandsContext.User.Where(x => x.UserId == request.ServiceProviderId).FirstOrDefault();
+
+                    string welcomeMessage = "Welcome to Helperland,   <br/> Service Date change for Service ID " + request.ServiceId + " <br/> <b> Check it now <b>";
+                    request.ServiceStartDate = serviceDate;
+
+                    String To = user.Email;
+                    String subject = "Service Request Date Change ";
+                    String Body = "Date Change" + " : " + welcomeMessage;
+                    MailMessage obj = new MailMessage();
+                    obj.To.Add(To);
+                    obj.Subject = subject;
+                    obj.Body = Body;
+                    obj.From = new MailAddress("dreamers96845@gmail.com");
+                    obj.IsBodyHtml = true;
+                    SmtpClient smtp = new SmtpClient("smtp.gmail.com");
+                    smtp.Port = 587;
+                    smtp.UseDefaultCredentials = true;
+                    smtp.EnableSsl = true;
+                    smtp.Credentials = new System.Net.NetworkCredential("dreamers96845@gmail.com", "goals@2022");
+                    smtp.Send(obj);
+                    _helperlandsContext.ServiceRequest.Update(request);
+                    _helperlandsContext.SaveChanges();
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+
+        }
+        #endregion
+
         public string Message()
         {
             throw new NotImplementedException();

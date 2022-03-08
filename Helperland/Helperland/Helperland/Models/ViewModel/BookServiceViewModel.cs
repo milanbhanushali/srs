@@ -33,5 +33,10 @@ namespace Helperland.Models.ViewModel
         public decimal Distance { get; set; }
         public bool? HasIssue { get; set; }
         public bool? PaymentDone { get; set; }
+        public bool InsideCabinet { get; set; }
+        public bool InsideFridge { get; set; }
+        public bool InteriorOven { get; set; }
+        public bool LaundryWashDry { get; set; }
+        public bool InteriorWindows { get; set; }
     }
 }

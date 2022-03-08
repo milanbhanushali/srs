@@ -83,7 +83,6 @@ namespace Helperland.Repository
         }
         #endregion Method - GetAddress
 
-
         #region Method - GetAllCity
         public List<City> GetAllCity()
         {
@@ -151,6 +150,49 @@ namespace Helperland.Repository
                 serviceRequestAddress.Email = userAddress.Email;
                 _helperlandsContext.ServiceRequestAddress.Add(serviceRequestAddress);
                 _helperlandsContext.SaveChanges();
+
+                if (bookServiceViewModel.InsideCabinet == true)
+                {
+                    ServiceRequestExtra serviceRequestExtra = new ServiceRequestExtra();
+                    serviceRequestExtra.ServiceRequestId = serviceRequest.ServiceRequestId;
+                    serviceRequestExtra.ServiceExtraId = 1;
+                    _helperlandsContext.ServiceRequestExtra.Add(serviceRequestExtra);
+                    _helperlandsContext.SaveChanges();
+
+                }
+                if (bookServiceViewModel.InsideFridge == true)
+                {
+                    ServiceRequestExtra serviceRequestExtra = new ServiceRequestExtra();
+                    serviceRequestExtra.ServiceRequestId = serviceRequest.ServiceRequestId;
+                    serviceRequestExtra.ServiceExtraId = 2;
+                    _helperlandsContext.ServiceRequestExtra.Add(serviceRequestExtra);
+                    _helperlandsContext.SaveChanges();
+                }
+                if (bookServiceViewModel.InteriorOven == true)
+                {
+                    ServiceRequestExtra serviceRequestExtra = new ServiceRequestExtra();
+                    serviceRequestExtra.ServiceRequestId = serviceRequest.ServiceRequestId;
+                    serviceRequestExtra.ServiceExtraId = 3;
+                    _helperlandsContext.ServiceRequestExtra.Add(serviceRequestExtra);
+                    _helperlandsContext.SaveChanges();
+                }
+                if (bookServiceViewModel.InteriorWindows == true)
+                {
+                    ServiceRequestExtra serviceRequestExtra = new ServiceRequestExtra();
+                    serviceRequestExtra.ServiceRequestId = serviceRequest.ServiceRequestId;
+                    serviceRequestExtra.ServiceExtraId = 4;
+                    _helperlandsContext.ServiceRequestExtra.Add(serviceRequestExtra);
+                    _helperlandsContext.SaveChanges();
+                }
+                if (bookServiceViewModel.LaundryWashDry == true)
+                {
+                    ServiceRequestExtra serviceRequestExtra = new ServiceRequestExtra();
+                    serviceRequestExtra.ServiceRequestId = serviceRequest.ServiceRequestId;
+                    serviceRequestExtra.ServiceExtraId = 5;
+                    _helperlandsContext.ServiceRequestExtra.Add(serviceRequestExtra);
+                    _helperlandsContext.SaveChanges();
+                }
+
                 return serviceRequest.ServiceId;
             }
             catch(Exception ex)

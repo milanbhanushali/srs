@@ -56,7 +56,17 @@ namespace Helperland.Controllers
             {
                 return Json("Service Request ID is null");
             }
-            
+        }
+
+        public string GetServiceDate(string strServiceRequestId)
+        {
+            return _icustomerServiceRepository.GetServiceDate(Int32.Parse(strServiceRequestId));
+        }
+
+        public bool UpdateServiceDate(string serviceDate, string serviceId)
+        {
+            bool serviceUpdated = _icustomerServiceRepository.UpdateServiceDate(Int32.Parse(serviceId), Convert.ToDateTime(serviceDate));
+            return serviceUpdated;
         }
     }
 }
