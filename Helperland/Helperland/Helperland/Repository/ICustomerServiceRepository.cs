@@ -17,6 +17,7 @@ namespace Helperland.Repository
         public string CustomerRescheduleService();
         public string GetServiceDate(int serviceRequestId);
         public bool UpdateServiceDate(int serviceId, DateTime serviceDate);
+        public bool CancelService(int serviceId, string message);
 
     }
 }

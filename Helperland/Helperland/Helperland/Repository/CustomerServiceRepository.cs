@@ -135,9 +135,10 @@ namespace Helperland.Repository
             }
             else
             {
-                ServiceRequest sr = _helperlandsContext.ServiceRequest.Where(x => x.ServiceProviderId == request.ServiceProviderId && x.ServiceStartDate == serviceDate).FirstOrDefault();
-                if (sr == null)
+                ServiceRequest objServiceRequest = _helperlandsContext.ServiceRequest.Where(x => x.ServiceProviderId == request.ServiceProviderId && x.ServiceStartDate == serviceDate).FirstOrDefault();
+                if (objServiceRequest == null)
                 {
+                    #region Send Email to service Provider Service Date change
                     User user = _helperlandsContext.User.Where(x => x.UserId == request.ServiceProviderId).FirstOrDefault();
 
                     string welcomeMessage = "Welcome to Helperland,   <br/> Service Date change for Service ID " + request.ServiceId + " <br/> <b> Check it now <b>";
@@ -160,6 +161,7 @@ namespace Helperland.Repository
                     smtp.Send(obj);
                     _helperlandsContext.ServiceRequest.Update(request);
                     _helperlandsContext.SaveChanges();
+                    #endregion Send Email to service Provider Service Date change
                     return true;
                 }
                 else
@@ -170,6 +172,49 @@ namespace Helperland.Repository
 
         }
         #endregion
+
+        #region Cancel Service
+        public bool CancelService(int serviceId, string message)
+        {
+            ServiceRequest objServiceRequest = _helperlandsContext.ServiceRequest.Where(x => x.ServiceId == serviceId).FirstOrDefault();
+            objServiceRequest.Status = 1;
+            try
+            {
+                _helperlandsContext.ServiceRequest.Update(objServiceRequest);
+                _helperlandsContext.SaveChanges();
+                if (objServiceRequest.ServiceProviderId != null)
+                {
+                    #region Send Email To Service Provider that Service is cancel 
+                    string welcomeMessage = "Welcome to Helperland,   <br/> Service Request no  " + objServiceRequest.ServiceRequestId + " is canceled due to below reason. <br/>" + message;
+                    User objUser = _helperlandsContext.User.Where(x => x.UserId == objServiceRequest.ServiceProviderId).FirstOrDefault();
+
+                    String To = objUser.Email;
+                    String subject = "Service Cancel Reason ";
+                    String Body = "Cancel Service because of " + " : " + welcomeMessage;
+                    MailMessage obj = new MailMessage();
+                    obj.To.Add(To);
+                    obj.Subject = subject;
+                    obj.Body = Body;
+                    obj.From = new MailAddress("dreamers96845@gmail.com");
+                    obj.IsBodyHtml = true;
+                    SmtpClient smtp = new SmtpClient("smtp.gmail.com");
+                    smtp.Port = 587;
+                    smtp.UseDefaultCredentials = true;
+                    smtp.EnableSsl = true;
+                    smtp.Credentials = new System.Net.NetworkCredential("dreamers96845@gmail.com", "goals@2022");
+                    smtp.Send(obj);
+                    #endregion Send Email To Service Provider that Service is cancel
+                }
+
+                return true;
+            }
+            catch (Exception ex)
+            {
+                _Message = ex.Message;
+                return false;
+            }
+        }
+        #endregion Cancel Service
 
         public string Message()
         {
