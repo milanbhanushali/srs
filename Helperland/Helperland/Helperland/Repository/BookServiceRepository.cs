@@ -70,6 +70,7 @@ namespace Helperland.Repository
                     address.AddressLine2 = item.AddressLine2;
                     address.Mobile = item.Mobile;
                     address.CityId = item.CityId;
+                    address.PostalCode = item.PostalCode;
                     addresses.Add(address);
                     
                 }
@@ -135,6 +136,28 @@ namespace Helperland.Repository
                 serviceRequest.ServiceId = random.Next(11,200);
                 serviceRequest.CreatedDate = DateTime.Now;
                 serviceRequest.ServiceHourlyRate = 18;
+                double extra = 0;
+                if (bookServiceViewModel.InsideCabinet == true)
+                {
+                    extra += 0.5;
+                }
+                if (bookServiceViewModel.InsideFridge == true)
+                {
+                    extra += 0.5;
+                }
+                if (bookServiceViewModel.InteriorOven == true)
+                {
+                    extra += 0.5;
+                }
+                if (bookServiceViewModel.InteriorWindows == true)
+                {
+                    extra += 0.5;
+                }
+                if (bookServiceViewModel.LaundryWashDry == true)
+                {
+                    extra += 0.5;
+                }
+                serviceRequest.ExtraHours = extra;
                 _helperlandsContext.ServiceRequest.Add(serviceRequest);
                 _helperlandsContext.SaveChanges();
 

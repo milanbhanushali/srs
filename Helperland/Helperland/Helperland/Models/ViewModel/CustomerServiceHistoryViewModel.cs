@@ -22,5 +22,6 @@ namespace Helperland.Models.ViewModel
         public string Mobile { get; set; }
         public string Email { get; set; }
         public string Comments { get; set; }
+        public decimal? Rating { get; set; }
     }
 }

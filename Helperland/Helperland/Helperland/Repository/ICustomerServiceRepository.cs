@@ -11,13 +11,11 @@ namespace Helperland.Repository
         public string Message();
         public List<CustomerServiceHistoryViewModel> GetCustomerServiceHistory(int UserID);
         public CustomerServiceHistoryViewModel GetServiceRequestID(int ServiceRequestID);
-
-        public string CustomerCancelService();
-
-        public string CustomerRescheduleService();
         public string GetServiceDate(int serviceRequestId);
         public bool UpdateServiceDate(int serviceId, DateTime serviceDate);
         public bool CancelService(int serviceId, string message);
+        public object GetServiceDetails(int serviceRequestId);
+        public List<ServiceHistoryViewModel> GetServicesHistoryByUserId(int userID);
 
     }
 }

@@ -15,23 +15,16 @@ namespace Helperland.Repository
     {
         public HelperlandsContext _helperlandsContext;
         private readonly IConfiguration _iconfiguration;
+        private readonly IRatingRepository _iRatingRepository;
         public string _Message { get; set; }
 
-        public CustomerServiceRepository(HelperlandsContext helperlandsContext, IConfiguration configuration)
+        public CustomerServiceRepository(HelperlandsContext helperlandsContext, IConfiguration configuration,IRatingRepository ratingRepository)
         {
             _helperlandsContext = helperlandsContext;
             _iconfiguration = configuration;
+            _iRatingRepository = ratingRepository;
         }
 
-        public string CustomerCancelService()
-        {
-            throw new NotImplementedException();
-        }
-
-        public string CustomerRescheduleService()
-        {
-            throw new NotImplementedException();
-        }
 
         #region Get All Service History 
         public List<CustomerServiceHistoryViewModel> GetCustomerServiceHistory(int UserID)
@@ -53,6 +46,7 @@ namespace Helperland.Repository
                     }
                     objTempCustomerHistory.ServiceStartDate = item.ServiceStartDate.ToString("dd/MM/yyyy");
                     objTempCustomerHistory.TotalCost = item.TotalCost;
+                    objTempCustomerHistory.Rating = _iRatingRepository.GetRating(item.ServiceProviderId);
                     objCustomerHistory.Add(objTempCustomerHistory);
 
                 }
@@ -79,7 +73,7 @@ namespace Helperland.Repository
                 {
                     CustomerServiceHistoryViewModel objCustomerServiceHistory = new CustomerServiceHistoryViewModel();
                     objCustomerServiceHistory.ServiceStartDate = objServiceRequest.ServiceStartDate.ToString("dd/MM/yyyy");
-                    objCustomerServiceHistory.TotalHour = objServiceRequest.ServiceHours.ToString();
+                    objCustomerServiceHistory.TotalHour = (objServiceRequest.ExtraHours + objServiceRequest.ServiceHours).ToString();
                     objCustomerServiceHistory.TotalCost = objServiceRequest.TotalCost;
                     objCustomerServiceHistory.Comments = objServiceRequest.Comments;
                     objCustomerServiceHistory.AddressLine1 = objServiceRequestAddress.AddressLine1;
@@ -88,7 +82,6 @@ namespace Helperland.Repository
                     objCustomerServiceHistory.Email = objServiceRequestAddress.Email;
                     objCustomerServiceHistory.HasPets = objServiceRequest.HasPets;
 
-                    
                     return objCustomerServiceHistory;
                 }
                 else
@@ -216,9 +209,98 @@ namespace Helperland.Repository
         }
         #endregion Cancel Service
 
+        #region Get all services history 
+        public List<ServiceHistoryViewModel> GetServicesHistoryByUserId(int userID)
+        {
+            List<ServiceRequest> objServiceRequest = _helperlandsContext.ServiceRequest.Where(x => x.UserId == userID).ToList();
+            List<ServiceHistoryViewModel> objServiceHistoryViewModel = new List<ServiceHistoryViewModel>();
+            foreach (var item in objServiceRequest)
+            {
+                ServiceHistoryViewModel objServiceHVM = new ServiceHistoryViewModel();
+                objServiceHVM.ServiceId = item.ServiceRequestId;
+                objServiceHVM.ServiceProvideId = item.ServiceProviderId;
+                if (objServiceHVM.ServiceProvideId != null)
+                {
+                    User u = _helperlandsContext.User.Where(x => x.UserId == objServiceHVM.ServiceProvideId).FirstOrDefault();
+                    objServiceHVM.ServiceProviderName = u.FirstName + " " + u.LastName;
+                }
+                objServiceHVM.StartDate = item.ServiceStartDate.ToString("dd/MM/yyyy");
+                objServiceHVM.Payment = item.TotalCost;
+                objServiceHVM.Status = item.Status;
+                if (objServiceHVM.Status == 1)
+                {
+                    objServiceHVM.Rate = false;
+                }
+                else
+                {
+                    Rating rating = _helperlandsContext.Rating.Where(x => x.ServiceRequestId == item.ServiceRequestId).FirstOrDefault();
+                    if (rating == null)
+                        objServiceHVM.Rate = true;
+                    else
+                        objServiceHVM.Rate = false;
+                }
+
+                objServiceHVM.Rating = _iRatingRepository.GetRating(item.ServiceProviderId);
+                objServiceHistoryViewModel.Add(objServiceHVM);
+            }
+            return objServiceHistoryViewModel;
+        }
+        #endregion Get all services history 
+
+        #region Get Service From Service Id
+        public object GetServiceDetails(int serviceId)
+        {
+            ServiceRequest sr = _helperlandsContext.ServiceRequest.Where(x => x.ServiceRequestId == serviceId).FirstOrDefault();
+
+            List<ServiceRequestExtra> sre = _helperlandsContext.ServiceRequestExtra.Where(x => x.ServiceRequestId == serviceId).ToList();
+            ServiceRequestAddress sra = _helperlandsContext.ServiceRequestAddress.Where(x => x.ServiceRequestId == serviceId).FirstOrDefault();
+            string name = "";
+            User u = _helperlandsContext.User.Where(x => x.UserId == sr.UserId).FirstOrDefault();
+            if (sr.ServiceProviderId != null)
+            {
+                User user = _helperlandsContext.User.Where(x => x.UserId == sr.ServiceProviderId).FirstOrDefault();
+                name = user.FirstName + " " + user.LastName;
+            }
+
+            string extra = "";
+            foreach (var i in sre)
+            {
+                if (i.ServiceExtraId == 1)
+                    extra += "Inside Cabinet, ";
+                if (i.ServiceExtraId == 2)
+                    extra += "Inside Fridge, ";
+                if (i.ServiceExtraId == 3)
+                    extra += "Interior Oven, ";
+                if (i.ServiceExtraId == 4)
+                    extra += "Interior Window, ";
+                if (i.ServiceExtraId == 5)
+                    extra += "Laundry & Wash, ";
+            }
+            var temp = new
+            {
+                ServiceDate = sr.ServiceStartDate.ToString("dd/MM/yyyy"),
+                TotalHour = sr.ServiceHours,
+                Extra = extra,
+                TotalCost = sr.TotalCost,
+                Address = sra.AddressLine1 + " , " + sra.AddressLine2 + " , " + sra.PostalCode,
+                MobileNumber = sra.Mobile,
+                Email = u.Email,
+                ServiceProviderId = sr.ServiceProviderId,
+                Comments = sr.Comments,
+                Haspet = sr.HasPets,
+                ServiceProviderName = name,
+                Rating = _iRatingRepository.GetRating(sr.ServiceProviderId)
+            };
+            return temp;
+
+        }
+        #endregion Get Service From Service Id
+
+        #region Message
         public string Message()
         {
             throw new NotImplementedException();
         }
+        #endregion Message
     }
 }

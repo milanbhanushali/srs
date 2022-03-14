@@ -86,7 +86,7 @@
                             <li><a class="dropdown-item" href="#">Welcome @Context.Session.GetString("FirstName")</a></li>
                             <li><hr class="dropdown-divider"></li>
                             <li><a class="dropdown-item" asp-controller="Customer" asp-action="Index" asp-route-isLogged="@ViewBag.IsLogged">My Dashboard</a></li>
-                            <li><a class="dropdown-item" href="#">My Setting</a></li>
+                            <li><a class="dropdown-item" asp-controller="Customer" asp-action="MySetting" asp-route-isLogged="@ViewBag.IsLogged">My Setting</a></li>
                             <li><a class="dropdown-item" asp-controller="Home" asp-action="Logout">Logout</a></li>
                         </ul>
                     </li>

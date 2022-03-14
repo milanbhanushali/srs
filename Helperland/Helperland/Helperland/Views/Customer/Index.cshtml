@@ -79,7 +79,7 @@
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title custom-text-dim-gray" id="staticBackdropLabel">Service Details</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" onclick="refreshPage"></button>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" onclick="refreshPage()"></button>
             </div>
             <div class="modal-body text-start">
                 <div class="row">
@@ -93,7 +93,7 @@
                         </div>
                         <div>
                             Address: <span id="ModalServiceAddress"></span><br />
-                            Billing Address: <span id="ModalServiceBillingAddress"></span><br />
+                            Billing Address: <span id="ModalServiceBillingAddress">Same as address</span><br />
                             Phone: <span class="custom-text-color-green" id="ModalServiceMobile"></span><br />
                             Email: <span class="custom-text-color-green" id="ModalServiceEmail"></span><br />
                             <hr />
@@ -105,13 +105,13 @@
                             <span id="ModalHasPets"></span>
                         </div>
                     </div>
-                    <div class="col-md-3 d-none" id="ModelServiceProviderDetails">
+                    <div class="col-md-3 d-none" id="ModalServiceProviderDetails">
                         <h6> Service Provider Details</h6>
                         <div class="d-flex">
                             <div class="service-history-icon d-flex"><img src="./img/cap.png"></div>
                             <div>
-                                <span class="d-block" id="ModelServiceProviderName">  </span>
-                                <span id="ModelServiceRating"></span>
+                                <span class="d-block" id="ModalServiceProviderName">  </span>
+                                <span id="ModalServiceRating"></span>
                             </div>
                         </div>
                     </div>
@@ -127,6 +127,7 @@
     </div>
 </div>
 <!--#endregion Modal - Service History -->
+
 <!--#region Modal - Reschedule -->
 <div class="modal fade" id="ModalServiceReschedule" tabindex="-1" aria-hidden="true">
     <div class="modal-dialog modal-sm modal-dialog-centered">
@@ -177,6 +178,7 @@
     </div>
 </div>
 <!--#endregion Modal - Reschedule -->
+
 <!--#region Modal - Cancel Service -->
 
 <div class="modal fade" id="ModalCancelService" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -236,9 +238,25 @@
                 $("#ModalNetAmount").text(objResponse.totalCost);
                 $("#ModalServiceAddress").text(objResponse.addressLine1 + " " + objResponse.addressLine2);
                 $("#ModalServiceMobile").text(objResponse.mobile);
-                $("#ModalServiceEmail").val($("#customerEmail").val());
+                $("#ModalServiceEmail").text(objResponse.email);
                 $("#ModalServiceComments").text(objResponse.comments);
                 $("#ModalServicePets").text(objResponse.hasPets);
+                if (objResponse.ServiceProviderId != null) {
+
+                    $("#ModalServiceProviderName").text(obj.ServiceProviderName);
+                    $("#ModalServiceProviderDetails").show();
+                    $("#ModalServiceProviderDetails").addClass("col-md-3");
+                    $("#ModalMainDiv").addClass("col-md-9");
+                    $("#ModalMainDiv").removeClass("col-md-12");
+                }
+                else {
+                    $("#ModalServiceProviderDetails").hide();
+                    $("#ModalServiceProviderDetails").removeClass("col-md-3");
+                    $("#ModalMainDiv").removeClass("col-md-9");
+                    $("#ModalMainDiv").addClass("col-md-12");
+
+
+                }
                 if (objResponse.hasPets) {
                     $("#ModalHasPets").text("✔ I have pets");
                 }

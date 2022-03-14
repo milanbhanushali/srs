@@ -31,6 +31,7 @@ namespace Helperland
             services.AddScoped<IBookServiceRepository, BookServiceRepository>();
             services.AddScoped<IUserAddressRepository, UserAddressRepository>();
             services.AddScoped<ICustomerServiceRepository, CustomerServiceRepository>();
+            services.AddScoped<IRatingRepository, RatingRepository>();
             services.AddDbContext<HelperlandsContext>();
 
             services.AddSession(options =>

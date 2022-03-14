@@ -173,3 +173,5 @@ D:\Extra\TatvaSoft\SRS\srs\Helperland\Helperland\Helperland\obj\Debug\netcoreapp
 D:\Extra\TatvaSoft\SRS\srs\Helperland\Helperland\Helperland\obj\Debug\netcoreapp3.1\Razor\Views\Customer\Index.cshtml.g.cs
 D:\Extra\TatvaSoft\SRS\srs\Helperland\Helperland\Helperland\obj\Debug\netcoreapp3.1\Razor\Views\Shared\_partialCustomerLeftSideNav.cshtml.g.cs
 D:\Extra\TatvaSoft\SRS\srs\Helperland\Helperland\Helperland\obj\Debug\netcoreapp3.1\Razor\Views\Shared\_LayoutCustomer.cshtml.g.cs
+D:\Extra\TatvaSoft\SRS\srs\Helperland\Helperland\Helperland\obj\Debug\netcoreapp3.1\Razor\Views\Customer\CustomerServiceHistory.cshtml.g.cs
+D:\Extra\TatvaSoft\SRS\srs\Helperland\Helperland\Helperland\obj\Debug\netcoreapp3.1\Razor\Views\Customer\MySetting.cshtml.g.cs

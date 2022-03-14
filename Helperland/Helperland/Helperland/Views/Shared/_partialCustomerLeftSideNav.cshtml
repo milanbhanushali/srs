@@ -1,14 +1,15 @@
 ﻿<div class="custom-hide-mobile-view col-lg-3">
     <div class="custom-upcoming-service-desktop-view-left-side custom-bg-dashboard-green ms-5">
         <ul class="list-group bg-transparent list-group-flush">
-            <li class="list-group-item borderless custom-active-dark-green"><a href="#" class="text-decoration-none ">Dashboard</a></li>
+            <li class="list-group-item borderless custom-active-dark-green"><a 
+            asp-controller="Customer"asp-action="Index" asp-route-isLogged="@ViewBag.IsLogged"  class="text-decoration-none ">Dashboard</a></li>
             <div class="white-hr"></div>
             <li class="list-group-item  borderless ">
-                <a href="#"
+                <a asp-controller="Customer" asp-action="CustomerServiceHistory" asp-route-isLogged="@ViewBag.IsLogged"
                    class="text-decoration-none">Service History</a>
             </li>
             <div class="white-hr"></div>
-            <li class="list-group-item borderless"><a asp-controller="Customer"  class="text-decoration-none">Service Schedeule</a></li>
+            <li class="list-group-item borderless"><a asp-controller="Customer" class="text-decoration-none">Service Schedeule</a></li>
             <div class="white-hr"></div>
             <li class="list-group-item borderless"><a href="#" class="text-decoration-none">Favourite Pros</a></li>
             <div class="white-hr"></div>

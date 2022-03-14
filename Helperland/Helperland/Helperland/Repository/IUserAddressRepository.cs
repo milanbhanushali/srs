@@ -1,4 +1,5 @@
 ﻿using Helperland.Models;
+using Helperland.Models.ViewModel;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,7 +15,11 @@ namespace Helperland.Repository
 
         public string GetUserAddress(int userAddress);
 
-        public int AddNewAddress(UserAddressRepository userAddress);
+        public Boolean AddNewAddress(UserAddress userAddress);
+
+        public UserAddressModel GetAddressById(int AddressID);
+        public Boolean UpdateAddress(UserAddress userAddress);
+        public Boolean DeleteAddress(int addressId);
 
     }
 }
