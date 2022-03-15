@@ -26,13 +26,16 @@ namespace Helperland
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews();
+            services.AddDbContext<HelperlandsContext>();
+            services.AddMvc();
             services.AddScoped<ILoginRepository, LoginRepository>();
             services.AddScoped<IInsertUserRepository, InsertUserRepository>();
             services.AddScoped<IBookServiceRepository, BookServiceRepository>();
             services.AddScoped<IUserAddressRepository, UserAddressRepository>();
             services.AddScoped<ICustomerServiceRepository, CustomerServiceRepository>();
             services.AddScoped<IRatingRepository, RatingRepository>();
-            services.AddDbContext<HelperlandsContext>();
+            services.AddScoped<IServiceRequestRepository, ServiceRequestRepository>();
+            
 
             services.AddSession(options =>
             {
