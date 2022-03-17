@@ -12,12 +12,12 @@ namespace Helperland.Repository
     public class ServiceRequestRepository : IServiceRequestRepository
     {
         #region variables
-        public HelperlandsContext _helperlandsContext;
-        public RatingRepository _iRatingRepository;
+        private HelperlandsContext _helperlandsContext;
+        private IRatingRepository _iRatingRepository;
         #endregion variables
 
         #region Constructor
-        public ServiceRequestRepository(HelperlandsContext helperlandsContext,RatingRepository ratingRepository)
+        public ServiceRequestRepository(HelperlandsContext helperlandsContext,IRatingRepository ratingRepository)
         {
             _helperlandsContext = helperlandsContext;
             _iRatingRepository = ratingRepository;
@@ -319,7 +319,7 @@ namespace Helperland.Repository
                 {
                     sr.ServiceProviderId = userId;
                     sr.SpacceptedDate = DateTime.Now;
-                    sr.Status = 3;
+                    sr.Status = 2;
                     _helperlandsContext.ServiceRequest.Update(sr);
                     _helperlandsContext.SaveChanges();
                      User user = _helperlandsContext.User.Where(x => x.UserId == userId).FirstOrDefault();
@@ -351,7 +351,7 @@ namespace Helperland.Repository
         public List<NewServiceRequestViewModel> GetServiceRequestsIsAccepted(int userId)
         {
             User u = _helperlandsContext.User.Where(x => x.UserId == userId).FirstOrDefault();
-            List<ServiceRequest> sr = _helperlandsContext.ServiceRequest.Where(x => x.Status == 3 && x.ServiceProviderId == userId).ToList();
+            List<ServiceRequest> sr = _helperlandsContext.ServiceRequest.Where(x => x.Status == 2 && x.ServiceProviderId == userId).ToList();
             List<NewServiceRequestViewModel> newServiceRequestViewModels = new List<NewServiceRequestViewModel>();
             foreach (var item in sr)
             {
@@ -406,7 +406,8 @@ namespace Helperland.Repository
         public bool CancelServiceRequest(int serviceRequestId,string message)
         {
             ServiceRequest serviceRequest = _helperlandsContext.ServiceRequest.Where(x => x.ServiceRequestId == serviceRequestId).FirstOrDefault();
-            serviceRequest.Status = 1;
+            serviceRequest.Status = 0;
+            //serviceRequest.SpacceptedDate = null;
             _helperlandsContext.ServiceRequest.Update(serviceRequest);
             _helperlandsContext.SaveChanges();
 

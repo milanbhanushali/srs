@@ -135,6 +135,13 @@ namespace Helperland.Repository
         }
         #endregion
 
+        #region Get Service Provider Address
+        public UserAddress GetServiceProviderAddress(int userId)
+        {
+            return helperlandsContext.UserAddress.Where(x => x.UserId == userId).FirstOrDefault();
+        }
+        #endregion Get Service Provider Address
+
         public int GetUserID()
         {
             throw new NotImplementedException();

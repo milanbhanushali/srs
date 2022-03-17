@@ -1,0 +1,54 @@
+﻿@{
+    ViewData["Title"] = "My Rating";
+    Layout = "~/Views/Shared/_LayoutServiceProvider.cshtml";
+}
+@using Microsoft.AspNetCore.Http
+@model List<Helperland.Models.ViewModel.RatingViewModel>
+<!--#region Right Side Table-->
+<span class="d-none" id="userID" value="@Context.Session.GetInt32("userID")"></span>
+<span class="d-none" id="userEmail" value="@Context.Session.GetString("userEmail")"></span>
+<div class="col-md-9 p-3">
+    @foreach (var item in Model)
+    {
+        <div class="row p-2 mb-3" style="border:1px solid grey">
+            <div class="col-md-3 mb-2">
+                <span class="font-bold">@item.ServiceRequestID </span> <br />
+                <span class="font-bold"> @item.CustomerName </span>
+            </div>
+            <div class="col-md-6 mb-2">
+                <div><img src="/img/calendar2.png"><b>@item.ServiceDate</b> </div>
+                <div><img src="/img/clock.png"> 12:00 - 18:00 </div>
+            </div>
+            <div class="col-md-3 mb-2">
+                <span class="font-bold">Ratings </span><br />
+                <div>
+                    @for (var i = 1; i < 6; i++)
+                    {
+                        if (i <= (int)item.Rating)
+                        {
+                            <img src="/img/yellow-star.webp" > }
+                        else
+                        {
+                            <img src="/img/black-star.webp">}
+
+                    }
+                    @{ var Rating = Convert.ToInt32(item.Rating); }
+                    @if (Rating > 3 && Rating <= 4)
+                    {
+                        <span>Very Good  </span> }
+                    else if (Rating > 4 && Rating <= 5)
+                    {
+                        <span>Excellent </span> }
+                    else if (Rating > 2 && Rating <= 3)
+                    {
+                        <span>Good </span>}
+                </div>
+            </div>
+            <hr class="mt-2" />
+            <div class="col-md-12">
+                <span class="font-bold"> Customer Comments:  </span>  @item.Comments
+            </div>
+        </div>  
+     }
+</div>
+<!--#endregion Right Side Table-->

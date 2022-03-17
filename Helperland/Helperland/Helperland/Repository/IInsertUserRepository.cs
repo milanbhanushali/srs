@@ -18,6 +18,7 @@ namespace Helperland.Repository
         public Boolean ChangeUserData(string FirstName, string LastName, string DOB, string MobileNumber, int UserId, int LanguageId);
 
         public User GetUserById(int userID);
+        public void UpdateServiceProviderData(SPDetailsViewModel sPDetailsViewModel, int userId);
 
     }
 }

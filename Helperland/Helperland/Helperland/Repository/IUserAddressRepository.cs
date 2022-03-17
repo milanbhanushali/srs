@@ -21,5 +21,6 @@ namespace Helperland.Repository
         public Boolean UpdateAddress(UserAddress userAddress);
         public Boolean DeleteAddress(int addressId);
 
+        public UserAddress GetServiceProviderAddress(int userId);
     }
 }

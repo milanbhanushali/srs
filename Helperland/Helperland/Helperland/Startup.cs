@@ -35,6 +35,8 @@ namespace Helperland
             services.AddScoped<ICustomerServiceRepository, CustomerServiceRepository>();
             services.AddScoped<IRatingRepository, RatingRepository>();
             services.AddScoped<IServiceRequestRepository, ServiceRequestRepository>();
+            services.AddScoped<IFavouriteAndBlockRepository, FavouriteAndBlockRepository>();
+            services.AddScoped<IServiceProviderMySettingRepository, ServiceProviderMySettingRepository>();
             
 
             services.AddSession(options =>

@@ -3,6 +3,7 @@
     Layout = "";
     ViewData["Title"] = "Home Page";
     int? userID = Context.Session.GetInt32("userID");
+    int? userTypeID = Context.Session.GetInt32("userTypeID");
 }
 
 <!DOCTYPE html>
@@ -85,8 +86,16 @@
                         <ul class="dropdown-menu" aria-labelledby="navbarUserLoggedInDropDown">
                             <li><a class="dropdown-item" href="#">Welcome @Context.Session.GetString("FirstName")</a></li>
                             <li><hr class="dropdown-divider"></li>
-                            <li><a class="dropdown-item" asp-controller="Customer" asp-action="Index" asp-route-isLogged="@ViewBag.IsLogged">My Dashboard</a></li>
-                            <li><a class="dropdown-item" asp-controller="Customer" asp-action="MySetting" asp-route-isLogged="@ViewBag.IsLogged">My Setting</a></li>
+                            @if (userTypeID == 1)
+                            {
+                                <li><a class="dropdown-item" asp-controller="ServiceProvider" asp-action="Index">My Dashboard</a></li>
+                                <li><a class="dropdown-item" asp-controller="ServiceProvider" asp-action="MySetting">My Setting</a></li>
+                            }
+                            else
+                            {
+                                <li><a class="dropdown-item" asp-controller="Customer" asp-action="Index" asp-route-isLogged="@ViewBag.IsLogged">My Dashboard</a></li>
+                                <li><a class="dropdown-item" asp-controller="Customer" asp-action="MySetting" asp-route-isLogged="@ViewBag.IsLogged">My Setting</a></li>
+                            }
                             <li><a class="dropdown-item" asp-controller="Home" asp-action="Logout">Logout</a></li>
                         </ul>
                     </li>
@@ -126,7 +135,7 @@
                     <li>Lorem ipsum dolor sit amet, consectetur adipiscing</li>
                 </ul>
                 <div class="btn-wrapper text-center ">
-                    <a href="#" title="Let's Book a Cleaner" class="opacity-100 blue-btn">Let's Book a Cleaner</a>
+                    <a asp-controller="Home" asp-action="ServiceProviderBecomeAPro" title="Let's Book a Cleaner" class="opacity-100 blue-btn">Let's Book a Cleaner</a>
                 </div>
 
                 <partial name="_partialLoginView" view />

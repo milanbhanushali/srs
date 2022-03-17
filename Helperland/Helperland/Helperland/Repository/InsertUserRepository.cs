@@ -143,5 +143,41 @@ namespace Helperland.Repository
         }
         #endregion GetUser By ID
 
+        #region Update Service Proivider Data
+        public void UpdateServiceProviderData(SPDetailsViewModel sPDetailsViewModel, int userId)
+        {
+            User user = _helperlandsContext.User.Where(x => x.UserId == userId).FirstOrDefault();
+            UserAddress userAddress = _helperlandsContext.UserAddress.Where(x => x.UserId == userId).FirstOrDefault();
+            user.FirstName = sPDetailsViewModel.FirstName;
+            user.LastName = sPDetailsViewModel.lastName;
+            user.Mobile = sPDetailsViewModel.mobileNumber;
+            user.DateOfBirth = Convert.ToDateTime(sPDetailsViewModel.day + "/" + sPDetailsViewModel.month + "/" + sPDetailsViewModel.year);
+            user.NationalityId = sPDetailsViewModel.NationalityId;
+            user.Gender = sPDetailsViewModel.Gender;
+            user.UserProfilePicture = sPDetailsViewModel.UserProfilePicture;
+            user.ZipCode = sPDetailsViewModel.Zipcode;
+            bool isNull = false;
+            if (userAddress == null)
+            {
+                userAddress = new UserAddress();
+                userAddress.UserId = userId;
+                isNull = true;
+            }
+            userAddress.AddressLine1 = sPDetailsViewModel.AddressLine1;
+            userAddress.AddressLine2 = sPDetailsViewModel.AddressLine2;
+            userAddress.PostalCode = sPDetailsViewModel.Zipcode;
+            userAddress.CityId = sPDetailsViewModel.CityId;
+            City city = _helperlandsContext.City.Where(x => x.Id == sPDetailsViewModel.CityId).FirstOrDefault();
+            userAddress.StateId = city.StateId;
+            _helperlandsContext.User.Update(user);
+            if (isNull)
+                _helperlandsContext.UserAddress.Add(userAddress);
+            else
+                _helperlandsContext.UserAddress.Update(userAddress);
+            _helperlandsContext.SaveChanges();
+
+        }
+        #endregion
+
     }
 }

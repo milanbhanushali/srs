@@ -3,69 +3,39 @@
     Layout = "~/Views/Shared/_LayoutServiceProvider.cshtml";
 }
 @using Microsoft.AspNetCore.Http
-
-@model List<Helperland.Models.ViewModel.NewServiceRequestViewModel>
+@model List<Helperland.Models.ViewModel.SPServiceHistoryViewModel>
+<!--#region Right Side Table-->
 <span class="d-none" id="userID" value="@Context.Session.GetInt32("userID")"></span>
 <span class="d-none" id="userEmail" value="@Context.Session.GetString("userEmail")"></span>
-
 <div class="col-md-9">
-    <div class="alert alert-success d-none" role="alert" id="alertSuccessMessage">
-        Request Accepted Successfully.
-    </div>
-    <div class="alert alert-danger d-none" role="alert" id="alertErrorMessage"></div>
-    <div class="row">
-        @{ bool haspets = ViewBag.hasPets; }
-    </div>
-    <div class="row">
-        <input type="hidden" value="@haspets" id="txtHiddenHaspate" />
-        <div class="col-md-2">
-            <form method="get" asp-action="NewServiceRquest" asp-controller="ServiceProvider">
-                <input type="checkbox" name="hasPate" id="cbHaspate" /> <span class="font-bold">Pets at a Home 🐶</span>
-            </form>
-        </div>
-    </div>
     <div class="row p-3">
         <div class="col-md-12 table-responsive">
-            <table id="tbleNewServiceRequest" class="table">
+            <table id="tbleServiceRequestHistory" class="table table-hover">
                 <thead>
                     <tr>
                         <td>Service Id </td>
                         <td>Service Date </td>
                         <td>Customer Details </td>
-                        <td>Payment</td>
-                        <td> Action</td>
                     </tr>
                 </thead>
                 <tbody>
                     @foreach (var item in Model)
                     {
-                        <tr>
-                            <td class="custom-pointer" onclick="OpenModel(@item.ServiceRequestID)" data-bs-toggle="modal" data-bs-target="#ServiceDetails"> @item.ServiceRequestID </td>
-                            <td class="flex custom-pointer" onclick="OpenModel(@item.ServiceRequestID)" data-bs-toggle="modal" data-bs-target="#ServiceDetails">
-                                <div><img src="~/img/calendar.png" asp-append-version="true"><b> @item.ServicestarDate</b> </div>
-                                8.:00 - 12:00
+                        <tr class="custom-pointer" onclick="OpenModel(@item.ServiceRequestId)" data-bs-toggle="modal" data-bs-target="#ServiceDetails">
+                            <td class="custom-pointer" onclick="OpenModel(@item.ServiceRequestId)" data-bs-toggle="modal" data-bs-target="#ServiceDetails"> @item.ServiceRequestId </td>
+                            <td  onclick="OpenModel(@item.ServiceRequestId)" class="custom-pointer flex" data-bs-toggle="modal" data-bs-target="#ServiceDetails">
+                                <div><img src="/img/calendar2.png" asp-append-version="true"><b> @item.ServiceDate</b> </div>
+                                <img src="/img/clock.png" asp-append-version="true"> 8.:00 - 12:00
                             </td>
-                            <td class="custom-pointer" onclick="OpenModel(@item.ServiceRequestID)" data-bs-toggle="modal" data-bs-target="#ServiceDetails">
-
+                            <td class="custom-pointer" onclick="OpenModel(@item.ServiceRequestId)" data-bs-toggle="modal" data-bs-target="#ServiceDetails">
                                 <div class="d-flex">
-                                    <div class="center"><img src="~/img/home.png"></div>
+                                    <div class="center"><img src="/img/home.png"></div>
                                     <div>
                                         <span class="d-block"> @item.CustomerName </span>
-                                        <span class="d-block"> @item.Addressline1 </span>
-                                        <span class="d-block"> @item.Addressline2 </span>
-
+                                        <span class="d-block"> @item.AddressLine1 </span>
+                                        <span class="d-block"> @item.AddressLine2 </span>
                                     </div>
-
                                 </div>
-
-
-                            </td>
-                            <td class="active-font custom-pointer" onclick="OpenModel(@item.ServiceRequestID)" data-bs-toggle="modal" data-bs-target="#ServiceDetails">
-                                <div> <b> @item.Payment  €</b> </div>
-                            </td>
-                            <td>
-
-                                <button class="btn btn-success btn-sm font-white rounded-pill m-2" ata-bs-toggle="modal" data-bs-target="#ServiceDetails" onclick="AcceptRequest(@item.ServiceRequestID)">Accept</button>
                             </td>
                         </tr>
                     }
@@ -73,9 +43,10 @@
             </table>
         </div>
     </div>
-</div>
 
-<!--#region Modal Service Details -->
+</div>
+<!--#endregion Right Side Table-->
+<!--#region Modal  Service Details -->
 <div class="modal fade" id="ServiceDetails" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered ">
         <div class="modal-content">
@@ -108,57 +79,39 @@
                         </div>
                         <hr />
                         <span id="ModalHasPets"></span>
-                        <hr />
-                        <button class="btn btn-success font-white rounded-pill m-2" id="ModelbtnAccept" value="" onclick="AcceptRequest(this.value)">Accept </button>
-
                     </div>
                 </div>
             </div>
-
         </div>
     </div>
 </div>
-<!--#endregion Modal Service Details -->
+<!--#endregion Modal  Service Details -->
 <!--#region Script-->
 <script type="text/javascript" charset="utf8" src="https://code.jquery.com/jquery-3.5.1.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
 <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.11.5/js/dataTables.bootstrap5.min.js"></script>
-
 <script>
-        function ReloadPage() {
-            location.reload();
-        }
+
+    //#region Data Table
     $(document).ready(function () {
         $.noConflict();
-        $('#tbleNewServiceRequest').dataTable({
+        $('#tbleServiceRequestHistory').dataTable({
             "bFilter": false,
             "bInfo": true,
             'aoColumnDefs': [{ 'bSortable': false, 'aTargets': [-1] }],
-
         });
-            let cb = $("#txtHiddenHaspate").val();
-            if (cb) {
-                $('#cbHaspate').prop('checked', true);
-            }
-            else {
-                $('#cbHaspate').prop('checked', false);
-            }
-            $('#cbHaspate').change(function () {
-                $(this).closest('form').submit();
-            });
+    });
+    //#endregion Data Table
 
-        });
-
-           /*   Open Service Details Model on Click of Table Row*/
+    //#region Service Details
         function OpenModel(para) {
             $("#ServiceDetails").modal('show');
             $("#ModelServiceRequestId").text(para);
-            $("#ModelbtnAccept").val(para);
-        $.ajax({
-                  type: "POST",
-            url: "@Url.Action("GetServiceRequestData")",
-            data: { "ServiceReqestId": para },
+            $.ajax({
+                 type: "POST",
+                 url: "@Url.Action("GetServiceRequestData")",
+                 data: { "ServiceReqestId": para },
                  success: function (responce) {
                      var obj = JSON.parse(responce);
                      $("#ModelDuration").text(obj.TotalHour);
@@ -174,11 +127,9 @@
                      else {
                          $("#ModalHasPets").text("✘ I don't have pets");
                      }
-
-
                  },
-                failure: function (response) {
-                    alert("failure because of " + response);
+                 failure: function (response) {
+                        alert("failure because of " + response);
                  },
                 error: function (response) {
                     alert("Something went Wrong because of " + response);
@@ -186,37 +137,7 @@
 
               });
         }
-
-        function AcceptRequest(para) {
-            $("#ServiceDetails").modal('hide');
-             $.ajax({
-                  type: "POST",
-            url: "@Url.Action("AcceptServiceRequest")",
-                 data: { "serviceRequeestId": para },
-                 success: function (responce) {
-
-                     if (responce == "true") {
-
-                         $("#alertSuccessMessage").show().fadeOut(8000);
-                         setTimeout(ReloadPage, 3000);
-
-                     } else {
-                         $("#alertErrorMessage").show().text(responce).fadeOut(10000);
-                     }
-
-
-                 },
-                 failure: function (response) {
-                        alert("failure");
-                 },
-                 error: function (response) {
-                        alert("Something went Worng");
-                 }
-
-              });
-        }
+    //#endregion Service Details
         
-
 </script>
-
 <!--#endregion Script-->

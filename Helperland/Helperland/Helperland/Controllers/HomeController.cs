@@ -57,7 +57,8 @@ namespace Helperland.Controllers
                         HttpContext.Session.SetInt32("userID", loginViewModel.UserID);
                         HttpContext.Session.SetString("FirstName", objUser.FirstName);
                         HttpContext.Session.SetString("userEmail", objUser.Email);
-
+                        HttpContext.Session.SetInt32("userTypeID", objUser.UserTypeId);
+                        
                         CookieOptions options = new CookieOptions();
                         options.Expires = DateTime.Now.AddMinutes(15);
                         Response.Cookies.Append("userID", objUser.UserId.ToString(), options);

@@ -4,6 +4,7 @@ using Helperland.Models.ViewModel;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Mail;
 using System.Threading.Tasks;
 
 namespace Helperland.Repository
@@ -215,7 +216,7 @@ namespace Helperland.Repository
                     _helperlandsContext.ServiceRequestExtra.Add(serviceRequestExtra);
                     _helperlandsContext.SaveChanges();
                 }
-
+                SendNotification(serviceRequest.HasPets, serviceRequest.ZipCode);
                 return serviceRequest.ServiceId;
             }
             catch(Exception ex)
@@ -225,6 +226,42 @@ namespace Helperland.Repository
             }
         }
         #endregion Method - AddService
+
+        #region Method - Send Mail to all Service Provider  
+        public void SendNotification(Boolean workWithPets, string zipcode)
+        {
+            List<User> users = new List<User>();
+            if (workWithPets)
+            {
+                users = _helperlandsContext.User.Where(x => x.ZipCode == zipcode && x.WorksWithPets == workWithPets && x.UserTypeId == 1).ToList();
+            }
+            else
+            {
+                users = _helperlandsContext.User.Where(x => x.ZipCode == zipcode && x.UserTypeId == 1).ToList();
+            }
+
+            foreach (var item in users)
+            {
+                string welcomeMessage = "Welcome to Helperland,   <br/> You get new Service request. <br/> <b> Check it now <b>";
+
+                String To = item.Email;
+                String subject = "New Service Request";
+                String Body = "You got new Service request " + " : " + welcomeMessage;
+                MailMessage obj = new MailMessage();
+                obj.To.Add(To);
+                obj.Subject = subject;
+                obj.Body = Body;
+                obj.From = new MailAddress("dreamers96845@gmail.com");
+                obj.IsBodyHtml = true;
+                SmtpClient smtp = new SmtpClient("smtp.gmail.com");
+                smtp.Port = 587;
+                smtp.UseDefaultCredentials = true;
+                smtp.EnableSsl = true;
+                smtp.Credentials = new System.Net.NetworkCredential("dreamers96845@gmail.com", "goals@2022");
+                smtp.Send(obj);
+            }
+        }
+        #endregion Method - Send Mail to all Service Provider
 
 
 

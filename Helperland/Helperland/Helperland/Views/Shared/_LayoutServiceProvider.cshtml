@@ -63,8 +63,8 @@
                             <li><a class="dropdown-item" href="#">Welcome @Context.Session.GetString("FirstName")</a></li>
                             @*<li class="d-none" id="madija">@Context.Session.GetString("userID")</li>*@
                             <li><hr class="dropdown-divider"></li>
-                            <li><a class="dropdown-item" asp-controller="Customer" asp-action="Index" asp-route-isLogged="@ViewBag.IsLogged">My Dashboard</a></li>
-                            <li><a class="dropdown-item" asp-controller="Customer" asp-action="MySetting" asp-route-isLogged="@ViewBag.IsLogged">My Setting</a></li>
+                            <li><a class="dropdown-item" asp-controller="ServiceProvider" asp-action="Index" asp-route-isLogged="@ViewBag.IsLogged">My Dashboard</a></li>
+                            <li><a class="dropdown-item" asp-controller="ServiceProvider" asp-action="MySetting">My Setting</a></li>
                             <li><a class="dropdown-item" asp-controller="Home" asp-action="Logout">Logout</a></li>
                         </ul>
                     </li>
@@ -87,7 +87,7 @@
     <div class="custom-service-provider-upcoming-service-start p-0">
         <div class="container-fluid custom-background-bg-dim-sand">
             <div class="row text-center">
-                <div class="custom-upcoming-service-header">Welcome, <b>@Context.Session.GetString("FirstName")!</b></div>
+                <div class="custom-upcoming-service-header">Welcome Service Provider, <b>@Context.Session.GetString("FirstName")!</b></div>
             </div>
         </div>
 
@@ -95,25 +95,30 @@
             <div class="row justify-content-center">
                 <div class="custom-hide-mobile-view col-lg-3">
                     <div class="custom-upcoming-service-desktop-view-left-side custom-bg-dashboard-green ms-5">
-                        <ul class="list-group bg-transparent list-group-flush">
-                            <li class="list-group-item borderless custom-active-dark-green">
+                        <ul class="list-group bg-transparent list-group-flush" id="ulLeftSideNavbar">
+                            <li class="list-group-item borderless @(ViewContext.RouteData.Values["Action"].ToString()=="Index" ?"custom-active-dark-green":"" )">
                                 <a asp-controller="ServiceProvider" asp-action="Index" asp-route-isLogged="@ViewBag.IsLogged" class="text-decoration-none ">Dashboard</a>
                             </li>
                             <div class="white-hr"></div>
-                            <li class="list-group-item  borderless ">
-                                <a asp-controller="ServiceProvider" asp-action="NewServiceRequest"
+                            <li class="list-group-item  borderless @(ViewContext.RouteData.Values["Action"].ToString()=="NewServiceRequest" ?"custom-active-dark-green":"" )">
+                                <a asp-controller="ServiceProvider" asp-action="NewServiceRequest" asp-route-isLogged="@ViewBag.IsLogged"
                                    class="text-decoration-none">New Service Request</a>
                             </li>
                             <div class="white-hr"></div>
-                            <li class="list-group-item borderless"><a asp-controller="ServiceProvider" class="text-decoration-none">Upcoming Services</a></li>
+                            <li class="list-group-item borderless @(ViewContext.RouteData.Values["Action"].ToString()=="UpcomingServices" ?"custom-active-dark-green":"" )">
+                                <a asp-controller="ServiceProvider" asp-action="UpcomingServices" asp-route-isLogged="@ViewBag.IsLogged" class="text-decoration-none">Upcoming Services</a></li>
                             <div class="white-hr"></div>
-                            <li class="list-group-item borderless"><a asp-controller="ServiceProvider" class="text-decoration-none">Service Schedule</a></li>
+                            <li class="list-group-item borderless @(ViewContext.RouteData.Values["Action"].ToString()=="ServiceSchedule" ?"custom-active-dark-green":"" )">
+                                <a asp-controller="ServiceProvider" class="text-decoration-none">Service Schedule</a></li>
                             <div class="white-hr"></div>
-                            <li class="list-group-item borderless"><a asp-controller="ServiceProvider" class="text-decoration-none">Service History</a></li>
+                            <li class="list-group-item borderless @(ViewContext.RouteData.Values["Action"].ToString()=="ServiceHistory" ?"custom-active-dark-green":"" )">
+                            <a asp-controller="ServiceProvider" asp-action="ServiceHistory" asp-route-isLogged="@ViewBag.IsLogged" class="text-decoration-none">Service History</a></li>
                             <div class="white-hr"></div>
-                            <li class="list-group-item borderless"><a asp-controller="ServiceProvider" class="text-decoration-none">My Rating</a></li>
+                            <li class="list-group-item borderless @(ViewContext.RouteData.Values["Action"].ToString()=="MyRating" ?"custom-active-dark-green":"" )">
+                                <a asp-controller="ServiceProvider" asp-action="MyRating" asp-route-isLogged="@ViewBag.IsLogged" class="text-decoration-none">My Rating</a></li>
                             <div class="white-hr"></div>
-                            <li class="list-group-item borderless"><a asp-controller="ServiceProvider" class="text-decoration-none">Block Customer</a></li>
+                            <li class="list-group-item borderless @(ViewContext.RouteData.Values["Action"].ToString()=="BlockCustomer" ?"custom-active-dark-green":"" )">
+                                <a asp-controller="ServiceProvider" asp-action="BlockCustomer" asp-route-isLogged="@ViewBag.IsLogged"  class="text-decoration-none">Block Customer</a></li>
                             <div class="white-hr"></div>
                         </ul>
                     </div>
@@ -198,6 +203,14 @@
     <script src="~/js/main.js" asp-append-version="true"></script>
 
     @RenderSection("Scripts", required: false)
+    @*<script>
+        $(document).ready(function () {
+            $('#ulLeftSideNavbar li').click(function () {
+                $('li.list-group-item.custom-active-dark-green').removeClass("custom-active-dark-green");
+                $(this).addClass("custom-active-dark-green");
+            });
+        });
+    </script>*@
     <!--#endregion Javascript-->
 </body>
 </html>

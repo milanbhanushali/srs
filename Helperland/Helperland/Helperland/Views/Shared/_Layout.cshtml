@@ -1,7 +1,8 @@
 ﻿@using Microsoft.AspNetCore.Http;
 
 @{ int? userID = Context.Session.GetInt32("userID");
-   string userEmail = Context.Session.GetString("userEmail");
+    string userEmail = Context.Session.GetString("userEmail");
+    int? userTypeID = Context.Session.GetInt32("userTypeID");
 }
 <!DOCTYPE html>
 <html lang="en">
@@ -77,8 +78,16 @@
                             <li><a class="dropdown-item" href="#">Welcome @Context.Session.GetString("FirstName")</a></li>
                             @*<li class="d-none" id="madija">@Context.Session.GetString("userID")</li>*@
                             <li><hr class="dropdown-divider"></li>
-                            <li><a class="dropdown-item" asp-controller="Customer" asp-action="Index">My Dashboard</a></li>
-                            <li><a class="dropdown-item" href="#">My Setting</a></li>
+                            @if (userTypeID == 1)
+                            {
+                                <li><a class="dropdown-item" asp-controller="ServiceProvider" asp-action="Index">My Dashboard</a></li>
+                                <li><a class="dropdown-item" asp-controller="ServiceProvider">My Setting</a></li>
+                            }
+                            else
+                            {
+                                <li><a class="dropdown-item" asp-controller="Customer" asp-action="Index" asp-route-isLogged="@ViewBag.IsLogged">My Dashboard</a></li>
+                                <li><a class="dropdown-item"asp-controller="Customer" asp-action="MySetting" asp-route-isLogged="@ViewBag.IsLogged">My Setting</a></li>
+                            }
                             <li><a class="dropdown-item" asp-controller="Home" asp-action="Logout">Logout</a></li>
                         </ul>
                     </li>
