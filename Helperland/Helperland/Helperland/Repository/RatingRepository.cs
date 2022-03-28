@@ -35,8 +35,8 @@ namespace Helperland.Repository
                 rating.OnTimeArrival = onTime;
                 rating.Friendly = friendly;
                 rating.QualityOfService = qualityOfService;
-                decimal i = (friendly + onTime + qualityOfService)/3 ;
-                rating.Ratings = i;
+                decimal ratingAverage = (friendly + onTime + qualityOfService)/3 ;
+                rating.Ratings = ratingAverage;
                 rating.RatingDate = DateTime.Now;
                 _helperlandsContext.Rating.Add(rating);
                 _helperlandsContext.SaveChanges();

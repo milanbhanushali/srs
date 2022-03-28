@@ -1,0 +1,236 @@
+﻿@{
+    ViewData["Title"] = "User Management";
+    Layout = "~/Views/Shared/_LayoutAdminPanel.cshtml";
+}
+@using Microsoft.AspNetCore.Http;
+
+<!--#region User Table-->
+<span class="d-none" id="customerEmail" value="@Context.Session.GetString("userEmail")"></span>
+<span class="d-none" id="customerId" value="@Context.Session.GetInt32("userID")"></span>
+<div class="alert alert-danger" id="ketoStart"></div>
+@*<div class="col-xxl-10 col-xl-9 col-lg-9 col-md-9 col-sm-8">
+        <div class="row">
+            <div class="col-xxl-5 col-xl-6 col-lg-4 col-md-6 col-sm-6 text-start custom-text-dim-gray custom-user-management-font-22">
+                User Management
+            </div>
+            <div class="col-xxl-7 col-xl-6 col-lg-8 col-md-5 col-sm-6 mt-3 text-end">
+                <button class="btn custom-btn-light-blue">
+                    <img src="~/img/addUserIcon.webp" alt=""> &nbsp;Add New User
+                </button>
+            </div>
+            <div class="row mt-1">
+                <div class="col-xxl-12 col-xl-12 col-lg-12 col-md-12 col-sm-12 bg-white border ms-2  btn-group">
+                    <div class="col-3 col-lg-2 col-sm-2 py-4 me-3">
+                        <select class="form-select" aria-label="Default select example">
+                            <option selected>Username</option>
+                            <option value="1">One</option>
+                            <option value="2">Two</option>
+                            <option value="3">Three</option>
+                        </select>
+                    </div>
+                    <div class="col-3 col-lg-2 col-sm-2 py-4 me-3">
+                        <select class="form-select col-2" aria-label="Default select example">
+                            <option selected>User Type</option>
+                            <option value="1">One</option>
+                            <option value="2">Two</option>
+                            <option value="3">Three</option>
+                        </select>
+                    </div>
+                    <div class="col-2 col-lg-2 py-4 me-3">
+                        <div class="input-group">
+                            <span class="input-group-text" id="basic-addon1">+49</span>
+                            <input type="text" class="form-control" placeholder="Phone Number" aria-label="Username"
+                                   aria-describedby="basic-addon1">
+                        </div>
+                    </div>
+                    <div class="col-1 col-lg-2 py-4 me-3">
+                        <div class="input-group">
+                            <input type="text" class="form-control" placeholder="Zipcode" aria-label="Username"
+                                   aria-describedby="basic-addon1">
+                        </div>
+                    </div>
+                    <div class="col-3 col-md-2 col-sm-4 py-4 text-end">
+                        <div class="input-group">
+                            <button class="custom-btn-light-blue custom-borderless px-3 py-2 rounded custom-margin-search me-2  ">
+                                Search
+                            </button>
+                            <button class="ms-3 border px-3 py-2 rounded bg-white text-dark me-2 ms-sm-0"> Clear </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row mt-3 bor">
+                <div class="col-xxl-12 col-xl-12 col-lg-12 col-md-12 col-sm-12 table-responsive custom-user-management-color">
+                    <table id="tblUserManagement" class="table border table-hover">
+                        <thead class="table-light">
+                            <tr>
+                                <th class="d-none">UserID</th>
+                                <th scope="col">
+                                    Username <img src="~/img/up-down-arrows.webp" alt="" class="user-profile">
+                                </th>
+                                <th scope="col">Role</th>
+                                <th scope="col">Date of Registration</th>
+                                <th scope="col">
+                                    User Type <img src="~/img/up-down-arrows.webp" alt="" class="user-profile">
+                                </th>
+                                <th scope="col">Phone</th>
+                                <th scope="col">Postal Code <img src="~/img/up-down-arrows.webp" alt="" class="user-profile"></th>
+                                <th scope="col">
+                                    User Status <img src="~/img/up-down-arrows.webp" alt="" class="user-profile">
+                                </th>
+                                <th scope="col">Action</th>
+
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model)
+                            {
+                                <tr class="align-middle my-5">
+                                    <th class="d-none">@item.UserID</th>
+                                    <td scope="row">@item.UserName</td>
+                                    <td></td>
+                                    <td><img src="~/img/calendar2.png" alt="" class="user-profile">@item.DateOfRegistration.ToString("dd/mm/yyyy")</td>
+                                    <td>@item.UserType</td>
+                                    <td>@item.Phone</td>
+                                    <td>@item.PostalCode</td>
+                                    <td id="status">
+                                        @if (item.Status == 1)
+                                        {
+                                            <div class="custom-active-status">Active</div>
+                                        }
+                                        else
+                                        {
+                                            <div class="custom-inactive-status">Inactive</div>
+                                        }
+                                    </td>
+                                    <td>
+
+                                        @if (item.Status == 1)
+                                        {
+                                            <button class="btn btn-outline-danger" onclick="btnDeactive(@item.UserID)">❌</button>
+                                        }
+                                        else
+                                        {
+                                            <button class="btn btn-outline-success" onclick="btnActive(@item.UserID)">✔️</button>
+                                        }
+
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                        <tfoot>
+                            <tr>
+                                <th class="d-none">UserID</th>
+                                <th>Name</th>
+                                <th class="d-none">Role</th>
+                                <th class="d-none">Date</th>
+                                <th>UserType</th>
+                                <th class="d-none"></th>
+                                <th class="d-none"></th>
+                                <th class="d-none"></th>
+                            </tr>
+                        </tfoot>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>*@
+<!--#endregion User Table-->
+<!--#region Script-->
+<script type="text/javascript" charset="utf8" src="https://code.jquery.com/jquery-3.5.1.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
+<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.11.5/js/dataTables.bootstrap5.min.js"></script>
+<script type="text/javascript" src="https://cdn.datatables.net/buttons/2.2.2/js/dataTables.buttons.min.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
+<script type="text/javascript" src="https://cdn.datatables.net/buttons/2.2.2/js/buttons.html5.min.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script>
+
+<script>
+
+        //#region Data Table
+        $(document).ready(function () {
+            $.noConflict();
+            $('#tblUserManagement').dataTable({
+                "bFilter": true,
+                "bInfo": true,
+                'aoColumnDefs': [{ 'bSortable': false, 'aTargets': [-1] }],
+                'responsive': true,
+                dom: 'Bfrtip',
+                buttons: [
+                    {
+                        extend: 'excel',
+                        text: 'Export',
+                        className: 'btn btn-primary'
+                    }
+                ],
+                initComplete: function () {
+                    this.api().columns().every(function () {
+                        var column = this;
+                        var select = $('<select><option value=""></option></select>')
+                            .appendTo($(column.footer()).empty())
+                            .on('change', function () {
+                                var val = $.fn.dataTable.util.escapeRegex(
+                                    $(this).val()
+                                );
+
+                                column.search(val ? '^' + val + '$' : '', true, false).draw();
+                            });
+
+                        column.data().unique().sort().each(function (d, j) {
+                            select.append('<option value="' + d + '">' + d + '</option>')
+                        });
+                    });
+                }
+            });
+            
+        });
+        //#endregion Data Table
+
+        //#region Function - Active
+        function btnActive(userID) {
+            $.ajax({
+                type: "POST",
+                url: "@Url.Action("MakeUserActive")",
+                data: { "userID": userID },
+                success: function (response) {
+                    console.log("Is User Active ? " + response);
+                    $("#status").hide();
+
+                    location.reload();
+
+                },
+                failure: function (response) {
+                    alert("failure because of " + response);
+                },
+                error: function (response) {
+                    alert("Something went Wrong because of " + response);
+                }
+            });
+        }
+        //#endregion Function - Active
+
+        //#region Function - Deactive
+        function btnDeactive(userID) {
+            $.ajax({
+                type: "POST",
+                url: "@Url.Action("MakeUserDeactive")",
+                data: { "userID": userID },
+                success: function (response) {
+                    console.log("Is User Deactive ? " + response);
+                    $("#status").hide();
+
+                    location.reload();
+
+                },
+                failure: function (response) {
+                    alert("failure because of " + response);
+                },
+                error: function (response) {
+                    alert("Something went Wrong because of " + response);
+                }
+            });
+        }
+        //#endregion Function - Deactive
+</script>
+<!--#endregion Script-->

@@ -55,9 +55,7 @@
                 <li class="nav__items border-btn">
                     <a asp-controller="Home" asp-action="Prices" asp-route-isLogged="@ViewBag.IsLogged" class="nav__link ">Prices & Services</a>
                 </li>
-                <li class="nav__items">
-                    <a asp-controller="Home" asp-action="FAQ" class="nav__link">Warranty</a>
-                </li>
+                
                 <li class="nav__items">
                     <a asp-controller="Home" asp-action="Contact" class="nav__link">Contact</a>
                 </li>
@@ -83,10 +81,14 @@
                                 <li><a class="dropdown-item" asp-controller="ServiceProvider" asp-action="Index">My Dashboard</a></li>
                                 <li><a class="dropdown-item" asp-controller="ServiceProvider">My Setting</a></li>
                             }
-                            else
+                            else if (userTypeID == 0)
                             {
                                 <li><a class="dropdown-item" asp-controller="Customer" asp-action="Index" asp-route-isLogged="@ViewBag.IsLogged">My Dashboard</a></li>
-                                <li><a class="dropdown-item"asp-controller="Customer" asp-action="MySetting" asp-route-isLogged="@ViewBag.IsLogged">My Setting</a></li>
+                                <li><a class="dropdown-item" asp-controller="Customer" asp-action="MySetting" asp-route-isLogged="@ViewBag.IsLogged">My Setting</a></li>
+                            }
+                            else
+                            {
+                                <li><a class="dropdown-item" asp-controller="Admin" asp-action="ServiceRequest">My Dashboard</a></li>
                             }
                             <li><a class="dropdown-item" asp-controller="Home" asp-action="Logout">Logout</a></li>
                         </ul>

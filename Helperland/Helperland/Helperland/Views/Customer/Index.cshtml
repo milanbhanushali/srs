@@ -63,7 +63,7 @@
                         </td>
                         <td class="text-center pt-3 pe-5"><b> @item.TotalCost £</b></td>
                         <td>
-                            <button id="btnReschedule" onclick="RescheduleService(@item.ServiceId)" data-bs-toggle="modal" data-bs-target="#ModalServiceReschedule" class="btn btn-info rounded-pill text-white me-1">Reschedule</button>
+                            <button id="btnReschedule" onclick="RescheduleService(@item.ServiceId)" data-bs-toggle="modal" data-bs-target="#ModalServiceReschedule" class="btn btn-info rounded-pill text-white me-1 custom-bg-dashboard-green custom-borderless">Reschedule</button>
                             <button id="btnCancelService" onclick="CancelService(@item.ServiceId)" data-bs-toggle="modal" data-bs-target="#ModalCancelService" class="custom-cancel-btn">Cancel</button>
                         </td>
                     </tr>
@@ -148,7 +148,7 @@
                 </div>
                 <span> Select New Date &  Time</span><br />
                 <div class="row mt-2">
-                    <div class="col-md-8"> <input type="date" id="RescheduleModelDate" class="form-control" /> </div>
+                    <div class="col-md-8"> <input type="date" value="2022-03-26" id="RescheduleModelDate" class="form-control" /> </div>
                     <div class="col-md-4">
                         <select class="form-control form-select">
                             <option value="8.00">8.00</option>

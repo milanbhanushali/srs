@@ -1,0 +1,73 @@
+﻿@using Microsoft.AspNetCore.Http;
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Management</title>
+    <!--#region Links Bootstrap CSS icons -->
+    <link rel="icon" href="~/img/favicon_img.png" type="image/x-icon">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/css/select2.min.css" rel=stylesheet>
+    <link rel='stylesheet' href="~/css/style.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.11.5/css/jquery.dataTables.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/buttons/2.2.2/css/buttons.dataTables.min.css">
+    <!--#endregion Links Bootstrap CSS icons -->
+    <!--#region Add Kendo UI library -->
+    <link rel="stylesheet" href="https://kendo.cdn.telerik.com/2022.1.301/styles/kendo.common.min.css" />
+    <link rel="stylesheet" href="https://kendo.cdn.telerik.com/2022.1.301/styles/kendo.blueopal.min.css" />
+    <!--#endregion Add Kendo UI library -->
+
+</head>
+<body>
+    <!--#region Navbar - User management-->
+    <div class="container-fluid p-0">
+        <nav class="navbar navbar-light custom-user-management-navbar-bg">
+            <div class="container-fluid">
+                <a class="navbar-brand custom-user-management-font" href="#">helperland</a>
+                <div class="text-center " id="navbarText">
+                    <ul class="navbar-nav list-group-horizontal me-auto mb-2 mb-lg-0">
+                        <li class="nav-item me-3">
+                            <a class="nav-link text-white" aria-current="page" href="#">
+                                <img src="~/img/profile.webp" alt="">
+                                @Context.Session.GetString("FirstName") @Context.Session.GetString("LastName")
+                            </a>
+                        </li>
+                        <li class="nav-item mt-1 me-3">
+                            <a class="nav-link" asp-controller="Home" asp-action="Logout"><img src="~/img/logout.png" alt=""></a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </div>
+    <!--#endregion Navbar - User management-->
+    <!--#region Dashboard -->
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-xxl-2 col-xl-3 col-lg-3 col-md-3 col-sm-3  m-0 p-0 shadow mb-5 custom-user-management-left-side-height">
+                <ul class="list-group custom-text-dim-gray">
+                    <li class="list-group-item  custom-pointer list-group-item-action @(ViewContext.RouteData.Values["Action"].ToString()=="ServiceRequest" ?"custom-text-blue":"" )">Service Request</li>
+                    <li> <a asp-controller="Admin" asp-action="Index" class="list-group-item custom-pointer list-group-item-action @(ViewContext.RouteData.Values["Action"].ToString()=="Index" ?"custom-text-blue":"" )">User Management</a> </li>
+                </ul>
+            </div>
+            @RenderBody()
+        </div>
+    </div>
+    <!--#endregion Dashboard -->
+    <!--#region Javascript-->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+            crossorigin="anonymous"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/js/select2.min.js"></script>
+    <!--#region Keto Scripts-->
+    <script src="https://kendo.cdn.telerik.com/2022.1.301/js/kendo.all.min.js"></script>
+    <!--#endregion Keto Scripts-->
+    <!--#endregion Javascript-->
+</body>
+</html>

@@ -101,7 +101,7 @@
                                 <div>
                                     <input type="date" name="servicedate" required
                                            class="custom-hyper custom-padin custom-borlft custom-clscn mb-1"
-                                           id="datepicker" min="2022-02-28">
+                                           id="datepicker" min="2022-03-25">
                                     <select name="servicetime" id="dropdownTime"
                                             class="custom-hyper custom-padin custom-borlft mb-1 custom-clscn">
                                         <option value="8:00">8:00</option>
@@ -883,7 +883,8 @@
                     }
                 });
         });
-
+date
+        //#region Function - Add Address
         function addAddress() {
             var data = $("#txtPostalCode").val();
             $("#txtAddressPostalCode").text(" " + data);
@@ -912,7 +913,9 @@
                 }
             });
         }
+        //#endregion Function - Add Address
 
+        //#region Function - Get Address by User ID
         function getAddress() {
             $.ajax({
                     type: "POST",
@@ -930,6 +933,7 @@
                     }
                 });
         }
+        //#endregion Function - Get Address by User ID
 
         function showLoginModel() {
             $('#LoginModel').modal('show');

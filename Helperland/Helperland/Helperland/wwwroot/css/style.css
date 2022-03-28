@@ -384,15 +384,12 @@ input[type="email"],input[type="password"]::-webkit-input-placeholder { color: #
 .custom-user-management-color{color: #646464; font-size: 16px;}
 .custom-active-status{background-color: #67B644; height: 24px; width: 58px; padding: 3px 0 15px; color: #fff; font-size: 13px; text-align: center;}
 .custom-inactive-status{background-color: #FF6B6B; height: 24px; width: 62px; padding: 3px 0 15px; color: #fff; font-size: 13px; text-align: center;}
-
 /*#endregion User Management*/
 
 /*#region Service Request*/
 .dropdown-container{display: none;background-color: #F9F9F9;padding-left: 8px;}
 .custom-status-new{background-color: #F2BB37;width: 45px;color:#fff;height: 24px; font-size: 13px;text-align: center;}
 .custom-status-pending{background-color: #1FB6FF;width: 62px;color:#fff;height: 24px; font-size: 13px;text-align: center;}
-
-  
 /*#endregion Service Request*/
 
 

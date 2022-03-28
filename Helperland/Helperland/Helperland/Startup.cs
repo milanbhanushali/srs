@@ -37,8 +37,8 @@ namespace Helperland
             services.AddScoped<IServiceRequestRepository, ServiceRequestRepository>();
             services.AddScoped<IFavouriteAndBlockRepository, FavouriteAndBlockRepository>();
             services.AddScoped<IServiceProviderMySettingRepository, ServiceProviderMySettingRepository>();
+            services.AddScoped<IAdminUserManagementRepository, AdminUserManagementRepository>();
             
-
             services.AddSession(options =>
             {
                 options.IdleTimeout = TimeSpan.FromMinutes(30);//We set Time here 

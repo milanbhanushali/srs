@@ -29,20 +29,24 @@ namespace Helperland.Controllers
 
         #endregion HomeController Constructor
 
-        #region Index
-        public IActionResult Index(bool isLogged = false, bool isLoginOpen = false)
+        #region View - Index
+        public IActionResult Index(bool isLogged = false)
         {
             ViewBag.IsLogged = isLogged;
-            ViewBag.isLoginOpen = isLoginOpen;
-            ViewBag.isOpen = false;
-            ViewBag.isForgetPasswordOpen = false;
-            ViewBag.Success = false;
-            
+            int userID = Convert.ToInt32(HttpContext.Session.GetInt32("userID"));
+            if (userID > 0)
+            {
+                ViewBag.IsLogged = true;
+            }
+            else
+            {
+                ViewBag.IsLogged = false;
+            }
             return View();
         }
         #endregion Index
 
-        #region Login
+        #region View - Login
 
         [HttpPost]
         public IActionResult Login(LoginViewModel loginViewModel)
@@ -56,6 +60,7 @@ namespace Helperland.Controllers
                         User objUser = _iLoginRepository.GetUser(loginViewModel.UserID);
                         HttpContext.Session.SetInt32("userID", loginViewModel.UserID);
                         HttpContext.Session.SetString("FirstName", objUser.FirstName);
+                        HttpContext.Session.SetString("LastName", objUser.LastName);
                         HttpContext.Session.SetString("userEmail", objUser.Email);
                         HttpContext.Session.SetInt32("userTypeID", objUser.UserTypeId);
                         
@@ -67,9 +72,8 @@ namespace Helperland.Controllers
                         HttpContext.Session.SetInt32("userID", objUser.UserId);
                         HttpContext.Session.SetString("username", objUser.FirstName);
                         HttpContext.Session.SetInt32("usertype", objUser.UserTypeId);
+                        ModelState.Clear();
                     }
-                   
-
                     return RedirectToAction("Index", new { isLogged = true });
                 }
                 else
@@ -83,7 +87,7 @@ namespace Helperland.Controllers
 
         #endregion Login
 
-        #region Logout
+        #region Method - Logout
 
         public IActionResult Logout()
         {
@@ -94,9 +98,9 @@ namespace Helperland.Controllers
             return RedirectToAction("Index", new { isLogged = false });
         }
 
-        #endregion Logout
+        #endregion Method - Logout
 
-        #region Forgot Password Reset Link
+        #region Method - Forgot Password Reset Link
         [HttpPost]
         [ValidateAntiForgeryToken]
         public IActionResult ForgotPasswordResetlink(LoginViewModel uc)
@@ -130,9 +134,9 @@ namespace Helperland.Controllers
                 return RedirectToAction("Index");
             }
         }
-        #endregion Forgot Password Reset Link
+        #endregion Method - Forgot Password Reset Link
 
-        #region NewPassword
+        #region View - NewPassword
         [HttpGet]
         public IActionResult NewPassword()
         {
@@ -155,15 +159,15 @@ namespace Helperland.Controllers
                 return RedirectToAction("NewPassword");
             }
         }
-        #endregion NewPassword
+        #endregion View - NewPassword
 
-        #region User Registration
+        #region View - User Registration
         public IActionResult UserRegistration(bool isSuccess = false)
         {
             ViewBag.IsSuccess = isSuccess;
             return View();
         }
-        #endregion User Registration
+        #endregion View - User Registration
 
         #region AddNewUser
 
@@ -187,7 +191,7 @@ namespace Helperland.Controllers
 
         #endregion AddNewUser
 
-        #region FAQ
+        #region View - FAQ
         public IActionResult FAQ()
         {
             int? userID = HttpContext.Session.GetInt32("userID");
@@ -197,9 +201,9 @@ namespace Helperland.Controllers
             }
             return View();
         }
-        #endregion FAQ
+        #endregion View - FAQ
 
-        #region Prices
+        #region View - Prices
         public IActionResult Prices(bool isLogged = false)
         {
             int? userID = HttpContext.Session.GetInt32("userID");
@@ -209,9 +213,9 @@ namespace Helperland.Controllers
             }
             return View();
         }
-        #endregion Prices
+        #endregion View - Prices
 
-        #region Contact
+        #region View - Contact
         public IActionResult Contact()
         {
             int? userID = HttpContext.Session.GetInt32("userID");
@@ -221,9 +225,9 @@ namespace Helperland.Controllers
             }
             return View();
         }
-        #endregion Contact
+        #endregion View - Contact
 
-        #region About
+        #region View - About
         public IActionResult About()
         {
             int? userID = HttpContext.Session.GetInt32("userID");
@@ -233,7 +237,7 @@ namespace Helperland.Controllers
             }
             return View();
         }
-        #endregion About
+        #endregion View - About
 
         #region ServiceUserRegistration
         public IActionResult ServiceUserRegistration(ServiceUserRegistrationModel serviceUserRegistrationModel)
@@ -267,13 +271,13 @@ namespace Helperland.Controllers
         }
         #endregion ServiceUserRegistration
 
-        #region ServiceProviderBecomeAPro
+        #region View - ServiceProviderBecomeAPro
         public IActionResult ServiceProviderBecomeAPro(bool isSuccessForSP = false)
         {
             ViewBag.IsSuccessForSP = isSuccessForSP;
             return View();
         }
-        #endregion ServiceProviderBecomeAPro
+        #endregion View - ServiceProviderBecomeAPro
 
         #region Error
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
@@ -283,18 +287,22 @@ namespace Helperland.Controllers
         }
         #endregion Error
 
-        #region Service Provider Details
+        #region View - Service Provider Details
         public IActionResult ServiceProviderDetails()
         {
+            int userID = Convert.ToInt32(HttpContext.Session.GetInt32("userID"));
+            if (userID > 0)
+            {
+                ViewBag.IsLogged = true;
+            }
+            else
+            {
+                ViewBag.IsLogged = false;
+            }
             return View();
         }
-        #endregion Service Provider Details
+        #endregion View - Service Provider Details
 
-        #region Customer
-        public IActionResult Customer()
-        {
-            return View();
-        }
-        #endregion Customer
+
     }
 }

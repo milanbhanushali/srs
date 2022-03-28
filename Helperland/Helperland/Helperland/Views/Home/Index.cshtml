@@ -14,9 +14,6 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no">
     <title>Helperland</title>
-
-
-
     <!--#region External Links-->
     <link rel="icon" href="~/img/favicon_img.png" type="image/x-icon">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css">
@@ -64,9 +61,7 @@
                 </li>
                 <li class="d-none" id="userID" value="@Context.Session.GetInt32("userID")"></li>
                 <li class="d-none" id="userEmail" value="@Context.Session.GetString("userEmail")"></li>
-                <li class="nav__items">
-                    <a asp-controller="Home" asp-action="" class="nav__link">Warranty</a>
-                </li>
+                
                 <li class="nav__items">
                     <a asp-controller="Home" asp-action="Contact" class="nav__link">Contact</a>
                 </li>
@@ -91,10 +86,14 @@
                                 <li><a class="dropdown-item" asp-controller="ServiceProvider" asp-action="Index">My Dashboard</a></li>
                                 <li><a class="dropdown-item" asp-controller="ServiceProvider" asp-action="MySetting">My Setting</a></li>
                             }
-                            else
+                            else if (userTypeID == 0)
                             {
                                 <li><a class="dropdown-item" asp-controller="Customer" asp-action="Index" asp-route-isLogged="@ViewBag.IsLogged">My Dashboard</a></li>
                                 <li><a class="dropdown-item" asp-controller="Customer" asp-action="MySetting" asp-route-isLogged="@ViewBag.IsLogged">My Setting</a></li>
+                            }
+                            else if (userTypeID == 2)
+                            {
+                                <li><a class="dropdown-item" asp-controller="Admin" asp-action="ServiceRequest">My Dashboard</a></li>
                             }
                             <li><a class="dropdown-item" asp-controller="Home" asp-action="Logout">Logout</a></li>
                         </ul>
@@ -103,7 +102,7 @@
                 else
                 {
                     <li class="nav__items border-btn">
-                        <a class="btn text-white" data-bs-toggle="modal" data-bs-target="#LoginModel">
+                        <a class="btn text-white" id="btnLogins" data-bs-toggle="modal" data-bs-target="#LoginModel">
                             Login
                         </a>
                     </li>
@@ -480,6 +479,7 @@
         </div>
     </footer>
     <!--#endregion Footer-->
+
     <!--#region Javascript-->
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
