@@ -16,11 +16,9 @@
     <link rel='stylesheet' href="~/css/style.css">
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.11.5/css/jquery.dataTables.css">
     <link rel="stylesheet" href="https://cdn.datatables.net/buttons/2.2.2/css/buttons.dataTables.min.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/datetime/1.1.2/css/dataTables.dateTime.min.css">
     <!--#endregion Links Bootstrap CSS icons -->
-    <!--#region Add Kendo UI library -->
-    <link rel="stylesheet" href="https://kendo.cdn.telerik.com/2022.1.301/styles/kendo.common.min.css" />
-    <link rel="stylesheet" href="https://kendo.cdn.telerik.com/2022.1.301/styles/kendo.blueopal.min.css" />
-    <!--#endregion Add Kendo UI library -->
+    
 
 </head>
 <body>
@@ -51,7 +49,7 @@
         <div class="row">
             <div class="col-xxl-2 col-xl-3 col-lg-3 col-md-3 col-sm-3  m-0 p-0 shadow mb-5 custom-user-management-left-side-height">
                 <ul class="list-group custom-text-dim-gray">
-                    <li class="list-group-item  custom-pointer list-group-item-action @(ViewContext.RouteData.Values["Action"].ToString()=="ServiceRequest" ?"custom-text-blue":"" )">Service Request</li>
+                    <li><a asp-controller="Admin" asp-action="ServiceRequest" class="list-group-item  custom-pointer list-group-item-action @(ViewContext.RouteData.Values["Action"].ToString()=="ServiceRequest" ?"custom-text-blue":"" )">Service Request </a></li>
                     <li> <a asp-controller="Admin" asp-action="Index" class="list-group-item custom-pointer list-group-item-action @(ViewContext.RouteData.Values["Action"].ToString()=="Index" ?"custom-text-blue":"" )">User Management</a> </li>
                 </ul>
             </div>
@@ -65,9 +63,7 @@
             crossorigin="anonymous"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/js/select2.min.js"></script>
-    <!--#region Keto Scripts-->
-    <script src="https://kendo.cdn.telerik.com/2022.1.301/js/kendo.all.min.js"></script>
-    <!--#endregion Keto Scripts-->
+
     <!--#endregion Javascript-->
 </body>
 </html>

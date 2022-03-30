@@ -3,234 +3,582 @@
     Layout = "~/Views/Shared/_LayoutAdminPanel.cshtml";
 }
 @using Microsoft.AspNetCore.Http;
-
+@model List<Helperland.Models.ViewModel.AdminServiceHistoryViewModel>
 <!--#region User Table-->
 <span class="d-none" id="customerEmail" value="@Context.Session.GetString("userEmail")"></span>
 <span class="d-none" id="customerId" value="@Context.Session.GetInt32("userID")"></span>
-<div class="alert alert-danger" id="ketoStart"></div>
-@*<div class="col-xxl-10 col-xl-9 col-lg-9 col-md-9 col-sm-8">
-        <div class="row">
-            <div class="col-xxl-5 col-xl-6 col-lg-4 col-md-6 col-sm-6 text-start custom-text-dim-gray custom-user-management-font-22">
-                User Management
-            </div>
-            <div class="col-xxl-7 col-xl-6 col-lg-8 col-md-5 col-sm-6 mt-3 text-end">
-                <button class="btn custom-btn-light-blue">
-                    <img src="~/img/addUserIcon.webp" alt=""> &nbsp;Add New User
-                </button>
-            </div>
-            <div class="row mt-1">
-                <div class="col-xxl-12 col-xl-12 col-lg-12 col-md-12 col-sm-12 bg-white border ms-2  btn-group">
-                    <div class="col-3 col-lg-2 col-sm-2 py-4 me-3">
-                        <select class="form-select" aria-label="Default select example">
-                            <option selected>Username</option>
-                            <option value="1">One</option>
-                            <option value="2">Two</option>
-                            <option value="3">Three</option>
-                        </select>
-                    </div>
-                    <div class="col-3 col-lg-2 col-sm-2 py-4 me-3">
-                        <select class="form-select col-2" aria-label="Default select example">
-                            <option selected>User Type</option>
-                            <option value="1">One</option>
-                            <option value="2">Two</option>
-                            <option value="3">Three</option>
-                        </select>
-                    </div>
-                    <div class="col-2 col-lg-2 py-4 me-3">
-                        <div class="input-group">
-                            <span class="input-group-text" id="basic-addon1">+49</span>
-                            <input type="text" class="form-control" placeholder="Phone Number" aria-label="Username"
-                                   aria-describedby="basic-addon1">
-                        </div>
-                    </div>
-                    <div class="col-1 col-lg-2 py-4 me-3">
-                        <div class="input-group">
-                            <input type="text" class="form-control" placeholder="Zipcode" aria-label="Username"
-                                   aria-describedby="basic-addon1">
-                        </div>
-                    </div>
-                    <div class="col-3 col-md-2 col-sm-4 py-4 text-end">
-                        <div class="input-group">
-                            <button class="custom-btn-light-blue custom-borderless px-3 py-2 rounded custom-margin-search me-2  ">
-                                Search
-                            </button>
-                            <button class="ms-3 border px-3 py-2 rounded bg-white text-dark me-2 ms-sm-0"> Clear </button>
-                        </div>
+
+<div class="col-xxl-10 col-xl-9 col-lg-9 col-md-9 col-sm-8">
+    <div class="row">
+        <div class="col-xxl-5 col-xl-6 col-lg-4 col-md-6 col-sm-6 text-start custom-text-dim-gray custom-user-management-font-22">
+            User Management
+        </div>
+        <div class="col-xxl-7 col-xl-6 col-lg-8 col-md-5 col-sm-6 mt-3 text-end">
+            <button class="btn custom-btn-light-blue">
+                <img src="~/img/addUserIcon.webp" alt=""> &nbsp;Add New User
+            </button>
+        </div>
+        <div class="row mt-1">
+            <div class="col-xxl-12 col-xl-12 col-lg-12 col-md-12 col-sm-12 bg-white border ms-2  btn-group">
+                <div class="col-3 col-lg-2 col-sm-2 py-4 me-3">
+                    <select class="form-select" aria-label="Default select example">
+                        <option selected>Username</option>
+                        <option value="1">One</option>
+                        <option value="2">Two</option>
+                        <option value="3">Three</option>
+                    </select>
+                </div>
+                <div class="col-3 col-lg-2 col-sm-2 py-4 me-3">
+                    <select class="form-select col-2" aria-label="Default select example">
+                        <option selected>User Type</option>
+                        <option value="1">One</option>
+                        <option value="2">Two</option>
+                        <option value="3">Three</option>
+                    </select>
+                </div>
+                <div class="col-2 col-lg-2 py-4 me-3">
+                    <div class="input-group">
+                        <span class="input-group-text" id="basic-addon1">+49</span>
+                        <input type="text" class="form-control" placeholder="Phone Number" aria-label="Username"
+                               aria-describedby="basic-addon1">
                     </div>
                 </div>
-            </div>
-            <div class="row mt-3 bor">
-                <div class="col-xxl-12 col-xl-12 col-lg-12 col-md-12 col-sm-12 table-responsive custom-user-management-color">
-                    <table id="tblUserManagement" class="table border table-hover">
-                        <thead class="table-light">
-                            <tr>
-                                <th class="d-none">UserID</th>
-                                <th scope="col">
-                                    Username <img src="~/img/up-down-arrows.webp" alt="" class="user-profile">
-                                </th>
-                                <th scope="col">Role</th>
-                                <th scope="col">Date of Registration</th>
-                                <th scope="col">
-                                    User Type <img src="~/img/up-down-arrows.webp" alt="" class="user-profile">
-                                </th>
-                                <th scope="col">Phone</th>
-                                <th scope="col">Postal Code <img src="~/img/up-down-arrows.webp" alt="" class="user-profile"></th>
-                                <th scope="col">
-                                    User Status <img src="~/img/up-down-arrows.webp" alt="" class="user-profile">
-                                </th>
-                                <th scope="col">Action</th>
-
-                            </tr>
-                        </thead>
-                        <tbody>
-                            @foreach (var item in Model)
-                            {
-                                <tr class="align-middle my-5">
-                                    <th class="d-none">@item.UserID</th>
-                                    <td scope="row">@item.UserName</td>
-                                    <td></td>
-                                    <td><img src="~/img/calendar2.png" alt="" class="user-profile">@item.DateOfRegistration.ToString("dd/mm/yyyy")</td>
-                                    <td>@item.UserType</td>
-                                    <td>@item.Phone</td>
-                                    <td>@item.PostalCode</td>
-                                    <td id="status">
-                                        @if (item.Status == 1)
-                                        {
-                                            <div class="custom-active-status">Active</div>
-                                        }
-                                        else
-                                        {
-                                            <div class="custom-inactive-status">Inactive</div>
-                                        }
-                                    </td>
-                                    <td>
-
-                                        @if (item.Status == 1)
-                                        {
-                                            <button class="btn btn-outline-danger" onclick="btnDeactive(@item.UserID)">❌</button>
-                                        }
-                                        else
-                                        {
-                                            <button class="btn btn-outline-success" onclick="btnActive(@item.UserID)">✔️</button>
-                                        }
-
-                                    </td>
-                                </tr>
-                            }
-                        </tbody>
-                        <tfoot>
-                            <tr>
-                                <th class="d-none">UserID</th>
-                                <th>Name</th>
-                                <th class="d-none">Role</th>
-                                <th class="d-none">Date</th>
-                                <th>UserType</th>
-                                <th class="d-none"></th>
-                                <th class="d-none"></th>
-                                <th class="d-none"></th>
-                            </tr>
-                        </tfoot>
-                    </table>
+                <div class="col-1 col-lg-2 py-4 me-3">
+                    <div class="input-group">
+                        <input type="text" class="form-control" placeholder="Zipcode" aria-label="Username"
+                               aria-describedby="basic-addon1">
+                    </div>
+                </div>
+                <div class="col-3 col-md-2 col-sm-4 py-4 text-end">
+                    <div class="input-group">
+                        <button class="custom-btn-light-blue custom-borderless px-3 py-2 rounded custom-margin-search me-2  ">
+                            Search
+                        </button>
+                        <button class="ms-3 border px-3 py-2 rounded bg-white text-dark me-2 ms-sm-0"> Clear </button>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>*@
+        <div class="row">
+            <div class="input-daterange">
+                <div class="col-md-4">
+                    <input type="date" name="min" id="min" class="form-control" />
+                </div>
+                <div class="col-md-4">
+                    <input type="date" name="max" id="max" class="form-control" />
+                </div>
+            </div>
+        </div>
+        <div class="row mt-3 bor">
+            <div class="col-xxl-12 col-xl-12 col-lg-12 col-md-12 col-sm-12 table-responsive custom-user-management-color">
+                <table id="tblAllServices" class="table border table-hover">
+                    <thead class="table-light">
+                        <tr>
+                            <th scope="col">Service ID</th>
+                            <th scope="col">Service Date</th>
+                            <th scope="col">Customer Details</th>
+                            <th scope="col">Service Provider</th>
+                            <th scope="col">Gross Amount</th>
+                            <th scope="col">New Amount</th>
+                            <th scope="col">
+                                Status
+                            </th>
+                            <th scope="col">Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            <tr class="align-middle my-5">
+                                <td class="custom-pointer" onclick="OpenModel(@item.ServiceRequestId)" data-bs-toggle="modal" data-bs-target="#ServiceDetails">@item.ServiceRequestId</td>
+                                <td class="custom-pointer" onclick="OpenModel(@item.ServiceRequestId)" data-bs-toggle="modal" data-bs-target="#ServiceDetails" scope="row">
+                                    @item.ServiceDate.ToString("MM/dd/yyyy")
+                                </td>
+                                <td class="custom-pointer" onclick="OpenModel(@item.ServiceRequestId)" data-bs-toggle="modal" data-bs-target="#ServiceDetails">
+                                    @item.CustomerName
+                                    <br />
+                                    <img src="~/img/home.png" alt="" class="user-profile">@item.CustomerAddressLine1 @item.CustomerAddressLine2
+                                </td>
+
+                                @if (item.ServiceProviderName != null)
+                                {
+                                    <td class="custom-pointer" onclick="OpenModel(@item.ServiceRequestId)" data-bs-toggle="modal" data-bs-target="#ServiceDetails">
+                                        <div class="row">
+                                            <div class="service-history-icon d-flex">
+                                                @if (item.Avatar == 0.ToString())
+                                                {
+                                                    <img src="/img/avatar-car.png" style="height:50px;width:50px"> }
+                                                else if (item.Avatar == 1.ToString())
+                                                {
+                                                    <img src="/img/avatar-female.png" style="height:50px;width:50px"> }
+                                                else if (item.Avatar == 2.ToString())
+                                                {
+                                                    <img src="/img/avatar-hat.png" style="height:50px;width:50px"> }
+                                                else if (item.Avatar == 3.ToString())
+                                                {
+                                                    <img src="/img/avatar-iron.png" style="height:50px;width:50px"> }
+                                                else if (item.Avatar == 4.ToString())
+                                                {
+                                                    <img src="/img/avatar-male.png" style="height:50px;width:50px"> }
+                                                else if (item.Avatar == 5.ToString())
+                                                {
+                                                    <img src="/img/avatar-ship.png" style="height:50px;width:50px">}
+
+                                            </div>
+                                            <br />
+                                            <div>
+                                                <span class="d-block"> @item.ServiceProviderName </span>
+                                                @{ int i = (int)item.Rating; }
+                                                @for (int j = 0; j < i; j++)
+                                                {
+                                                    <img src="/img/yellow-star.webp" class="service-history-star-icon">}
+                                                @for (int j = 0; j < 5 - i; j++)
+                                                {
+                                                    <img src="/img/black-star.webp" class="service-history-star-icon">}
+                                                @i
+                                            </div>
+                                        </div>
+                                    </td>
+                                }
+                                else
+                                {
+                                    <td class="custom-pointer" onclick="OpenModel(@item.ServiceRequestId)" data-bs-toggle="modal" data-bs-target="#ServiceDetails"></td>
+                                }
+
+                                <td class="custom-pointer" onclick="OpenModel(@item.ServiceRequestId)" data-bs-toggle="modal" data-bs-target="#ServiceDetails">@item.NetAmount</td>
+                                <td class="custom-pointer" onclick="OpenModel(@item.ServiceRequestId)" data-bs-toggle="modal" data-bs-target="#ServiceDetails">@item.NetAmount</td>
+                                <td class="custom-pointer" onclick="OpenModel(@item.ServiceRequestId)" data-bs-toggle="modal" data-bs-target="#ServiceDetails" id="status">
+                                    @if (item.Status == 1)
+                                    {
+                                        <div class="custom-active-status"> Active </div>
+                                    }
+                                    else
+                                    {
+                                        <div class="custom-inactive-status"> Inactive </div>
+                                    }
+                                </td>
+                                <td>
+                                    <button class="btn btn-outline-info" onclick="EditModel(@item.ServiceRequestId)" data-bs-toggle="modal" data-bs-target="#EditService">✍️</button>
+                                </td>
+                            </tr>
+                        }
+
+                    </tbody>
+                    <tfoot>
+                        <tr>
+                            <th class="d-none">ServiceID</th>
+                            <th class="d-none"></th>
+                            <th class="d-none">Customer</th>
+                            <th>Service Provider</th>
+                            <th class="d-none">Grow Amount</th>
+                            <th class="d-none">New Amount</th>
+                            <th>Status</th>
+                            <th class="d-none">&nbsp;</th>
+                        </tr>
+                    </tfoot>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
 <!--#endregion User Table-->
+<!--#region Service Table -->
+<div class="modal fade" id="ServiceDetails" tabindex="-1" aria-labelledby="ServiceDetailsLabel" aria-hidden="true" data-bs-backdrop="static" data-bs-keyboard="false">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Service Details</h5>
+                <button type="button" class="btn-close" onclick="reloadPage()" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-md-9" id="ModelMainDiv">
+                        <div>
+                            <span id="ModelServiceDate" class="font-bold h5"></span> 8:00 - 13:00
+                            <br />
+                            <span class="font-bold"> Duration </span>
+                            <span id="ModelDuration"> </span> Hrs
+                        </div>
+                        <hr />
+                        <div>
+                            <span class="font-bold"> Service Id: </span>
+                            <span id="ModelServiceRequestId"> </span>.
+                            <br />
+                            <span class="font-bold"> Extras: </span>
+                            <span id="ModelExtra"></span>
+                            <br />
+                            <span class="font-bold"> Net Amount: </span>
+                            <span id="ModelTotalCost" class="font-blue font-bold"></span> €
+                            <br />
+                        </div>
+                        <hr />
+                        <div>
+                            <span class="font-bold"> Service Address: </span>
+                            <span id="ModelServiceAddress"> </span>.
+                            <br />
+                            <span class="font-bold"> Phone Number: </span>
+                            <span id="ModelMobileNumber"> </span>
+                            <br />
+                            <span class="font-bold"> Email: </span>
+                            <span id="ModelEmail"> </span>
+                            <br />
+                        </div>
+                        <hr />
+                        <div>
+                            <span class="font-bold"> Comments </span>
+                            <br />
+                            <span id="ModelComments"> </span>
+                        </div>
+                        <hr />
+                        <div>
+                            <span id="ModalHasPets"></span>
+                        </div>
+
+
+                    </div>
+                    <div class="col-md-3 d-none" id="ModelServiceProviderDetails">
+                        <h6> Service Provider Details</h6>
+                        <div class="row">
+
+                            <div class="service-history-icon d-flex" id="ModelServiceAvatarImage"> </div>
+                            <br />
+                            <div>
+                                <span class="d-block" id="ModelServiceProviderName">  </span>
+                                <br />
+                                <span id="ModelServiceRating"></span>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+<!--#endregion Service Table -->
+<!--#region Model Edit Service Request Data-->
+<div class="modal fade" id="EditService" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Edit Service Request</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" onclick="reloadPage()"></button>
+            </div>
+            <form>
+                <div class="modal-body">
+                    <input type="hidden" id="EditModelServiceRequestId" />
+                    <div class="d-none row alert alert-success" id="alertUpdateDetails">
+                        Updated Successfully!!
+                    </div>
+                    <div class="row p-2">
+                        <div class="col-md-6">
+                            <span class="font-bold"> Date </span>
+                            <input type="date" id="EditModelDate" class="form-control" />
+                        </div>
+                        <div class="col-md-6">
+                            <span class="font-bold"> Time </span>
+                            <select class="form-control form-select">
+                                <option> 8.30 </option>
+                                <option> 9 </option>
+                                <option> 9.30 </option>
+                                <option> 10 </option>
+                                <option> 10.30 </option>
+                            </select>
+                        </div>
+                    </div>
+                    Service Address
+                    <div class="row p-2">
+                        <div class="col-md-6">
+                            <span class="font-bold"> Street Name </span>
+                            <input id="EditServiceStreetName" class="form-control" />
+                            <span id="errStreetName" class="text-danger"></span>
+                        </div>
+                        <div class="col-md-6">
+                            <span class="font-bold"> House No </span>
+                            <input id="EditServiceHouseNo" class="form-control" />
+                            <span id="errHouseNumber" class="text-danger"></span>
+                        </div>
+                    </div>
+                    <div class="row p-2">
+                        <div class="col-md-6">
+                            <span class="font-bold"> Postal Code </span>
+                            <input id="EditServicePostalCode" class="form-control" />
+                            <span id="errPostalCode" class="text-danger"></span>
+                        </div>
+                        <div class="col-md-6">
+                            <span class="font-bold"> City </span>
+                            <select class=" form-control form-select" id="EditServiceCity" asp-items="@ViewBag.city">  </select>
+                        </div>
+                    </div>
+                    <div class="row p-2">
+                        <div class="col-md-12">
+                            <span class="font-bold"> Why do you want to reschedule service request ? </span>
+                            <textarea id="EditServiceMessage" rows="4" class="form-control"></textarea>
+                            <span id="errMessage" class="text-danger"></span>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer p-3">
+                    <input class="btn btn-outline-primary text-white" id="btnUpdateServiceDetails" type="submit" value="Update">
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<!--#endregion Model Edit Service Request Data-->
 <!--#region Script-->
 <script type="text/javascript" charset="utf8" src="https://code.jquery.com/jquery-3.5.1.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
 <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.11.5/js/dataTables.bootstrap5.min.js"></script>
+<script type="text/javascript" charset="utf8" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.min.js"></script>
+<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/datetime/1.1.2/js/dataTables.dateTime.min.js"></script>
 <script type="text/javascript" src="https://cdn.datatables.net/buttons/2.2.2/js/dataTables.buttons.min.js"></script>
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
 <script type="text/javascript" src="https://cdn.datatables.net/buttons/2.2.2/js/buttons.html5.min.js"></script>
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script>
 
 <script>
 
-        //#region Data Table
-        $(document).ready(function () {
-            $.noConflict();
-            $('#tblUserManagement').dataTable({
-                "bFilter": true,
-                "bInfo": true,
-                'aoColumnDefs': [{ 'bSortable': false, 'aTargets': [-1] }],
-                'responsive': true,
-                dom: 'Bfrtip',
-                buttons: [
-                    {
-                        extend: 'excel',
-                        text: 'Export',
-                        className: 'btn btn-primary'
-                    }
-                ],
-                initComplete: function () {
-                    this.api().columns().every(function () {
-                        var column = this;
-                        var select = $('<select><option value=""></option></select>')
-                            .appendTo($(column.footer()).empty())
-                            .on('change', function () {
-                                var val = $.fn.dataTable.util.escapeRegex(
-                                    $(this).val()
-                                );
+    var minDate, maxDate;
+    //#region Date Range Filtering
+    // Custom filtering function which will search data in column 2 between two values
+    $.fn.dataTable.ext.search.push(
+        function (settings, data, dataIndex) {
+            var min1 = $('#min').val();
 
-                                column.search(val ? '^' + val + '$' : '', true, false).draw();
-                            });
+            var max1 = $('#max').val();
+            var min = moment(min1).format('MM-DD-YYYY');
+            var max = moment(max1).format('MM-DD-YYYY');
+            var date = moment(data[1]).format('MM-DD-YYYY');
+/*            date = moment(date).format('DD-MM-YYYY');*/
+            console.log("Min : " + min + " Date " +date);
+            if (
+                (min1 == "" && max1 == "") ||
+                (min1 == "" && date <= max) ||
+                (min <= date && max == "") ||
+                (min <= date && date <= max)
+            ) {
+                return true;
+            }
+            return false;
+        }
+    );
+        //#endregion Date Range Filtering
 
-                        column.data().unique().sort().each(function (d, j) {
-                            select.append('<option value="' + d + '">' + d + '</option>')
+    //#region Data Table
+    $(document).ready(function () {
+        $.noConflict();
+        $('#tblAllServices').dataTable({
+            "bFilter": true,
+            "bInfo": true,
+            'aoColumnDefs': [{ 'bSortable': false, 'aTargets': [-1] }],
+            'responsive': true,
+            'paging' : true,
+            dom: 'Bfrtip',
+            buttons: [
+                {
+                    extend: 'excel',
+                    text: 'Export',
+                    className: 'btn btn-primary'
+                }
+            ],
+            initComplete: function () {
+                tempTable = this;
+                this.api().columns([3, 6]).every(function (z) {
+                    var column = this;
+                    var theadname = $("#tblAllServices th").eq(z).text();
+                    var select = $('<select><option value="">' + theadname +': All</option></select>')
+                        .appendTo($(column.footer()).empty()).on('change', function () {
+                            var val = $.fn.dataTable.util.escapeRegex(
+                                $(this).val()
+                            );
+                            column.search(val ? '^' + val + '$' : '', true, false).draw();
                         });
+
+                    column.data().unique().sort().each(function (d, j) {
+                        var val = $('<div/>').html(d).text();
+
+/*                        console.log(val + " -- " + j);*/
+                        select.append('<option value="' + val + '">' + val + '</option>')
                     });
-                }
-            });
-            
+                });
+            }
         });
-        //#endregion Data Table
 
-        //#region Function - Active
-        function btnActive(userID) {
+        // Event listener to the two range filtering inputs to redraw on input
+        $('#min, #max').on('change', function () {
+            console.log("Min : " + $("#min").val() + " Max : " + $("#max").val());
+
+            var tbl = $("#tblAllServices").DataTable();
+            console.log(tbl);
+            tbl.table().draw();
+        });
+    });
+    //#endregion Data Table
+
+
+
+    //#region Open Modal
+    function OpenModel(para) {
+            $("#ServiceDetails").modal('show');
+            $("#ModelServiceRequestId").text(para);
+            $("#ModelbtnReschedule").val(para);
+            $("#ModelbtnCancel").val(para);
+           $.ajax({
+                  type: "POST",
+                  url: "@Url.Action("GetServiceRequestData")",
+                  data: { "ServiceRequestId": para },
+                 success: function (responce) {
+                     var obj = JSON.parse(responce);
+                     $("#ModelDuration").text(obj.TotalHour);
+                     $("#ModelServiceDate").text(obj.ServiceDate);
+                     $("#ModelExtra").text(obj.Extra);
+                     $("#ModelTotalCost").text(obj.TotalCost);
+                     $("#ModelServiceAddress").text(obj.Address);
+                     $("#ModelMobileNumber").text(obj.MobileNumber);
+                     $("#ModelEmail").text(obj.Email);
+                     $("#ModelComments").text(obj.Comments);
+                     if (obj.ServiceProviderId != null) {
+                         $("#ModelServiceProviderDetails").removeClass("d-none");
+                         $("#ModelServiceProviderName").text(obj.ServiceProviderName);
+                         $("#ModelServiceProviderDetails").show();
+                         $("#ModelServiceProviderDetails").addClass("col-md-3");
+                         $("#ModelMainDiv").addClass("col-md-9");
+                         $("#ModelMainDiv").removeClass("d-none col-md-12");
+                         $("#ModelServiceAvatarImage").empty();
+                         if (obj.Avatar == 0) {
+                             $("#ModelServiceAvatarImage").append(' <img src="/img/avatar-car.png" style="height:50px;width:50px;">');
+                         }
+                         else if (obj.Avatar == 1) {
+                             $("#ModelServiceAvatarImage").append(' <img src="/img/avatar-female.png" v> ');
+                         }
+                         else if (obj.Avatar == 2) {
+                             $("#ModelServiceAvatarImage").append(' <img src="/img/avatar-hat.png" style="height:50px;width:50px;"> ');
+                         }
+                         else if (obj.Avatar == 3) {
+                             $("#ModelServiceAvatarImage").append(' <img src="/img/avatar-iron.png" style="height:50px;width:50px;"> ');
+                         }
+                         else if (obj.Avatar == 4) {
+                             $("#ModelServiceAvatarImage").append(' <img src="/img/avatar-male.png" style="height:50px;width:50px;">');
+                         }
+                         else if (obj.Avatar == 5) {
+                             $("#ModelServiceAvatarImage").append(' <img src="/img/avatar-ship.png" style="height:50px;width:50px;"> ');
+                         }
+                     }
+                     else {
+                         $("#ModelServiceProviderDetails").hide();
+                         $("#ModelServiceProviderDetails").removeClass("col-md-3");
+                         $("#ModelMainDiv").removeClass("col-md-9");
+                         $("#ModelMainDiv").addClass("col-md-12");
+
+
+                     }
+                     if (obj.hasPets) {
+                         $("#ModalHasPets").text("✔ I have pets");
+                     }
+                     else {
+                         $("#ModalHasPets").text("✘ I don't have pets");
+                     }
+                     $("#ModelServiceRating").empty();
+                     for (var i = 0; i < 5; i++) {
+                         if (obj.Rating > i) {
+                             $("#ModelServiceRating").append('<img src="/img/yellow-star.webp" class="service-history-star-icon">');
+                         }
+                         else {
+                             $("#ModelServiceRating").append('<img src="/img/black-star.webp" class="service-history-star-icon">');
+                         }
+                     }
+                     $("#ModelServiceRating").append(parseFloat(obj.Rating).toFixed(2));
+
+                 },
+               failure: function (response) {
+                   alert("failure because of " + response);
+                 },
+                 error: function (response) {
+                     alert("Something went Wrong because of " + response);
+                 }
+
+              });
+        }
+    //#endregion Open Modal
+
+    //#region Function - Reload Page
+    function reloadPage(){
+        location.reload();
+    }
+    //#endregion Function - Reload Page
+
+    //#region Fill Edit Modal
+    function EditModel(para) {
+            $("#EditService").modal('show');
+            $("#EditModelServiceRequestId").val(para);
+            $("#EditServiceMessage").val(" ");
             $.ajax({
-                type: "POST",
-                url: "@Url.Action("MakeUserActive")",
-                data: { "userID": userID },
-                success: function (response) {
-                    console.log("Is User Active ? " + response);
-                    $("#status").hide();
-
-                    location.reload();
-
-                },
+                  type: "GET",
+                  url: "@Url.Action("GetServiceRequestDetailsForEdit")",
+                  data: { "ServiceRequestId": para },
+                 success: function (response) {
+                     var obj = JSON.parse(response);
+                     $("#EditModelDate").val(obj.ServiceDate);
+                     $("#EditServiceStreetName").val(obj.StreetName);
+                     $("#EditServiceHouseNo").val(obj.HouseNumber);
+                     $("#EditServicePostalCode").val(obj.Zipcode);
+                     $("#EditServiceCity").val(obj.CityId);
+                 },
                 failure: function (response) {
                     alert("failure because of " + response);
-                },
-                error: function (response) {
-                    alert("Something went Wrong because of " + response);
-                }
-            });
+                 },
+                 error: function (response) {
+                     alert("Something went Wrong because of " + response);
+                 }
+              });
         }
-        //#endregion Function - Active
+    //#endregion Fill Edit Modal
 
-        //#region Function - Deactive
-        function btnDeactive(userID) {
-            $.ajax({
-                type: "POST",
-                url: "@Url.Action("MakeUserDeactive")",
-                data: { "userID": userID },
-                success: function (response) {
-                    console.log("Is User Deactive ? " + response);
-                    $("#status").hide();
+    //#region Button - Update Details
+            $("#btnUpdateServiceDetails").on('click', function () {
+                $.ajax({
+                    type: "POST",
+                    url: "@Url.Action("UpdateService")",
+                    data:
+                        {
+                            serviceRequestID: $("#EditModelServiceRequestId").val(),
+                            modalDate: $("#EditModelDate").val(),
+                            StreetName: $("#EditServiceStreetName").val(),
+                            HouseNo: $("#EditServiceHouseNo").val(),
+                            PostalCode: $("#EditServicePostalCode").val(),
+                            City: $("#EditServiceCity").val(),
+                            Message: $("#EditServiceMessage").val()
+                        }
+                    ,
+                    success: function (response) {
+                        if (response) {
+                            $("#alertUpdateDetails").removeClass("d-none").show().fadeOut(5000);
+                            $("#EditModel").modal('hide');
+                            reloadPage();
+                        }
+                    },
+                    failure: function (response) {
+                        alert("failure because of " + response.responseText);
+                    },
+                    error: function (response) {
+                        alert("Something went Wrong because of " + response.responseText);
+                    }
 
-                    location.reload();
-
-                },
-                failure: function (response) {
-                    alert("failure because of " + response);
-                },
-                error: function (response) {
-                    alert("Something went Wrong because of " + response);
-                }
+                });
             });
-        }
-        //#endregion Function - Deactive
+    //#endregion Button - Update Details
+
+    //#region Date Format
+    var today = new Date();
+    var dd = String(today.getDate()).padStart(2, '0');
+    var mm = String(today.getMonth() + 1).padStart(2, '0');
+    var yyyy = today.getFullYear();
+
+    today = yyyy + '-' + mm + '-' + dd;
+    $('#EditModelDate').attr('min', today);
+    //#endregion Date Format
+
 </script>
 <!--#endregion Script-->

@@ -165,9 +165,10 @@
                     }
                 ],
                 initComplete: function () {
-                    this.api().columns().every(function () {
+                    this.api().columns().every(function (z) {
                         var column = this;
-                        var select = $('<select><option value=""></option></select>')
+                        var theadname = $("#tblAllServices th").eq(z).text();
+                        var select = $('<select><option value="">' + theadname +': All</option></select>')
                             .appendTo($(column.footer()).empty())
                             .on('change', function () {
                                 var val = $.fn.dataTable.util.escapeRegex(
